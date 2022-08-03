@@ -36,10 +36,14 @@ export const FormOkButton = styled.button`
   color: ${color.text.lighter};
   width: 100%;
   height: 40px;
-  background: #409eff;
+  background: ${color.button.main};
   ${MarginBase};
   border-radius: 4px;
   font-size: 16px;
+  cursor: pointer;
+  :hover {
+    background: ${color.button.hoverMain};
+  }
 `
 
 export const FormErrorTip = styled.p`
@@ -60,4 +64,6 @@ export const ControlButtonWrapper = styled.div`
 export const ControlButton = styled.button`
   font-size: ${typography.text};
   color: ${color.text.lighter};
+  background: #0000;
+  cursor: pointer;
 `
