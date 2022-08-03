@@ -51,10 +51,6 @@ export const FormErrorTip = styled.p`
   }
 `
 
-export const FormShowPassword = styled.img`
-  src: ../../common/images/show_password.png;
-`
-
 export const ControlButtonWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -62,5 +58,6 @@ export const ControlButtonWrapper = styled.div`
 `
 
 export const ControlButton = styled.button`
+  font-size: ${typography.text};
   color: ${color.text.lighter};
 `

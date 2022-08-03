@@ -5,7 +5,6 @@ import {
   FormContent,
   FormInput,
   FormErrorTip,
-  FormShowPassword,
   LoginTitle,
   ControlButtonWrapper,
   ControlButton,
@@ -63,7 +62,6 @@ export const LoginView: React.FC = () => {
           type={'password'}
         />
         {errors?.password && <FormErrorTip>{errors.password.message}</FormErrorTip>}
-        <FormShowPassword />
         <ControlButtonWrapper>
           <ControlButton type='button'>忘记密码</ControlButton>
           <ControlButton type='button'>注册账号</ControlButton>
