@@ -1,26 +1,55 @@
-import React from 'react'
+import React, { useState } from 'react'
+import {
+  FormOkButton,
+  LoginWrapper,
+  FormContent,
+  FormInput,
+  FormErrorTip,
+  FormShowPassword,
+} from './atoms'
+import { useForm, Resolver } from 'react-hook-form'
+
+type FormValues = {
+  account: string
+  password: string
+}
+
+const resolver: Resolver<FormValues> = async (values) => {
+  return {
+    values: values.account ? values : {},
+    errors: !values.account
+      ? {
+          account: {
+            type: 'required',
+            message: '请输入账号！',
+          },
+        }
+      : {},
+  }
+}
 
 export const LoginView: React.FC = () => {
+  const [passwordStatus, setPasswordStatus] = useState(false)
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormValues>({ resolver })
+  const onSubmit = handleSubmit((data) => console.log(data))
+
   return (
-    <>
-      <button
-        bg='blue-400 hover:blue-500 dark:blue-500 dark:hover:blue-600'
-        text='sm white'
-        font='mono light'
-        p='y-2 x-4'
-        border='2 rounded blue-200'
-      >
-        登录
-      </button>
-      <button
-        bg='blue-400 hover:blue-500 dark:blue-500 dark:hover:blue-600'
-        text='sm white'
-        font='mono light'
-        p='y-2 x-4'
-        border='2 rounded blue-200'
-      >
-        登录
-      </button>
-    </>
+    <LoginWrapper>
+      <FormContent onSubmit={onSubmit}>
+        <FormInput {...register('account')} placeholder='账号' />
+        {errors?.account && <FormErrorTip>{errors.account.message}</FormErrorTip>}
+        <FormInput
+          {...register('password')}
+          placeholder='密码'
+          type={passwordStatus ? 'text' : 'password'}
+        />
+        <FormShowPassword />
+        <FormOkButton type='submit'>登录</FormOkButton>
+      </FormContent>
+    </LoginWrapper>
   )
 }

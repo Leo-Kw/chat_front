@@ -4,6 +4,9 @@ import colors from 'windicss/colors'
 export default defineConfig({
   theme: {
     extend: {
+      backgroundImage: {
+        'app-bg': 'url(http://112.74.127.146/picture/images/banner_111.a6be22c.gif)',
+      },
       screens: {
         sm: '640px',
         md: '768px',

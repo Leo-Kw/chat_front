@@ -14,14 +14,17 @@ const variablePath = normalizePath(path.resolve('./src/variable.scss'))
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  // 手动指定项目根目录位置
-  // root: path.join(__dirname, 'src'),
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
+  },
+  server: {
+    port: 3100,
+  },
   plugins: [
     react({
       babel: {
-        // 加入 babel 插件
-        // 以下插件包都需要提前安装
-        // 当然，通过这个配置你也可以添加其它的 Babel 插件
         plugins: [
           // 适配 styled-component
           'babel-plugin-styled-components',
