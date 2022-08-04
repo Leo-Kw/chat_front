@@ -5,6 +5,7 @@ export const LoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: -300px;
 `
 
 export const ControlButtonWrapper = styled.div`

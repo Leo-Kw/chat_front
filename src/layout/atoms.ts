@@ -1,5 +1,7 @@
+import { typography } from '@/theme'
 import styled from 'styled-components'
-import shadows from '../theme/shadows'
+
+const borderRadius = '5px'
 
 export const BackgroundImage = styled.div`
   display: flex;
@@ -10,21 +12,18 @@ export const BackgroundImage = styled.div`
 `
 
 export const Menu = styled.div`
-  width: 110px;
-  height: 100px;
-  position: absolute;
-  right: 0;
-  box-shadow: ${shadows[2]};
-  border-radius: 4px;
+  display: none;
+  width: 100%;
+  height: 100%;
+  right: 5px;
   cursor: pointer;
-  background: #0006;
-  color: #999;
+  margin-top: 10px;
 `
 
 export const LocaleContainer = styled.div`
   position: absolute;
-  right: 20px;
-  width: 55px;
+  right: 40px;
+  width: 90px;
   top: 15px;
   cursor: pointer;
   :hover {
@@ -40,10 +39,28 @@ export const CurrentLanguage = styled.div`
   :after {
     content: '';
     position: absolute;
-    top: 45%;
-    right: 2%;
+    top: 10px;
+    right: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     border-top: 5px solid #999;
+  }
+`
+
+export const LanguageItem = styled.div<{ active?: boolean }>`
+  text-align: center;
+  width: 100px;
+  height: 30px;
+  line-height: 30px;
+  font-size: ${typography.textSmall};
+  background-color: ${(p) => (p.active ? '#e5e5e5' : 'white')};
+  font-weight: ${(p) => (p.active ? 'bold' : 'normal')};
+  &:first-child {
+    border-top-left-radius: ${borderRadius};
+    border-top-right-radius: ${borderRadius};
+  }
+  &:last-child {
+    border-bottom-right-radius: ${borderRadius};
+    border-bottom-left-radius: ${borderRadius};
   }
 `
