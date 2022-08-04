@@ -1,4 +1,17 @@
-/node_modules/**
+# Ignore artifacts:
+build
 
-**/*.svg
+# Ignore all HTML files:
+*.html
+
+*.hbs
+
+/node_modules/**
 **/*.sh
+
+*.svg
+*.png
+*.ico
+*.txt
+
+.prettierignore

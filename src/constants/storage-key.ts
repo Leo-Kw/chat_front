@@ -1,0 +1,15 @@
+export enum StorageKey {
+  miniProgramBoundCoupon = 'mini-bound-coupon',
+  loginType = 'loginType',
+  language = 'language',
+  isCounting = 'isCounting',
+  userKey = 'userKey',
+  platform = 'platform',
+  languageFlag = 'languageFlag',
+  userId = 'userId',
+  clientRSThirdToken = 'clientRSThirdToken',
+  officialWebsiteEntry = 'officialWebsiteEntry',
+  comeFrom = 'comefrom',
+  blockComefrom = 'blockComefrom',
+  thirdPartyBusiness = 'thirdPartyBusiness',
+}

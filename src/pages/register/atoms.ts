@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import { color, typography } from '../../common/theme'
+import { typography, color } from '@/common/theme'
 
-export const LoginWrapper = styled.div`
+export const RegisterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -9,8 +9,7 @@ export const LoginWrapper = styled.div`
 
 export const ControlButtonWrapper = styled.div`
   display: flex;
-  justify-content: space-between;
-  margin-bottom: 20px;
+  justify-content: right;
 `
 
 export const ControlButton = styled.button`
