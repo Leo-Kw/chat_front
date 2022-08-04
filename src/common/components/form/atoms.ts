@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { color, typography } from '@/common/theme'
+import { color, typography } from '@/theme'
 import { ReactComponent as ShowEye } from '@/common/icons/show_eye.svg'
 import { ReactComponent as HideEye } from '@/common/icons/hide_eye.svg'
 

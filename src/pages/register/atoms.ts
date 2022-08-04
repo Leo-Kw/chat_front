@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { typography, color } from '@/common/theme'
+import { typography, color } from '@/theme'
 
 export const RegisterWrapper = styled.div`
   display: flex;
