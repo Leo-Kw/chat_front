@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { color, typography } from '../../theme'
+import { color, typography } from '@/theme'
 
 export const LoginWrapper = styled.div`
   display: flex;

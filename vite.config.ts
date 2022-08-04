@@ -19,9 +19,12 @@ export default defineConfig({
     global: {},
   },
   resolve: {
-    alias: {
-      '@': path.resolve(__dirname, 'src'),
-    },
+    alias: [
+      {
+        find: '@',
+        replacement: path.resolve(__dirname, 'src'),
+      },
+    ],
   },
   server: {
     port: 3100,
