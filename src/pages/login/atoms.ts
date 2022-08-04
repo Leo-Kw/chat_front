@@ -5,11 +5,22 @@ const MarginBase = css`
   margin: 10px 0;
 `
 
-export const LoginWrapper = styled.div``
+export const LoginWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`
+
+export const ChickMusicImg = styled.img.attrs(() => ({
+  src: 'http://112.74.127.146/picture/images/music/songs-feel-good.gif',
+}))`
+  width: 100px;
+  hegiht: auto;
+`
 
 export const LoginTitle = styled.div`
   text-align: center;
-  font-size: ${typography.h4};
+  font-size: ${typography.h5};
   color: ${color.text.lighter};
   margin-bottom: 30px;
 `

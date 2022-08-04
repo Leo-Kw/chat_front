@@ -8,6 +8,7 @@ import {
   LoginTitle,
   ControlButtonWrapper,
   ControlButton,
+  ChickMusicImg,
 } from './atoms'
 import { useForm, Resolver } from 'react-hook-form'
 
@@ -52,7 +53,8 @@ export const LoginView: React.FC = () => {
 
   return (
     <LoginWrapper>
-      <LoginTitle>航哥的聊天室</LoginTitle>
+      <ChickMusicImg />
+      <LoginTitle>航仔的聊天室</LoginTitle>
       <FormContent onSubmit={onSubmit}>
         <FormInput {...register('account')} placeholder='账号' />
         {errors?.account && <FormErrorTip>{errors.account.message}</FormErrorTip>}
