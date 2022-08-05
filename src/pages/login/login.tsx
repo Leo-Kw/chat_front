@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useForm, Resolver } from 'react-hook-form'
 import intl from 'react-intl-universal'
 
+import { Toast } from '@/common/components'
 import { ControlButtonWrapper, ControlButton, LoginWrapper } from './atoms'
 import {
   ChickMusicImg,
@@ -55,7 +56,9 @@ export const LoginView: React.FC = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>({ resolver })
-  const onSubmit = handleSubmit((data) => console.log(data))
+  const onSubmit = handleSubmit((data) =>
+    Toast.success(`账号：${data.account} 密码：${data.password}`)
+  )
 
   return (
     <LoginWrapper>

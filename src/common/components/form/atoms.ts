@@ -13,7 +13,7 @@ const EyeBase = css`
   width: 20px;
   height: 20px;
   top: 10px;
-  fill: ${color.gray};
+  fill: ${color.gray.main};
   transition: 0.2s;
   :hover {
     cursor: pointer;

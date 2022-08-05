@@ -1,11 +1,11 @@
 import styled from 'styled-components'
-import { color, typography } from '@/theme'
+import { color, typography } from '../../theme'
 
 export const LoginWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: -300px;
+  margin-top: -240px;
 `
 
 export const ControlButtonWrapper = styled.div`

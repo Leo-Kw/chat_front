@@ -1,4 +1,4 @@
-import { typography } from '@/theme'
+import { color, typography } from '@/theme'
 import styled from 'styled-components'
 
 const borderRadius = '5px'
@@ -15,7 +15,6 @@ export const Menu = styled.div`
   display: none;
   width: 100%;
   height: 100%;
-  right: 5px;
   cursor: pointer;
   margin-top: 10px;
 `
@@ -34,7 +33,7 @@ export const LocaleContainer = styled.div`
 `
 
 export const CurrentLanguage = styled.div`
-  color: #999;
+  color: ${color.gray.heavy};
   background: #fff0;
   :after {
     content: '';
@@ -43,18 +42,18 @@ export const CurrentLanguage = styled.div`
     right: 0;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
-    border-top: 5px solid #999;
+    border-top: 5px solid ${color.gray.heavy};
   }
 `
 
-export const LanguageItem = styled.div<{ active?: boolean }>`
+export const LanguageItem = styled.div<{ selected: boolean }>`
   text-align: center;
   width: 100px;
   height: 30px;
   line-height: 30px;
   font-size: ${typography.textSmall};
-  background-color: ${(p) => (p.active ? '#e5e5e5' : 'white')};
-  font-weight: ${(p) => (p.active ? 'bold' : 'normal')};
+  background-color: ${({ selected }) => (selected ? color.gray.light : 'white')};
+  font-weight: ${({ selected }) => (selected ? 'bold' : 'normal')};
   &:first-child {
     border-top-left-radius: ${borderRadius};
     border-top-right-radius: ${borderRadius};

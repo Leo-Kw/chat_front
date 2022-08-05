@@ -27,6 +27,15 @@ module.exports = {
     'react/react-in-jsx-scope': 'off',
     'no-undef': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/ban-types': [
+      'error',
+      {
+        extendDefaults: true,
+        types: {
+          '{}': false,
+        },
+      },
+    ],
   },
   settings: {
     react: {

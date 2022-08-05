@@ -5,7 +5,7 @@ export const RegisterWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: -200px;
+  margin-top: -150px;
 `
 
 export const ControlButtonWrapper = styled.div`

@@ -30,7 +30,7 @@ export const Layout: React.FC<props> = ({ children }) => {
         <CurrentLanguage>{intl.get('language')}</CurrentLanguage>
         <Menu>
           {getSurplusLocale(locale).map((item, index) => (
-            <LanguageItem key={index} onClick={() => handleClick(item)} active={item === locale}>
+            <LanguageItem key={index} onClick={() => handleClick(item)} selected={item === locale}>
               <span>{LocaleMap.get(item)?.text}</span>
             </LanguageItem>
           ))}

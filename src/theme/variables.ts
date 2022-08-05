@@ -33,8 +33,17 @@ export const color = Object.freeze({
     dark: '#3e4149',
     darker: '#121317',
   },
-  gray: '#cccccc',
+  gray: {
+    main: '#cccccc',
+    light: '#e5e5e5',
+    heavy: '#999',
+  },
   disableGray: '#c1c7d6',
+  // 功能色
+  info: '#348ef5',
+  success: '#67c23a',
+  warning: '#F76921',
+  error: '#ff4d4f',
 })
 
 export const spacing = Object.freeze({
@@ -42,3 +51,21 @@ export const spacing = Object.freeze({
   base: '20px',
   large: '30px',
 })
+
+export const radius = Object.freeze({
+  /** 2px */
+  ssm: '2px',
+  /** 5px */
+  sm: '5px',
+  /** 8px */
+  md: '8px',
+  /** 10px */
+  lg: '10px',
+})
+
+export const theme = {
+  typography,
+  color,
+  spacing,
+  radius,
+}

@@ -5,18 +5,22 @@ import { Layout } from './layout'
 
 import { LoginView } from './pages/login'
 import { RegisterView } from './pages/register'
+import { ThemeProvider } from 'styled-components'
+import { theme } from './theme'
 
 function App() {
   return (
-    <BrowserRouter>
-      <Layout>
-        <Routes>
-          <Route path={RouteConfig.login} element={<LoginView />} />
-          <Route path={RouteConfig.register} element={<RegisterView />} />
-          <Route path='*' element={<Navigate to={RouteConfig.login} />} />
-        </Routes>
-      </Layout>
-    </BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <Layout>
+          <Routes>
+            <Route path={RouteConfig.login} element={<LoginView />} />
+            <Route path={RouteConfig.register} element={<RegisterView />} />
+            <Route path='*' element={<Navigate to={RouteConfig.login} />} />
+          </Routes>
+        </Layout>
+      </BrowserRouter>
+    </ThemeProvider>
   )
 }
 
