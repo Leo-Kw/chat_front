@@ -73,6 +73,7 @@ export const createToastManager = (): CreateToastReturn => {
       <ToastManager ref={ref} />
     </AppThemeProvider>
   )
+  console.log(ref)
 
   return {
     addNotice(option: ToastProps) {
