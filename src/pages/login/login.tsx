@@ -18,13 +18,10 @@ import {
 } from '@/common/components'
 import { RouteConfig } from '@/constants'
 import { NavLink } from '@/common/base-atoms'
+import { LoginApi } from './login.api'
+import { LoginType } from './login.type'
 
-type FormValues = {
-  account: string
-  password: string
-}
-
-const resolver: Resolver<FormValues> = async (values) => {
+const resolver: Resolver<LoginType.LoginParams> = async (values) => {
   const errors = {
     ...(!values.account
       ? {
@@ -55,10 +52,11 @@ export const LoginView: React.FC = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>({ resolver })
-  const onSubmit = handleSubmit((data) =>
+  } = useForm<LoginType.LoginParams>({ resolver })
+  const onSubmit = handleSubmit((data) => {
+    LoginApi.login(data)
     Toast.success(`账号：${data.account} 密码：${data.password}`)
-  )
+  })
 
   return (
     <LoginWrapper>
