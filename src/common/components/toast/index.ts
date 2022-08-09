@@ -3,7 +3,7 @@ import { ToastProps } from './toast'
 import { CreateToastReturn } from './manager'
 
 let toastManager: CreateToastReturn | null = null
-function notice(notice: ToastProps) {
+export const notice = (notice: ToastProps) => {
   if (!toastManager) {
     toastManager = createToastManager()
   }

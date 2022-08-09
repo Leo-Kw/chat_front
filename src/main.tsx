@@ -6,6 +6,7 @@ import intl from 'react-intl-universal'
 import { Locale } from './service'
 import { Zh, En } from './locale'
 import { getLocaleService } from './service'
+import { notice } from './common/components/toast'
 
 // 用来注入 Windi CSS 所需的样式，一定要加上!
 import 'virtual:windi.css'
@@ -17,6 +18,9 @@ intl.init({
     [Locale.EN]: En,
   },
 })
+
+// 初始化Toast
+notice({ content: '', type: 'info', duration: 3000 })
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
