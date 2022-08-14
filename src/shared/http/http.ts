@@ -1,6 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { resetParams } from './http.utils'
 import { handleRequest } from './interceptors'
+import { CommonResponse } from './interface'
 
 const flatAxiosResponse = <T>(response: AxiosResponse<T>) => ({
   ...response?.data,
@@ -9,14 +10,14 @@ const flatAxiosResponse = <T>(response: AxiosResponse<T>) => ({
 
 const createAxiosInstance = ({ headers, ...otherConfig }: AxiosRequestConfig) => {
   const axiosInstance = axios.create({
-    baseURL: 'http://localhost:3101/',
+    baseURL: 'api/',
     timeout: 1000 * 90,
     withCredentials: true,
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
       channel: 6,
       version: '1.0.0',
-      signature: 'rayvision2017',
+      signature: 'chat_hangzai',
       ...headers,
     },
     ...otherConfig,
@@ -27,10 +28,12 @@ const createAxiosInstance = ({ headers, ...otherConfig }: AxiosRequestConfig) =>
   return {
     get: <R>(url: string, config?: AxiosRequestConfig) => {
       const params = resetParams(config?.params)
-      return axiosInstance.get<R>(url, { ...config, params }).then(flatAxiosResponse)
+      return axiosInstance
+        .get<CommonResponse<R>>(url, { ...config, params })
+        .then(flatAxiosResponse)
     },
     post: <R>(url: string, data: R, config?: AxiosRequestConfig) =>
-      axiosInstance.post<R>(url, data, config).then(flatAxiosResponse),
+      axiosInstance.post<CommonResponse<R>>(url, data, config).then(flatAxiosResponse),
   }
 }
 

@@ -17,4 +17,5 @@ export default {
   validate_name_required: 'Name is required!',
   validate_email_format_required: 'Email format is incorrect!',
   have_account_to_login: 'Already have an account',
+  login_success: 'login successful',
 }

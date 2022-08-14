@@ -54,8 +54,11 @@ export const LoginView: React.FC = () => {
     formState: { errors },
   } = useForm<LoginType.LoginParams>({ resolver })
   const onSubmit = handleSubmit((data) => {
-    LoginApi.login(data)
-    Toast.success(`账号：${data.account} 密码：${data.password}`)
+    LoginApi.login(data).then((res) => {
+      if (res.success) {
+        Toast.success(intl.get('login_success'))
+      }
+    })
   })
 
   return (

@@ -3,6 +3,6 @@ import { LoginType } from './login.type'
 
 export const LoginApi = {
   login(params: LoginType.LoginParams) {
-    return httpService.post('/login', params)
+    return httpService.post('/api/user/login', params)
   },
 }
