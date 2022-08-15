@@ -20,6 +20,7 @@ import { RouteConfig } from '@/constants'
 import { NavLink } from '@/common/base-atoms'
 import { LoginApi } from './login.api'
 import { LoginType } from './login.type'
+import { AuthService } from '@/shared/services'
 
 const resolver: Resolver<LoginType.LoginParams> = async (values) => {
   const errors = {
@@ -57,6 +58,7 @@ export const LoginView: React.FC = () => {
     LoginApi.login(data).then((res) => {
       if (res.success) {
         Toast.success(intl.get('login_success'))
+        AuthService.setToken(res.data.token)
       }
     })
   })

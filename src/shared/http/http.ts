@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
 import { resetParams } from './http.utils'
-import { handleRequest } from './interceptors'
-import { CommonResponse } from './interface'
+import { handleError, handleRequest, handleResponse } from './interceptors'
+import { BaseResponse } from './interface'
 
 const flatAxiosResponse = <T>(response: AxiosResponse<T>) => ({
   ...response?.data,
@@ -24,16 +24,15 @@ const createAxiosInstance = ({ headers, ...otherConfig }: AxiosRequestConfig) =>
   })
 
   axiosInstance.interceptors.request.use(handleRequest)
+  axiosInstance.interceptors.response.use(handleResponse, handleError)
 
   return {
     get: <R>(url: string, config?: AxiosRequestConfig) => {
       const params = resetParams(config?.params)
-      return axiosInstance
-        .get<CommonResponse<R>>(url, { ...config, params })
-        .then(flatAxiosResponse)
+      return axiosInstance.get<BaseResponse<R>>(url, { ...config, params }).then(flatAxiosResponse)
     },
-    post: <R>(url: string, data: R, config?: AxiosRequestConfig) =>
-      axiosInstance.post<CommonResponse<R>>(url, data, config).then(flatAxiosResponse),
+    post: <P, R>(url: string, data: P, config?: AxiosRequestConfig) =>
+      axiosInstance.post<BaseResponse<R>>(url, data, config).then(flatAxiosResponse),
   }
 }
 

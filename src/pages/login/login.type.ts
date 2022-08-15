@@ -3,4 +3,7 @@ export namespace LoginType {
     account: number
     password: number
   }
+  export interface LoginResponse {
+    token: string
+  }
 }
