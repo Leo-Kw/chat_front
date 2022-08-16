@@ -1,5 +1,5 @@
-import { LocationSearchParams } from '../utils'
-import { StorageKey } from '../constants'
+import { LocationSearchParams } from '@/utils'
+import { StorageKey } from '@/constants'
 export enum Locale {
   ZH = 'zh',
   EN = 'en',

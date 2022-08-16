@@ -14,20 +14,16 @@ import {
   FormErrorTip,
   LoginTitle,
   FormItem,
+  Toast,
 } from '@/common/components'
 import { NavLink } from '@/common/base-atoms'
 import { RouteConfig } from '@/constants'
-
-type FormValues = {
-  account: string
-  name: string
-  email: string
-  password: string
-}
+import { RegisterParams } from '@/shared/services/api/interface'
+import { useAPI } from '@/hook'
 
 const regex = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
 
-const resolver: Resolver<FormValues> = async (values) => {
+const resolver: Resolver<RegisterParams> = async (values) => {
   const errors = {
     ...(!values.account
       ? {
@@ -76,13 +72,20 @@ const resolver: Resolver<FormValues> = async (values) => {
 }
 
 export const RegisterView: React.FC = () => {
+  const API = useAPI()
   const [isPassword, setIsPassword] = useState(true)
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<FormValues>({ resolver, mode: 'onChange' })
-  const onSubmit = handleSubmit((data) => console.log(data))
+  } = useForm<RegisterParams>({ resolver, mode: 'onChange' })
+  const onSubmit = handleSubmit((data) =>
+    API.user.register(data).then((res) => {
+      if (res.success) {
+        Toast.success(intl.get('register_success'))
+      }
+    })
+  )
 
   return (
     <RegisterWrapper>

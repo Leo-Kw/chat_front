@@ -1,7 +1,7 @@
 import React from 'react'
 import { BackgroundImage, LocaleContainer, CurrentLanguage, Menu, LanguageItem } from './atoms'
 import intl from 'react-intl-universal'
-import { Locale, setLocaleService, getLocaleService } from '@/service'
+import { Locale, setLocaleService, getLocaleService } from '@/shared/services'
 
 interface props {
   children: React.ReactNode

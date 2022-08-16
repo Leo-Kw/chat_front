@@ -18,4 +18,5 @@ export default {
   validate_email_format_required: '邮箱格式不正确！',
   have_account_to_login: '已有帐号去登录',
   login_success: '登录成功',
+  register_success: '注册成功',
 }

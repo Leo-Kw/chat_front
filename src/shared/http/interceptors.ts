@@ -1,7 +1,10 @@
 import { AxiosError, AxiosResponse, AxiosRequestConfig } from 'axios'
 import { Toast } from '@/common/components'
-import { AuthService } from '../services'
-import { ResponseError } from './interface'
+import { AuthService } from '@/shared/services'
+
+export interface ResponseError {
+  message: string
+}
 
 export const handleRequest = (config: AxiosRequestConfig) => {
   const token = AuthService.getToken()

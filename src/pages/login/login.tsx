@@ -18,11 +18,11 @@ import {
 } from '@/common/components'
 import { RouteConfig } from '@/constants'
 import { NavLink } from '@/common/base-atoms'
-import { LoginApi } from './login.api'
-import { LoginType } from './login.type'
 import { AuthService } from '@/shared/services'
+import { useAPI } from '@/hook'
+import { LoginParams } from '@/shared/services/api/interface'
 
-const resolver: Resolver<LoginType.LoginParams> = async (values) => {
+const resolver: Resolver<LoginParams> = async (values) => {
   const errors = {
     ...(!values.account
       ? {
@@ -48,14 +48,15 @@ const resolver: Resolver<LoginType.LoginParams> = async (values) => {
 }
 
 export const LoginView: React.FC = () => {
+  const API = useAPI()
   const [isPassword, setIsPassword] = useState(true)
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<LoginType.LoginParams>({ resolver })
+  } = useForm<LoginParams>({ resolver })
   const onSubmit = handleSubmit((data) => {
-    LoginApi.login(data).then((res) => {
+    API.user.login(data).then((res) => {
       if (res.success) {
         Toast.success(intl.get('login_success'))
         AuthService.setToken(res.data.token)

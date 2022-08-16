@@ -1,12 +1,5 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
-import { resetParams } from './http.utils'
+import axios, { AxiosRequestConfig } from 'axios'
 import { handleError, handleRequest, handleResponse } from './interceptors'
-import { BaseResponse } from './interface'
-
-const flatAxiosResponse = <T>(response: AxiosResponse<T>) => ({
-  ...response?.data,
-  statusCode: response?.status,
-})
 
 const createAxiosInstance = ({ headers, ...otherConfig }: AxiosRequestConfig) => {
   const axiosInstance = axios.create({
@@ -26,14 +19,7 @@ const createAxiosInstance = ({ headers, ...otherConfig }: AxiosRequestConfig) =>
   axiosInstance.interceptors.request.use(handleRequest)
   axiosInstance.interceptors.response.use(handleResponse, handleError)
 
-  return {
-    get: <R>(url: string, config?: AxiosRequestConfig) => {
-      const params = resetParams(config?.params)
-      return axiosInstance.get<BaseResponse<R>>(url, { ...config, params }).then(flatAxiosResponse)
-    },
-    post: <P, R>(url: string, data: P, config?: AxiosRequestConfig) =>
-      axiosInstance.post<BaseResponse<R>>(url, data, config).then(flatAxiosResponse),
-  }
+  return axiosInstance
 }
 
 export const httpService = createAxiosInstance({})
