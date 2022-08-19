@@ -11,6 +11,7 @@ import { ReactComponent as ShutdownIcon } from './icons/shutdown.svg'
 import { ReactComponent as StartIcon } from './icons/start.svg'
 import { ReactComponent as SuspendIcon } from './icons/suspend.svg'
 import { ReactComponent as ReleaseIcon } from './icons/release.svg'
+import { ReactComponent as CloseIcon } from './icons/close.svg'
 
 type IconType =
   | 'info'
@@ -25,6 +26,7 @@ type IconType =
   | 'shutdown'
   | 'start'
   | 'suspend'
+  | 'close'
 
 const IconMap = new Map([
   ['info', <InfoIcon key='info' />],
@@ -39,6 +41,7 @@ const IconMap = new Map([
   ['shutdown', <ShutdownIcon key='shutdown' />],
   ['start', <StartIcon key='start' />],
   ['suspend', <SuspendIcon key='suspend' />],
+  ['close', <CloseIcon key='close' />],
 ])
 
 export const Icon: React.FC<{ type: IconType }> = ({ type }) => {

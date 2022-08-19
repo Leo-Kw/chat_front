@@ -14,6 +14,7 @@ export const color = Object.freeze({
   primary: '#fd5052',
   secondary: '#f3153a',
   white: '#fff',
+  background: '#F4F4F4',
   button: {
     main: '#409eff',
     hoverMain: '#007dff',
@@ -23,7 +24,7 @@ export const color = Object.freeze({
     main: '#f3f6f7',
     dark: '#b0b3b5',
     darker: '#999999',
-    darkest: '#707172',
+    darkest: '#000',
     danger: '#ff3737',
   },
   dark: {
