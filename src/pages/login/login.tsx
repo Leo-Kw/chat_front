@@ -21,6 +21,7 @@ import { NavLink } from '@/common/base-atoms'
 import { AuthService } from '@/shared/services'
 import { useAPI } from '@/hook'
 import { LoginParams } from '@/shared/services/api/interface'
+import { useNavigate } from 'react-router-dom'
 
 const resolver: Resolver<LoginParams> = async (values) => {
   const errors = {
@@ -49,6 +50,7 @@ const resolver: Resolver<LoginParams> = async (values) => {
 
 export const LoginView: React.FC = () => {
   const API = useAPI()
+  const navigate = useNavigate()
   const [isPassword, setIsPassword] = useState(true)
   const {
     register,
@@ -60,6 +62,7 @@ export const LoginView: React.FC = () => {
       if (res.success) {
         Toast.success(intl.get('login_success'))
         AuthService.setToken(res.data.token)
+        navigate('/')
       }
     })
   })
