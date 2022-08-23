@@ -1,48 +1,54 @@
 import { useEffect, useState } from 'react'
 import { HomeWrapper, ChatWrapper } from './atoms'
+import { useNavigate } from 'react-router-dom'
 import { Modal } from '@/common/components/modal'
-import { useSocket } from '@/hook/use-socket'
-import { useAPI } from '@/hook'
+// import { useSocket } from '@/hook/use-socket'
+// import { useAPI } from '@/hook'
+import { AuthService } from '@/shared/services'
+import { ChatMessage, ChatHeader, ChatSend } from './components'
 
 export const HomeView = () => {
-  const API = useAPI()
-  const socket = useSocket()
+  // const API = useAPI()
+  const navigate = useNavigate()
+  // const socket = useSocket()
   const [isShowChat, setIsShowChat] = useState(false)
   const [isShowPopup, setIsShowPopup] = useState(true)
-
-  console.log(
-    socket.on('connection', (socket) => {
-      console.log(socket)
-    })
-  )
 
   useEffect(() => {
     setIsShowPopup(true)
   }, [])
 
   const cancelPopup = () => {
+    navigate('/login')
+    AuthService.removeToken
+  }
+
+  const okPopup = () => {
     setIsShowPopup(false)
     setIsShowChat(true)
   }
 
-  const okPopup = () => {
-    socket.emit('socketTest', { test: '测试数据' }, (data: any) => {
-      console.log(data) // { msg1: '测试1', msg2: '测试2' }
-    })
-  }
+  // const test = () => {
+  //   socket.emit('socketTest', { test: '测试数据' }, (data: any) => {
+  //     console.log(data)
+  //   })
+  // }
 
   return (
     <HomeWrapper>
       {isShowChat ? (
         <ChatWrapper>
-          <button onClick={okPopup}>asdasdasdas</button>
+          {/* <button onClick={okPopup}>asdasdasdas</button> */}
+          <ChatHeader />
+          <ChatMessage />
+          {/* <ChatSend /> */}
         </ChatWrapper>
       ) : (
         <Modal
           visible={isShowPopup}
           title='123'
           onCancel={cancelPopup}
-          onOk={() => API.chat.test({ a: 123 })}
+          onOk={okPopup}
           maskClosable={false}
         >
           123
