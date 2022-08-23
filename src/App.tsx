@@ -5,7 +5,7 @@ import { Layout } from './layout'
 
 import { ThemeProvider } from 'styled-components'
 import { theme } from './theme'
-import { APIProvider } from './context'
+import { APIProvider, SocketProvider } from './context'
 import { APIService } from './shared/services/api'
 
 import { LoginView } from './pages/login'
@@ -18,16 +18,18 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <APIProvider client={APIClient}>
-        <BrowserRouter>
-          <Layout>
-            <Routes>
-              <Route path={RouteConfig.home} element={<HomeView />} />
-              <Route path={RouteConfig.login} element={<LoginView />} />
-              <Route path={RouteConfig.register} element={<RegisterView />} />
-              <Route path='*' element={<Navigate to={RouteConfig.login} />} />
-            </Routes>
-          </Layout>
-        </BrowserRouter>
+        <SocketProvider>
+          <BrowserRouter>
+            <Layout>
+              <Routes>
+                <Route path={RouteConfig.home} element={<HomeView />} />
+                <Route path={RouteConfig.login} element={<LoginView />} />
+                <Route path={RouteConfig.register} element={<RegisterView />} />
+                <Route path='*' element={<Navigate to={RouteConfig.login} />} />
+              </Routes>
+            </Layout>
+          </BrowserRouter>
+        </SocketProvider>
       </APIProvider>
     </ThemeProvider>
   )

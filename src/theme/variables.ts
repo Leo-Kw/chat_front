@@ -38,6 +38,7 @@ export const color = Object.freeze({
     main: '#cccccc',
     light: '#e5e5e5',
     heavy: '#999',
+    border: '#5e5e5e',
   },
   disableGray: '#c1c7d6',
   // 功能色

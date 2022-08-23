@@ -11,9 +11,11 @@ export const HomeWrapper = styled.div`
 `
 
 export const ChatWrapper = styled.div`
-  ${baseFlex}
-  width: 1280px;
-  height: 720px;
-  background: #fff8;
-  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  width: 1580px;
+  height: 660px;
+  background: #fff0;
+  box-shadow: 0 0 15px #f2f2f2;
+  border-radius: 10px;
 `

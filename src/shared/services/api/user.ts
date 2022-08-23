@@ -1,7 +1,7 @@
 import { AxiosInstance } from 'axios'
 import { BaseResponse, LoginResponse, LoginParams, RegisterParams } from './interface'
 
-export class LoginModule {
+export class UserModule {
   constructor(private ins: AxiosInstance) {}
   login = async (parmas: LoginParams) => {
     const res = await this.ins.post<BaseResponse<LoginResponse>>('/api/user/login', parmas)
