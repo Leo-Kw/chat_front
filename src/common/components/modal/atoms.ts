@@ -100,7 +100,7 @@ export const Header = styled.div`
     position: relative;
     padding: 0 20px;
     color: ${theme.color.text.darkest};
-    font-size: ${theme.typography.textSmall};
+    font-size: ${theme.typography.text};
     font-weight: 600;
     line-height: 1;
     padding: 14px;

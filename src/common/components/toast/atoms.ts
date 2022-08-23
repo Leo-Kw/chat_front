@@ -27,7 +27,7 @@ export const ToastStyled = styled.div<{ type: ToastType }>`
     }[type]
     return css`
       background: white;
-      color: ${theme.color.textDark};
+      color: ${theme.color.text.darkest};
       box-shadow: 0px 2px 10px 0px rgba(0, 0, 0, 0.1);
       border-radius: ${theme.radius.sm};
       touch-action: none;

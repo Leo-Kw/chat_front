@@ -9,3 +9,11 @@ const baseFlex = css`
 export const HomeWrapper = styled.div`
   ${baseFlex}
 `
+
+export const ChatWrapper = styled.div`
+  ${baseFlex}
+  width: 1280px;
+  height: 720px;
+  background: #fff8;
+  border-radius: 5px;
+`

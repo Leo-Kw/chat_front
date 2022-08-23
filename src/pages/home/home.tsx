@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { HomeWrapper } from './atoms'
+import { ChatWrapper, HomeWrapper } from './atoms'
 import { Modal } from '@/common/components/modal'
 
 export const HomeView = () => {
-  const [isShowChat] = useState(false)
+  const [isShowChat, setIsShowChat] = useState(false)
   const [isShowPopup, setIsShowPopup] = useState(true)
 
   useEffect(() => {
@@ -12,15 +12,21 @@ export const HomeView = () => {
 
   const cancelPopup = () => {
     setIsShowPopup(false)
+    setIsShowChat(true)
   }
 
   return (
     <HomeWrapper>
       {isShowChat ? (
-        <></>
+        <ChatWrapper>asd</ChatWrapper>
       ) : (
-        <Modal visible={isShowPopup} title='123' onCancel={cancelPopup} maskClosable={false}>
-          123
+        <Modal
+          visible={isShowPopup}
+          title='欢迎来到聊天室'
+          onCancel={cancelPopup}
+          maskClosable={false}
+        >
+          进入聊天室将自动播放音乐！
         </Modal>
       )}
     </HomeWrapper>
