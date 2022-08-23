@@ -18,5 +18,5 @@ pnpm build
 
 ### TODOS:
 
-基础组件封装(`Toast`、`Modal`)
-使用[styled-component](https://styled-components.com/)CSS-in-JS库封装组件
+1. 基础组件封装(`Toast`、`Modal`)
+2. 使用[styled-component](https://styled-components.com/)CSS-in-JS库封装组件
