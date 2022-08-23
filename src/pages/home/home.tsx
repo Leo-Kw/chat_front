@@ -41,7 +41,7 @@ export const HomeView = () => {
           {/* <button onClick={okPopup}>asdasdasdas</button> */}
           <ChatHeader />
           <ChatMessage />
-          {/* <ChatSend /> */}
+          <ChatSend />
         </ChatWrapper>
       ) : (
         <Modal
