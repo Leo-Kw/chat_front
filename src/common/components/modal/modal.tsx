@@ -175,7 +175,16 @@ export const Modal = ({
                     {cancelText}
                   </ModalButton>
                 )}
-                <ModalButton variant='contained'>{okText}</ModalButton>
+                <ModalButton
+                  variant='contained'
+                  loading={confirmLoading}
+                  onClick={() => {
+                    onOk?.()
+                  }}
+                  {...okButtonProps}
+                >
+                  {okText}
+                </ModalButton>
               </Footer>
             )}
           </Content>
