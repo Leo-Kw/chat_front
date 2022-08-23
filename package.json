@@ -44,6 +44,7 @@
     "react-intl-universal": "^2.5.3",
     "react-is": "^18.2.0",
     "sass": "^1.52.3",
+    "socket.io-client": "^4.5.1",
     "styled-components": "^5.3.5",
     "stylelint": "^14.9.1",
     "stylelint-config-prettier": "^9.0.3",

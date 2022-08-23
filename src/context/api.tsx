@@ -1,9 +1,9 @@
-import React, { createContext } from 'react'
+import { createContext, ReactNode } from 'react'
 import { APIService } from '@/shared/services/api'
 
 type Props = {
   client: APIService
-  children: React.ReactNode
+  children: ReactNode
 }
 
 export const APIContext = createContext<APIService>(new APIService())
