@@ -1,5 +1,11 @@
 import styled, { css } from 'styled-components'
 
+const flexRowBase = css`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`
+
 export const HeaderWrapper = styled.div`
   ${({ theme }) => css`
     display: flex;
@@ -12,11 +18,12 @@ export const HeaderWrapper = styled.div`
   `}
 `
 
-export const HeaderTitle = styled.div``
+export const HeaderTitle = styled.div`
+  ${flexRowBase}
+`
 
 export const HeaderControl = styled.div`
-  display: flex;
-  flex-direction: row;
+  ${flexRowBase}
 `
 
 export const MessageWrapper = styled.div`
@@ -58,7 +65,7 @@ export const SendWrapper = styled.div`
   display: flex;
   height: 200px;
   width: 100%;
-  padding: 0 10px;
+  padding: 0 12px;
   flex-direction: column;
 `
 export const SendHeader = styled.div`
@@ -75,7 +82,7 @@ export const ChatButton = styled.button<{ typeKey: string }>`
     font-size: ${theme.typography.textSmall};
     color: ${typeKey === 'send' ? theme.color.text.gray : theme.color.gray.light};
     border: 0;
-    padding: 5px 12px;
+    padding: 5px 10px;
     border-radius: 4px;
     margin: 0 5px;
     transition: 0.2s;
