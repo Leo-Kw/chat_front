@@ -6,8 +6,6 @@ import { Toast } from '@/common/components'
 import { ControlButtonWrapper, ControlButton, LoginWrapper } from './atoms'
 import {
   ChickMusicImg,
-  ShowEyeIcon,
-  HideEyeIcon,
   PasswordWrapper,
   FormOkButton,
   FormContent,
@@ -22,6 +20,7 @@ import { AuthService } from '@/shared/services'
 import { useAPI } from '@/hook'
 import { LoginParams } from '@/shared/services/api/interface'
 import { useNavigate } from 'react-router-dom'
+import { Icon } from '@/common/components/icon'
 
 const resolver: Resolver<LoginParams> = async (values) => {
   const errors = {
@@ -84,9 +83,13 @@ export const LoginView: React.FC = () => {
               placeholder={intl.get('password')}
             />
             {isPassword ? (
-              <ShowEyeIcon onClick={() => setIsPassword(!isPassword)} />
+              <div onClick={() => setIsPassword(!isPassword)}>
+                <Icon type='show_eye' />
+              </div>
             ) : (
-              <HideEyeIcon onClick={() => setIsPassword(!isPassword)} />
+              <div onClick={() => setIsPassword(!isPassword)}>
+                <Icon type='hide_eye' />
+              </div>
             )}
           </PasswordWrapper>
           {errors?.password && <FormErrorTip>{errors.password.message}</FormErrorTip>}

@@ -5,8 +5,6 @@ import intl from 'react-intl-universal'
 import { RegisterWrapper, ControlButtonWrapper, ControlButton } from './atoms'
 import {
   ChickMusicImg,
-  ShowEyeIcon,
-  HideEyeIcon,
   PasswordWrapper,
   FormOkButton,
   FormContent,
@@ -20,6 +18,7 @@ import { NavLink } from '@/common/base-atoms'
 import { RouteConfig } from '@/constants'
 import { RegisterParams } from '@/shared/services/api/interface'
 import { useAPI } from '@/hook'
+import { Icon } from '@/common/components/icon'
 
 const regex = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
 
@@ -117,9 +116,13 @@ export const RegisterView: React.FC = () => {
               placeholder={intl.get('password')}
             />
             {isPassword ? (
-              <ShowEyeIcon onClick={() => setIsPassword(!isPassword)} />
+              <div onClick={() => setIsPassword(!isPassword)}>
+                <Icon type='show_eye' />
+              </div>
             ) : (
-              <HideEyeIcon onClick={() => setIsPassword(!isPassword)} />
+              <div onClick={() => setIsPassword(!isPassword)}>
+                <Icon type='hide_eye' />
+              </div>
             )}
           </PasswordWrapper>
           {errors?.password && <FormErrorTip>{errors.password.message}</FormErrorTip>}
