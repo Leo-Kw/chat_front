@@ -26,6 +26,7 @@ export const color = Object.freeze({
     darker: '#999999',
     darkest: '#000',
     danger: '#ff3737',
+    gray: '#9b9b9b',
   },
   dark: {
     main: '#212328',
@@ -39,6 +40,7 @@ export const color = Object.freeze({
     light: '#e5e5e5',
     heavy: '#999',
     border: '#5e5e5e',
+    background: '#5c5c5c6b',
   },
   disableGray: '#c1c7d6',
   // 功能色
