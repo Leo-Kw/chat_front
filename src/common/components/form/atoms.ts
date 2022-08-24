@@ -5,20 +5,6 @@ const MarginBase = css`
   margin-bottom: 24px;
 `
 
-const EyeBase = css`
-  position: absolute;
-  right: 10px;
-  width: 20px;
-  height: 20px;
-  top: 10px;
-  fill: ${color.gray.main};
-  transition: 0.2s;
-  :hover {
-    cursor: pointer;
-    fill: ${color.dark.dark};
-  }
-`
-
 export const ChickMusicImg = styled.img.attrs(() => ({
   src: 'http://112.74.127.146/picture/images/music/songs-feel-good.gif',
 }))`
