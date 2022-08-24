@@ -1,7 +1,5 @@
 import styled, { css } from 'styled-components'
 import { color, typography } from '@/theme'
-import { ReactComponent as ShowEye } from '@/common/icons/show_eye.svg'
-import { ReactComponent as HideEye } from '@/common/icons/hide_eye.svg'
 
 const MarginBase = css`
   margin-bottom: 24px;
@@ -83,14 +81,19 @@ export const FormErrorTip = styled.p`
   }
 `
 
-export const ShowEyeIcon = styled(ShowEye)`
-  ${EyeBase}
-`
-
-export const HideEyeIcon = styled(HideEye)`
-  ${EyeBase}
-`
-
 export const PasswordWrapper = styled.div`
   position: relative;
+  svg {
+    position: absolute;
+    right: 10px;
+    width: 20px;
+    height: 20px;
+    top: 10px;
+    fill: ${color.gray.main};
+    transition: 0.2s;
+    :hover {
+      cursor: pointer;
+      fill: ${color.dark.dark};
+    }
+  }
 `
