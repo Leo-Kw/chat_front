@@ -19,6 +19,7 @@ import { ReactComponent as HideEye } from './icons/hide_eye.svg'
 import { ReactComponent as ChatRecord } from './icons/chat_record.svg'
 import { ReactComponent as Myself } from './icons/myself.svg'
 import { ReactComponent as SignOout } from './icons/sign_out.svg'
+import { ReactComponent as Setting } from './icons/setting.svg'
 
 export type IconType =
   | 'info'
@@ -40,6 +41,7 @@ export type IconType =
   | 'hide_eye'
   | 'chat_record'
   | 'myself'
+  | 'setting'
 
 const IconMap = new Map([
   ['info', <InfoIcon key='info' />],
@@ -62,6 +64,7 @@ const IconMap = new Map([
   ['chat_record', <ChatRecord key='chat_record' />],
   ['myself', <Myself key='myself' />],
   ['sign_out', <SignOout key='sign_out' />],
+  ['setting', <Setting key='setting' />],
 ])
 
 export const Icon: React.FC<{ type: IconType }> = ({ type }) => {
