@@ -12,8 +12,15 @@ import { ReactComponent as StartIcon } from './icons/start.svg'
 import { ReactComponent as SuspendIcon } from './icons/suspend.svg'
 import { ReactComponent as ReleaseIcon } from './icons/release.svg'
 import { ReactComponent as CloseIcon } from './icons/close.svg'
+import { ReactComponent as EmojiIcon } from './icons/emoji.svg'
+import { ReactComponent as SongIcon } from './icons/song.svg'
+import { ReactComponent as ShowEye } from './icons/show_eye.svg'
+import { ReactComponent as HideEye } from './icons/hide_eye.svg'
+import { ReactComponent as ChatRecord } from './icons/chat_record.svg'
+import { ReactComponent as Myself } from './icons/myself.svg'
+import { ReactComponent as SignOout } from './icons/sign_out.svg'
 
-type IconType =
+export type IconType =
   | 'info'
   | 'warn'
   | 'success'
@@ -27,6 +34,12 @@ type IconType =
   | 'start'
   | 'suspend'
   | 'close'
+  | 'emoji'
+  | 'song'
+  | 'show_eye'
+  | 'hide_eye'
+  | 'chat_record'
+  | 'myself'
 
 const IconMap = new Map([
   ['info', <InfoIcon key='info' />],
@@ -42,6 +55,13 @@ const IconMap = new Map([
   ['start', <StartIcon key='start' />],
   ['suspend', <SuspendIcon key='suspend' />],
   ['close', <CloseIcon key='close' />],
+  ['emoji', <EmojiIcon key='emoji' />],
+  ['song', <SongIcon key='song' />],
+  ['show_eye', <ShowEye key='show_eye' />],
+  ['hide_eye', <HideEye key='hide_eye' />],
+  ['chat_record', <ChatRecord key='chat_record' />],
+  ['myself', <Myself key='myself' />],
+  ['sign_out', <SignOout key='sign_out' />],
 ])
 
 export const Icon: React.FC<{ type: IconType }> = ({ type }) => {
