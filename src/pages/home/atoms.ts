@@ -19,4 +19,6 @@ export const ChatWrapper = styled.div`
   background: #fff0;
   box-shadow: 0 0 15px #f2f2f2;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
 `
