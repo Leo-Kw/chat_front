@@ -5,49 +5,48 @@ name: chat CI
 
 on:
   push:
-    branches: [ "master" ]
+    branches: ['master']
   pull_request:
-    branches: [ "master" ]
-    
+    branches: ['master']
+
 env:
-    SERVER_PRIVATE_KEY: ${{ secrets.ACCESS_TOKEN }} # 服务器私钥
-    SERVER_HOST: ${{ secrets.SERVER_HOST }} # 服务器IP地址
-    USER_NAME: ${{ secrets.USER_NAME }} # 服务器用户名
-    cache-name: chat
+  SERVER_PRIVATE_KEY: ${{ secrets.ACCESS_TOKEN }} # 服务器私钥
+  SERVER_HOST: ${{ secrets.SERVER_HOST }} # 服务器IP地址
+  USER_NAME: ${{ secrets.USER_NAME }} # 服务器用户名
+  cache-name: chat
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [16.x]
+        node-version: [16.14.0]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v3
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v3
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm run build --if-present
-    - run: npm test
-    
-    # 装依赖
-    - name: Install
-      run: yarn
+      - uses: actions/checkout@v3
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm test
 
-    # 打包
-    - name: Build
-      run: yarn build
+      # 装依赖
+      - name: Install
+        run: yarn
 
-    # 上传打包资源
-    - name: Deploy
-      uses: easingthemes/ssh-deploy@v2.0.7
-      env:
+      # 打包
+      - name: Build
+        run: yarn build
+
+      # 上传打包资源
+      - name: Deploy
+        uses: easingthemes/ssh-deploy@v2.0.7
+        env:
           SSH_PRIVATE_KEY: ${{ env.ACCESS_TOKEN }}
           ARGS: '-avz --delete'
           SOURCE: 'dist/'
