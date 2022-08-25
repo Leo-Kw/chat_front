@@ -34,19 +34,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
-      - name: Install dependencies
-        run: pnpm install
-      - run: npm ci
-      - run: npm run build --if-present
-      - run: npm test
 
       # 装依赖
-      - name: Install
-        run: yarn
+      - name: Install dependencies
+        run: pnpm install
 
       # 打包
       - name: Build
-        run: yarn build
+        run: pnpm build
 
       # 上传打包资源
       - name: Deploy
