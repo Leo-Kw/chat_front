@@ -50,6 +50,6 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.ACCESS_TOKEN }} # 服务器私钥
           ARGS: '-avz --delete'
           SOURCE: 'dist/'
-          REMOTE_HOST: http://112.74.127.146/ # 服务器IP地址
+          REMOTE_HOST: 112.74.127.146 # 服务器IP地址
           REMOTE_USER: root # 服务器用户名
           TARGET: /chat # 服务器目标路径
