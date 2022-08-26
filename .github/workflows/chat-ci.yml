@@ -44,12 +44,12 @@ jobs:
         run: pnpm build
 
       # 上传打包资源
-      - name: Deploy
-        uses: easingthemes/ssh-deploy@v2.0.7
+      - name: Upload
+        uses: appleboy/scp-action@master
         env:
-          SSH_PRIVATE_KEY: ${{ env.ACCESS_TOKEN }}
+          SSH_PRIVATE_KEY: ${{ secrets.ACCESS_TOKEN }}
           ARGS: '-avz --delete'
           SOURCE: 'dist/'
-          REMOTE_HOST: ${{ env.SERVER_HOST }}
-          REMOTE_USER: ${{ env.USER_NAME }}
+          REMOTE_HOST: ${{ secrets.SERVER_HOST }}
+          REMOTE_USER: ${{ secrets.USER_NAME }}
           TARGET: /chat #  服务器目标路径
