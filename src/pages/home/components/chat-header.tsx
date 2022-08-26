@@ -1,23 +1,24 @@
 import React from 'react'
 import { HeaderWrapper, HeaderTitle, HeaderControl, ChatButton } from './atoms'
 import { chatControlBarConfig } from '@/constants'
-import intl from 'react-intl-universal'
 import { Icon, IconType } from '@/common/components/icon'
 import { useNavigate } from 'react-router-dom'
 import { AuthService } from '@/shared/services'
 import { Toast } from '@/common/components'
+import { useIntlLocale } from '@/hook'
 
 export const ChatHeader = () => {
+  const t = useIntlLocale()
   const navigate = useNavigate()
 
   const share = () => {
     navigator.clipboard
       .writeText('航哥')
       .then(() => {
-        Toast.success(intl.get('share_success'))
+        Toast.success(t('share_success'))
       })
       .catch(() => {
-        Toast.error(intl.get('share_fail'))
+        Toast.error(t('share_fail'))
       })
   }
 
@@ -35,7 +36,7 @@ export const ChatHeader = () => {
         <div onClick={() => share()}>
           <ChatButton typeKey='title'>
             <Icon type='share' />
-            {intl.get('share')}
+            {t('share')}
           </ChatButton>
         </div>
       </HeaderTitle>
@@ -44,7 +45,7 @@ export const ChatHeader = () => {
           <div onClick={() => barButton(item.value)} key={item.key}>
             <ChatButton typeKey='title'>
               <Icon type={item.value as IconType} />
-              {intl.get(item.value)}
+              {t(item.value)}
             </ChatButton>
           </div>
         ))}

@@ -2,9 +2,10 @@ import { useEffect, useCallback, useState } from 'react'
 import { sendBarConfig } from '@/constants'
 import { SendWrapper, SendHeader, ChatButton, SendTextarea, SendFooter } from './atoms'
 import { Icon, IconType } from '@/common/components/icon'
-import intl from 'react-intl-universal'
+import { useIntlLocale } from '@/hook'
 
 export const ChatSend = () => {
+  const t = useIntlLocale()
   const [messageValue, setMessageValue] = useState('')
 
   const sendMessage = () => {
@@ -33,12 +34,12 @@ export const ChatSend = () => {
         {sendBarConfig.map((item) => (
           <ChatButton typeKey='send' key={item.key}>
             <Icon type={item.value as IconType} />
-            {intl.get(item.value)}
+            {t(item.value)}
           </ChatButton>
         ))}
       </SendHeader>
       <SendTextarea
-        placeholder={intl.get('chat_placeholder')}
+        placeholder={t('chat_placeholder')}
         value={messageValue}
         onChange={(e) => setMessageValue(e.target.value)}
         onPaste={(e) => console.log(e.target)}

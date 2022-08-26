@@ -1,7 +1,7 @@
 import React from 'react'
 import { BackgroundImage, LocaleContainer, CurrentLanguage, Menu, LanguageItem } from './atoms'
-import intl from 'react-intl-universal'
 import { Locale, setLocaleService, getLocaleService } from '@/shared/services'
+import { useIntlLocale } from '../hook'
 
 interface props {
   children: React.ReactNode
@@ -14,6 +14,7 @@ const LocaleMap = new Map([
 
 export const Layout: React.FC<props> = ({ children }) => {
   const locale: Locale = getLocaleService()
+  const t = useIntlLocale()
 
   const getSurplusLocale = (currentLocale: Locale) => {
     const surplusLocaleLists = [...LocaleMap.keys()].filter((key) => key !== currentLocale)
@@ -27,7 +28,7 @@ export const Layout: React.FC<props> = ({ children }) => {
   return (
     <BackgroundImage>
       <LocaleContainer>
-        <CurrentLanguage>{intl.get('language')}</CurrentLanguage>
+        <CurrentLanguage>{t('language')}</CurrentLanguage>
         <Menu>
           {getSurplusLocale(locale).map((item, index) => (
             <LanguageItem key={index} onClick={() => handleClick(item)} selected={item === locale}>

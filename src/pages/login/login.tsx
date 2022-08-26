@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { useForm, Resolver } from 'react-hook-form'
-import intl from 'react-intl-universal'
 
 import { Toast } from '@/common/components'
 import { ControlButtonWrapper, ControlButton, LoginWrapper } from './atoms'
@@ -21,6 +20,7 @@ import { useAPI } from '@/hook'
 import { LoginParams } from '@/shared/services/api/interface'
 import { useNavigate } from 'react-router-dom'
 import { Icon } from '@/common/components/icon'
+import { useIntlLocale, intlCache } from '@/hook'
 
 const resolver: Resolver<LoginParams> = async (values) => {
   const errors = {
@@ -28,7 +28,7 @@ const resolver: Resolver<LoginParams> = async (values) => {
       ? {
           account: {
             type: 'required',
-            message: intl.get('validate_account_required'),
+            message: intlCache.formatMessage({ id: 'validate_account_required' }),
           },
         }
       : {}),
@@ -36,7 +36,7 @@ const resolver: Resolver<LoginParams> = async (values) => {
       ? {
           password: {
             type: 'required',
-            message: intl.get('validate_password_required'),
+            message: intlCache.formatMessage({ id: 'validate_password_required' }),
           },
         }
       : {}),
@@ -49,6 +49,7 @@ const resolver: Resolver<LoginParams> = async (values) => {
 
 export const LoginView: React.FC = () => {
   const API = useAPI()
+  const t = useIntlLocale()
   const navigate = useNavigate()
   const [isPassword, setIsPassword] = useState(true)
   const {
@@ -59,7 +60,7 @@ export const LoginView: React.FC = () => {
   const onSubmit = handleSubmit((data) => {
     API.user.login(data).then((res) => {
       if (res.success) {
-        Toast.success(intl.get('login_success'))
+        Toast.success(t('login_success'))
         AuthService.setToken(res.data.token)
         navigate('/')
       }
@@ -72,7 +73,7 @@ export const LoginView: React.FC = () => {
       <LoginTitle>test</LoginTitle>
       <FormContent onSubmit={onSubmit}>
         <FormItem>
-          <FormInput {...register('account')} placeholder={intl.get('account')} />
+          <FormInput {...register('account')} placeholder={t('account')} />
           {errors?.account && <FormErrorTip>{errors.account.message}</FormErrorTip>}
         </FormItem>
         <FormItem>
@@ -80,7 +81,7 @@ export const LoginView: React.FC = () => {
             <FormInput
               type={isPassword ? 'password' : 'text'}
               {...register('password', { required: true, maxLength: 20 })}
-              placeholder={intl.get('password')}
+              placeholder={t('password')}
             />
             {isPassword ? (
               <div onClick={() => setIsPassword(!isPassword)}>
@@ -95,12 +96,12 @@ export const LoginView: React.FC = () => {
           {errors?.password && <FormErrorTip>{errors.password.message}</FormErrorTip>}
         </FormItem>
         <ControlButtonWrapper>
-          <ControlButton type='button'>{intl.get('forget_password')}</ControlButton>
+          <ControlButton type='button'>{t('forget_password')}</ControlButton>
           <ControlButton type='button'>
-            <NavLink to={'/' + RouteConfig.register}>{intl.get('sign_up')}</NavLink>
+            <NavLink to={'/' + RouteConfig.register}>{t('sign_up')}</NavLink>
           </ControlButton>
         </ControlButtonWrapper>
-        <FormOkButton type='submit'>{intl.get('login')}</FormOkButton>
+        <FormOkButton type='submit'>{t('login')}</FormOkButton>
       </FormContent>
     </LoginWrapper>
   )
