@@ -6,8 +6,8 @@ export enum Locale {
 }
 
 export function getLocaleService(): Locale {
-  const hasLangSearchParam = LocationSearchParams.has('lang')
-  const isZh = LocationSearchParams.get('lang') === 'zh_CN'
+  const hasLangSearchParam = LocationSearchParams.has('language')
+  const isZh = LocationSearchParams.get('language') === 'zh_CN'
   if (hasLangSearchParam) {
     return isZh ? Locale.ZH : Locale.EN
   } else {
@@ -18,6 +18,5 @@ export function getLocaleService(): Locale {
 
 export function setLocaleService(locale: Locale) {
   localStorage.setItem(StorageKey.language, locale)
-  const searchParams = LocationSearchParams.delete('lang')
-  location.search = `?${searchParams.toString()}`
+  window.location.reload()
 }
