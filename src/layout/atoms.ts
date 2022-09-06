@@ -1,5 +1,6 @@
 import { color, typography } from '@/theme'
 import styled from 'styled-components'
+import backgroundImage from '../common/images/banner_111.gif'
 
 const borderRadius = '5px'
 
@@ -7,16 +8,19 @@ export const BackgroundImage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url(http://112.74.127.146/picture/images/music/banner_111.a6be22c.gif);
+  background: url(${backgroundImage});
   height: 100vh;
 `
 
 export const Menu = styled.div`
-  display: none;
+  position: absolute;
   width: 100%;
   height: 100%;
   cursor: pointer;
   margin-top: 10px;
+  transition: 0.5s;
+  opacity: 0;
+  right: 10px;
 `
 
 export const LocaleContainer = styled.div`
@@ -27,7 +31,8 @@ export const LocaleContainer = styled.div`
   cursor: pointer;
   :hover {
     ${Menu} {
-      display: block;
+      opacity: 1;
+      height: 100%;
     }
   }
 `
@@ -39,7 +44,7 @@ export const CurrentLanguage = styled.div`
     content: '';
     position: absolute;
     top: 10px;
-    right: 0;
+    right: 5px;
     border-left: 5px solid transparent;
     border-right: 5px solid transparent;
     border-top: 5px solid ${color.gray.heavy};
