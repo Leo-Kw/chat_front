@@ -10,7 +10,7 @@ export const ChickMusicImg = styled.img.attrs(() => ({
   src: chickMusicImg,
 }))`
   width: 100px;
-  hegiht: auto;
+  height: auto;
 `
 
 export const LoginTitle = styled.div`
