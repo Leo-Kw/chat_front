@@ -1,5 +1,6 @@
 import { color, typography } from '@/theme'
 import styled from 'styled-components'
+import banner from '@/common/images/banner_111.a6be22c.gif'
 
 const borderRadius = '5px'
 
@@ -7,7 +8,7 @@ export const BackgroundImage = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background: url(http://112.74.127.146/picture/images/music/banner_111.a6be22c.gif);
+  background: url(${banner});
   height: 100vh;
 `
 

@@ -1,15 +1,16 @@
 import styled, { css } from 'styled-components'
 import { color, typography } from '@/theme'
+import songs from '@/common/images/songs-feel-good.gif'
 
 const MarginBase = css`
   margin-bottom: 24px;
 `
 
 export const ChickMusicImg = styled.img.attrs(() => ({
-  src: 'http://112.74.127.146/picture/images/music/songs-feel-good.gif',
+  src: songs,
 }))`
   width: 100px;
-  hegiht: auto;
+  height: auto;
 `
 
 export const LoginTitle = styled.div`
