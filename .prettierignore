@@ -1,5 +1,6 @@
 # Ignore artifacts:
 build
+pre-commit
 
 # Ignore all HTML files:
 *.html
