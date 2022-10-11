@@ -9,6 +9,7 @@ export const BackgroundImage = styled.div`
   justify-content: center;
   align-items: center;
   background: url(${backgroundImage});
+  background-size: 100%;
   height: 100vh;
 `
 
