@@ -67,8 +67,6 @@ export const LoginView: React.FC = () => {
     })
   })
 
-  console.log(1)
-
   return (
     <LoginWrapper>
       <ChickMusicImg />
