@@ -1,6 +1,6 @@
 import './App.css'
-import { RouteConfig } from './constants'
-import { Route, BrowserRouter, Routes, Navigate } from 'react-router-dom'
+// import { RouteConfig } from './constants'
+import { RouterProvider } from 'react-router-dom'
 import { Layout } from './layout'
 import { ThemeProvider } from 'styled-components'
 import { theme } from './theme'
@@ -9,11 +9,8 @@ import { APIService } from './shared/services/api'
 import { IntlProvider } from 'react-intl'
 import { getLocaleService } from './shared/services'
 
-import { LoginView } from './pages/login'
-import { RegisterView } from './pages/register'
-import { HomeView } from './pages/home'
-
 import { Zh, En } from './locale'
+import { router } from './route'
 
 const localeMap = {
   zh: Zh,
@@ -28,16 +25,9 @@ function App() {
       <ThemeProvider theme={theme}>
         <APIProvider client={APIClient}>
           <SocketProvider>
-            <BrowserRouter>
-              <Layout>
-                <Routes>
-                  <Route path={RouteConfig.home} element={<HomeView />} />
-                  <Route path={RouteConfig.login} element={<LoginView />} />
-                  <Route path={RouteConfig.register} element={<RegisterView />} />
-                  <Route path='*' element={<Navigate to={RouteConfig.login} />} />
-                </Routes>
-              </Layout>
-            </BrowserRouter>
+            <Layout>
+              <RouterProvider router={router} />
+            </Layout>
           </SocketProvider>
         </APIProvider>
       </ThemeProvider>

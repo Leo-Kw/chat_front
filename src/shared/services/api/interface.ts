@@ -12,6 +12,7 @@ export interface LoginParams {
 }
 
 export interface LoginResponse {
+  userId: number
   token: string
 }
 

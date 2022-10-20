@@ -14,7 +14,7 @@ import {
   Toast,
 } from '@/common/components'
 import { NavLink } from '@/common/base-atoms'
-import { RouteConfig } from '@/constants'
+import { RouteConfig } from '@/route'
 import { RegisterParams } from '@/shared/services/api/interface'
 import { useAPI } from '@/hook'
 import { Icon } from '@/common/components/icon'
@@ -131,7 +131,7 @@ export const RegisterView: React.FC = () => {
         <FormOkButton type='submit'>{t('register_login')}</FormOkButton>
         <ControlButtonWrapper>
           <ControlButton>
-            <NavLink to={'/' + RouteConfig.login}>{t('have_account_to_login')}</NavLink>
+            <NavLink to={RouteConfig.login}>{t('have_account_to_login')}</NavLink>
           </ControlButton>
         </ControlButtonWrapper>
       </FormContent>

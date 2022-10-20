@@ -13,7 +13,7 @@ import {
   LoginTitle,
   FormItem,
 } from '@/common/components'
-import { RouteConfig } from '@/constants'
+import { RouteConfig } from '@/route'
 import { NavLink } from '@/common/base-atoms'
 import { AuthService } from '@/shared/services'
 import { useAPI } from '@/hook'
@@ -98,7 +98,7 @@ export const LoginView: React.FC = () => {
         <ControlButtonWrapper>
           <ControlButton type='button'>{t('forget_password')}</ControlButton>
           <ControlButton type='button'>
-            <NavLink to={'/' + RouteConfig.register}>{t('sign_up')}</NavLink>
+            <NavLink to={RouteConfig.register}>{t('sign_up')}</NavLink>
           </ControlButton>
         </ControlButtonWrapper>
         <FormOkButton type='submit'>{t('login')}</FormOkButton>

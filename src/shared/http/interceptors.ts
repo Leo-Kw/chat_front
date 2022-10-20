@@ -16,7 +16,7 @@ export const handleRequest = (config: AxiosRequestConfig) => {
 
 export const handleError = (error: AxiosError<ResponseError>) => {
   const code = error.response?.status
-  console.log(code)
+  // console.log(code)
   if (code && code !== 200) {
     Toast.error(error.response?.data.message)
     if (code === 401) {
