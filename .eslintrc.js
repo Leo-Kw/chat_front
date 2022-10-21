@@ -25,6 +25,7 @@ module.exports = {
     quotes: ['error', 'single'],
     semi: ['error', 'never'],
     'react/react-in-jsx-scope': 'off',
+    '@typescript-eslint/no-empty-function': 'off',
     'no-undef': 'off',
     '@typescript-eslint/no-non-null-assertion': 'off',
     '@typescript-eslint/ban-types': [

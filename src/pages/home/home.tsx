@@ -2,15 +2,15 @@ import { useEffect, useState } from 'react'
 import { HomeWrapper, ChatWrapper } from './atoms'
 import { useNavigate } from 'react-router-dom'
 import { Modal } from '@/common/components/modal'
-// import { useSocket } from '@/hook'
-// import { useAPI } from '@/hook'
 import { AuthService } from '@/shared/services'
 import { ChatMessage, ChatHeader, ChatSend } from './components'
-import { useAPI } from '@/hook'
+import { useAPI, useGlobalState } from '@/hook'
+import { ActionType } from '@/context'
 
 export const HomeView = () => {
   const API = useAPI()
   const navigate = useNavigate()
+  const { state, dispatch } = useGlobalState()
   // const socket = useSocket()
   const [isShowChat, setIsShowChat] = useState(false)
   const [isShowPopup, setIsShowPopup] = useState(true)
@@ -18,7 +18,7 @@ export const HomeView = () => {
   useEffect(() => {
     API.user.getUserInfo().then((res) => {
       if (res.success) {
-        console.log(res.data)
+        dispatch({ type: ActionType.SetUserInfo, payload: res.data })
       }
     })
     setIsShowPopup(true)

@@ -4,7 +4,7 @@ import { RouterProvider } from 'react-router-dom'
 import { Layout } from './layout'
 import { ThemeProvider } from 'styled-components'
 import { theme } from './theme'
-import { APIProvider, SocketProvider } from './context'
+import { APIProvider, SocketProvider, GloablStateProvider } from './context'
 import { APIService } from './shared/services/api'
 import { IntlProvider } from 'react-intl'
 import { getLocaleService } from './shared/services'
@@ -25,9 +25,11 @@ function App() {
       <ThemeProvider theme={theme}>
         <APIProvider client={APIClient}>
           <SocketProvider>
-            <Layout>
-              <RouterProvider router={router} />
-            </Layout>
+            <GloablStateProvider>
+              <Layout>
+                <RouterProvider router={router} />
+              </Layout>
+            </GloablStateProvider>
           </SocketProvider>
         </APIProvider>
       </ThemeProvider>
