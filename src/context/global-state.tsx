@@ -1,5 +1,5 @@
 import { createContext, Dispatch, ReactNode, useReducer } from 'react'
-import { UserInfoType } from './types'
+import { GlobalState } from './types'
 
 export enum ActionType {
   SetUserInfo = 'SetUserInfo',
@@ -11,7 +11,7 @@ interface Props {
 
 interface State {
   count: number
-  userInfo: UserInfoType
+  userInfo: GlobalState.UserInfoType
 }
 
 interface Context {
@@ -21,7 +21,7 @@ interface Context {
 
 interface Action {
   type: ActionType.SetUserInfo
-  payload: UserInfoType
+  payload: GlobalState.UserInfoType
 }
 
 const initValue: State = {
