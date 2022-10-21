@@ -37,6 +37,12 @@ module.exports = {
         },
       },
     ],
+    '@typescript-eslint/no-empty-interface': [
+      'error',
+      {
+        allowSingleExtends: true,
+      },
+    ],
   },
   settings: {
     react: {

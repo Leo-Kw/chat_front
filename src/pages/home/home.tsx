@@ -15,6 +15,8 @@ export const HomeView = () => {
   const [isShowChat, setIsShowChat] = useState(false)
   const [isShowPopup, setIsShowPopup] = useState(true)
 
+  console.log(state)
+
   useEffect(() => {
     API.user.getUserInfo().then((res) => {
       if (res.success) {

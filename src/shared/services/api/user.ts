@@ -1,4 +1,4 @@
-import { GlobalState } from '@/context/types'
+import { UserInfoType } from '@/context/types'
 import { AxiosInstance } from 'axios'
 import { BaseResponse, LoginResponse, LoginParams, RegisterParams } from './interface'
 
@@ -13,7 +13,7 @@ export class UserModule {
     return res.data
   }
   getUserInfo = async () => {
-    const res = await this.ins.post<BaseResponse<GlobalState.UserInfoType>>('/user/getUserInfo')
+    const res = await this.ins.post<BaseResponse<UserInfoType>>('/user/getUserInfo')
     return res.data
   }
 }
