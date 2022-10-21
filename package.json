@@ -18,7 +18,7 @@
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-hook-form": "^7.33.1",
-    "react-router-dom": "6.4.2",
+    "react-router-dom": "^6.3.0",
     "react-transition-group": "^4.4.5",
     "vite-plugin-svgr": "^2.2.1"
   },
@@ -69,6 +69,6 @@
     "windicss": "^3.5.4"
   },
   "lint-staged": {
-    "**/*.{js, jsx, tsx, ts}": "prettier --write"
+    "**/*": "prettier --write"
   }
 }
