@@ -69,6 +69,6 @@
     "windicss": "^3.5.4"
   },
   "lint-staged": {
-    "**/*": "prettier --write"
+    "**/*.{js,jsx,tsx,ts}": "prettier --write"
   }
 }
