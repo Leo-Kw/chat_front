@@ -32,7 +32,7 @@ export const ChatHeader = () => {
   return (
     <HeaderWrapper>
       <HeaderTitle>
-        asd{' '}
+        asd
         <div onClick={() => share()}>
           <ChatButton typeKey='title'>
             <Icon type='share' />

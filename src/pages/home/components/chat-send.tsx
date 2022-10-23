@@ -1,31 +1,68 @@
-import { useEffect, useCallback, useState } from 'react'
+import { useEffect, useCallback, useState, useRef } from 'react'
 import { sendBarConfig } from '@/constants'
 import { SendWrapper, SendHeader, ChatButton, SendTextarea, SendFooter } from './atoms'
 import { Icon, IconType } from '@/common/components/icon'
-import { useIntlLocale } from '@/hook'
+import { useGlobalState, useIntlLocale, useSocket } from '@/hook'
 
 export const ChatSend = () => {
+  const socket = useSocket()
   const t = useIntlLocale()
-  const [messageValue, setMessageValue] = useState('')
+  const { state } = useGlobalState()
+  const [messageContent, setMessageContent] = useState('')
+  const textAreaRef = useRef<HTMLTextAreaElement | null>(null)
+  const [isInput, setIsInput] = useState(false)
+  const { userInfo } = state
 
   const sendMessage = () => {
-    console.log(messageValue)
-    setMessageValue('')
+    socket.emit(
+      'sendMessage',
+      {
+        userId: userInfo.id,
+        messageContent: messageContent,
+        messageType: 'text',
+        userName: userInfo.name,
+        userRole: userInfo.role,
+        userAvatar: userInfo.avatar,
+      },
+      (data: any) => {
+        console.log(data)
+      }
+    )
+    setMessageContent('')
   }
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
       if (event.key === 'Enter') {
-        sendMessage()
+        event.preventDefault()
+        !isInput && messageContent && sendMessage()
         return
       }
     },
     [sendMessage]
   )
 
+  const inputStart = () => {
+    setIsInput(true)
+  }
+
+  const inputEnd = () => {
+    setIsInput(false)
+  }
+
   useEffect(() => {
-    document.addEventListener('keydown', handleKeyDown)
-    return () => document.removeEventListener('keydown', handleKeyDown)
+    if (textAreaRef && textAreaRef.current) {
+      textAreaRef.current.addEventListener('keydown', handleKeyDown)
+      textAreaRef.current.addEventListener('compositionstart', inputStart, false)
+      textAreaRef.current.addEventListener('compositionend', inputEnd, false)
+    }
+    return () => {
+      if (textAreaRef && textAreaRef.current) {
+        textAreaRef.current.removeEventListener('keydown', handleKeyDown)
+        textAreaRef.current.removeEventListener('compositionstart', inputStart)
+        textAreaRef.current.removeEventListener('compositionend', inputEnd)
+      }
+    }
   }, [handleKeyDown])
 
   return (
@@ -39,9 +76,10 @@ export const ChatSend = () => {
         ))}
       </SendHeader>
       <SendTextarea
+        ref={textAreaRef}
         placeholder={t('chat_placeholder')}
-        value={messageValue}
-        onChange={(e) => setMessageValue(e.target.value)}
+        value={messageContent}
+        onChange={(e) => setMessageContent(e.target.value)}
         onPaste={(e) => console.log(e.target)}
       />
       <SendFooter></SendFooter>

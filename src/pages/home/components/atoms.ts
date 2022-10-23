@@ -1,3 +1,4 @@
+import { color } from '@/theme'
 import styled, { css } from 'styled-components'
 
 const flexRowBase = css`
@@ -14,7 +15,7 @@ export const HeaderWrapper = styled.div`
     border-bottom: 1px solid ${theme.color.gray.border};
     height: 50px;
     width: 100%;
-    padding: 0 10px;
+    padding: 0 20px;
   `}
 `
 
@@ -56,9 +57,11 @@ export const MessageContent = styled.div`
   }
 `
 
-export const MessageItem = styled.div<{ type: string }>`
-  justify-content: ${({ type }) => (type === 'myself' ? 'flex-end' : 'flex-start')};
+export const MessageItem = styled.div<{ isMyself: boolean }>`
+  display: flex;
+  justify-content: ${({ isMyself }) => (isMyself ? 'flex-end' : 'flex-start')};
   flex-direction: row;
+  color: ${color.text.lighter};
 `
 
 export const SendWrapper = styled.div`
