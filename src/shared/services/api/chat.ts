@@ -1,11 +1,11 @@
 import { AxiosInstance } from 'axios'
-import { BaseResponse, RecordParams, RecordResponse } from './interface'
+import { BaseResponse, MessageParams, RecordResponse } from './interface'
 
 export class ChatModule {
   constructor(private ins: AxiosInstance) {}
 
-  getRecord = async (parmas: RecordParams) => {
-    const res = await this.ins.post<BaseResponse<RecordResponse[]>>('/chat/getRecord', parmas)
+  getMessage = async (parmas: MessageParams) => {
+    const res = await this.ins.post<BaseResponse<RecordResponse[]>>('/chat/getMessage', parmas)
     return res.data
   }
 }

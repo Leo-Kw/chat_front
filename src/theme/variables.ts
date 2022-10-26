@@ -42,6 +42,10 @@ export const color = Object.freeze({
     border: '#5e5e5e',
     background: '#5c5c5c6b',
   },
+  messageBackground: {
+    other: '#eee',
+    myself: '#a9e87a',
+  },
   disableGray: '#c1c7d6',
   // 功能色
   info: '#348ef5',

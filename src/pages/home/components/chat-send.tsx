@@ -3,6 +3,7 @@ import { sendBarConfig } from '@/constants'
 import { SendWrapper, SendHeader, ChatButton, SendTextarea, SendFooter } from './atoms'
 import { Icon, IconType } from '@/common/components/icon'
 import { useGlobalState, useIntlLocale, useSocket } from '@/hook'
+import { scorllToBottom } from '@/utils'
 
 export const ChatSend = () => {
   const socket = useSocket()
@@ -24,8 +25,8 @@ export const ChatSend = () => {
         userRole: userInfo.role,
         userAvatar: userInfo.avatar,
       },
-      (data: any) => {
-        console.log(data)
+      (res: boolean) => {
+        res && scorllToBottom()
       }
     )
     setMessageContent('')

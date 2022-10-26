@@ -1,4 +1,3 @@
-import React from 'react'
 import { createBrowserRouter, Navigate, redirect } from 'react-router-dom'
 import { RouteConfig } from './route'
 import { HomeView } from '@/pages/home'

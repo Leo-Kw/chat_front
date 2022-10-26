@@ -5,7 +5,7 @@ export interface UserInfoType {
   name: string
   email: string
   sign: string
-  role: number
+  role: string
   room_id: string
   avatar: string
   account: string

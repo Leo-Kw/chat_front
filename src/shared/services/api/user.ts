@@ -13,4 +13,8 @@ export class UserModule {
     const res = await this.ins.post<BaseResponse>('/user/register', parmas)
     return res.data
   }
+  getUserInfo = async () => {
+    const res = await this.ins.get<BaseResponse<UserInfoType>>('/user/getUserInfo')
+    return res.data
+  }
 }

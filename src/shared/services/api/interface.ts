@@ -25,7 +25,7 @@ export interface RegisterParams {
   password: string
 }
 
-export interface RecordParams {
+export interface MessageParams {
   page: number
   pageSize: number
   roomId: number
@@ -36,6 +36,7 @@ export interface RecordResponse {
   userId: number
   messageType: string
   messageContent: string
+  messageStatus: number
   quoteUserId: number | null
   quoteMessageId: number | null
   roomId: number
@@ -44,4 +45,5 @@ export interface RecordResponse {
   userRole: string
   createdAt: string
   updatedAt: string
+  deletedAt: string
 }

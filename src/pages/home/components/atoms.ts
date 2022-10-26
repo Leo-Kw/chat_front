@@ -29,13 +29,13 @@ export const HeaderControl = styled.div`
 
 export const MessageWrapper = styled.div`
   flex: 1;
+  height: 0;
   position: relative;
 `
 
 export const MessageContent = styled.div`
-  flex: 1;
   height: 100%;
-  padding: 10px 20px;
+  padding: 10px 25px;
   box-sizing: border-box;
   overflow-y: scroll;
   display: flex;
@@ -62,6 +62,73 @@ export const MessageItem = styled.div<{ isMyself: boolean }>`
   justify-content: ${({ isMyself }) => (isMyself ? 'flex-end' : 'flex-start')};
   flex-direction: row;
   color: ${color.text.lighter};
+  margin: 10px 0;
+`
+
+export const MessageItemWrapper = styled.div<{ isMyself: boolean }>`
+  display: flex;
+  flex-direction: ${({ isMyself }) => (isMyself ? 'row-reverse' : 'row')};
+`
+
+export const MessageItemAvatar = styled.div`
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  background: ${color.text.lighter};
+`
+
+export const MessageItemTextWrapper = styled.div<{ isMyself: boolean }>`
+  display: flex;
+  flex-direction: column;
+  align-items: ${({ isMyself }) => (isMyself ? 'flex-end' : 'flex-start')};
+  margin: 0 15px;
+`
+
+export const MessageItemUserName = styled.div`
+  ${({ theme }) => css`
+    font-size: ${theme.typography.textSmall};
+    margin-bottom: 5px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 200px;
+  `}
+`
+
+export const MessageItemContent = styled.div<{ isMyself: boolean }>`
+  ${({ theme, isMyself }) => css`
+    background: ${isMyself
+      ? theme.color.messageBackground.myself
+      : theme.color.messageBackground.other};
+    color: ${theme.color.dark.main};
+    border-radius: 5px;
+    max-width: 350px;
+    padding: 5px 15px;
+    height: auto;
+    position: relative;
+    word-wrap: break-word;
+    &::before {
+      content: '';
+      border: solid transparent;
+      height: 0;
+      position: absolute;
+      width: 0;
+      border-width: 5px;
+      top: 12px;
+    }
+    ${isMyself
+      ? css`
+          &::before {
+            left: 100%;
+            border-left-color: ${theme.color.messageBackground.myself};
+          }
+        `
+      : css`
+          &::before {
+            right: 100%;
+            border-right-color: ${theme.color.messageBackground.other};
+          }
+        `}
+  `}
 `
 
 export const SendWrapper = styled.div`
@@ -101,6 +168,11 @@ export const ChatButton = styled.button<{ typeKey: string }>`
   `}
 `
 
+export const SendFooter = styled.div`
+  height: 30px;
+  width: 100%;
+`
+
 export const SendTextarea = styled.textarea.attrs((props) => ({
   placeholder: props.placeholder,
 }))`
@@ -113,12 +185,7 @@ export const SendTextarea = styled.textarea.attrs((props) => ({
     outline: none;
     border: none;
     font-size: 15px;
-    color: ${theme.color.text.gray};
+    color: ${theme.color.text.lighter};
     background-color: transparent;
   `}
-`
-
-export const SendFooter = styled.div`
-  height: 30px;
-  width: 100%;
 `

@@ -1,8 +1,12 @@
+import { RecordResponse } from '@/shared/services/api/interface'
 import { createContext, Dispatch, ReactNode, useReducer } from 'react'
 import { UserInfoType } from './types'
 
 export enum ActionType {
   SetUserInfo = 'SetUserInfo',
+  SetRoomId = 'SetRoomId',
+  SetMessageList = 'SetMessageList',
+  AddNewMessage = 'AddNewMessage',
 }
 
 interface Props {
@@ -10,8 +14,9 @@ interface Props {
 }
 
 interface State {
-  count: number
   userInfo: UserInfoType
+  messageList: RecordResponse[]
+  roomId: number
 }
 
 interface Context {
@@ -19,30 +24,50 @@ interface Context {
   dispatch: Dispatch<Action>
 }
 
-interface Action {
-  type: ActionType.SetUserInfo
-  payload: UserInfoType
-}
+type Action =
+  | {
+      type: ActionType.SetUserInfo
+      payload: UserInfoType
+    }
+  | {
+      type: ActionType.SetRoomId
+      payload: number
+    }
+  | {
+      type: ActionType.SetMessageList
+      payload: RecordResponse[]
+    }
+  | {
+      type: ActionType.AddNewMessage
+      payload: RecordResponse
+    }
 
 const initValue: State = {
-  count: 0,
   userInfo: {
     id: 0,
     sex: 0,
     name: '',
     email: '',
     sign: '',
-    role: 0,
+    role: '',
     room_id: '',
     avatar: '',
     account: '',
   },
+  roomId: 1,
+  messageList: [],
 }
 
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case ActionType.SetUserInfo:
       return { ...state, userInfo: action.payload }
+    case ActionType.SetRoomId:
+      return { ...state, roomId: action.payload }
+    case ActionType.SetMessageList:
+      return { ...state, messageList: [...action.payload, ...state.messageList] }
+    case ActionType.AddNewMessage:
+      return { ...state, messageList: [...state.messageList, action.payload] }
     default:
       return state
   }
