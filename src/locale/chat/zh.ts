@@ -8,4 +8,5 @@ export default {
   share: '分享',
   share_success: '复制成功，分享给你的小伙伴一起来听音乐吧',
   share_fail: '浏览器不支持复制功能',
+  load_all_message: '已经加载完全部消息',
 }
