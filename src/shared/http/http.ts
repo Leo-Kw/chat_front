@@ -3,7 +3,7 @@ import { handleError, handleRequest, handleResponse } from './interceptors'
 
 const createAxiosInstance = ({ headers, ...otherConfig }: AxiosRequestConfig) => {
   const axiosInstance = axios.create({
-    baseURL: 'api/',
+    baseURL: import.meta.env.VITE_PROD_BASEUIL,
     timeout: 1000 * 90,
     withCredentials: true,
     headers: {

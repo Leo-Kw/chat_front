@@ -29,7 +29,7 @@ export default defineConfig({
     port: 3100,
     proxy: {
       '/api': {
-        target: 'http://112.74.127.146:3101',
+        target: 'http://localhost:3101',
         changeOrigin: true,
         // rewrite: (path: string) => path.replace(/^\/api/, ''),
       },
