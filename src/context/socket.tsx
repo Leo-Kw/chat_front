@@ -7,7 +7,7 @@ type Props = {
 
 const SOCKET_URL = 'ws://localhost:3102'
 
-const socket = io(SOCKET_URL, { path: '/chat' })
+const socket = io(SOCKET_URL, { path: '/chat-socket' })
 
 export const SocketContext = createContext<Socket>(socket)
 

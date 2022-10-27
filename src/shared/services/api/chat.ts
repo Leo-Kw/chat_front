@@ -5,7 +5,7 @@ export class ChatModule {
   constructor(private ins: AxiosInstance) {}
 
   getMessage = async (parmas: MessageParams) => {
-    const res = await this.ins.post<BaseResponse<RecordResponse[]>>('/chat/getMessage', parmas)
+    const res = await this.ins.post<BaseResponse<RecordResponse[]>>('/chat/get-message', parmas)
     return res.data
   }
 }
