@@ -8,7 +8,7 @@ const createAxiosInstance = ({ headers, ...otherConfig }: AxiosRequestConfig) =>
     withCredentials: true,
     headers: {
       'Content-Type': 'application/json; charset=utf-8',
-      channel: 6,
+      // channel: 6,
       version: '1.0.0',
       signature: 'chat_hangzai',
       ...headers,
