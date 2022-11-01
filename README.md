@@ -20,3 +20,4 @@ pnpm build
 
 1. 基础组件封装(`Toast`、`Modal`)
 2. 使用[styled-component](https://styled-components.com/)CSS-in-JS 库封装组件
+3. 使用 socket.io-client 与后台通信
