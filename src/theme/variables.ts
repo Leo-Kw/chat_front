@@ -50,7 +50,7 @@ export const color = Object.freeze({
   // 功能色
   info: '#348ef5',
   success: '#67c23a',
-  warning: '#F76921',
+  warning: '#f56c6c',
   error: '#ff4d4f',
 })
 

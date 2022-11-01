@@ -8,12 +8,35 @@ export const fadeIn = keyframes`
     opacity: 1;
   }
 `
+
 export const fadeOut = keyframes`
   0% {
     opacity: 1;
   }
   100% {
     opacity: 0;
+  }
+`
+
+export const fadeInUp = keyframes`
+  from {
+    opacity: 0;
+    -webkit-transform: translate(0, 10px);
+  }
+  to {
+    opacity: 1;
+    -webkit-transform: translate(0);
+  }
+`
+
+export const fadeInDown = keyframes`
+  from {
+    opacity: 1;
+    -webkit-transform: translate(0, -10px);
+  }
+  to {
+    opacity: 0;
+    -webkit-transform: translate(0);
   }
 `
 
@@ -45,13 +68,14 @@ export const scaleIn = keyframes`
     transform: scale(1);
   }
 `
+
 export const scaleOut = keyframes`
   0% {
-    opacity: 1
+    opacity: 1;
     transform: scale(1);
   }
   100% {
-    opacity: 0
+    opacity: 0;
     transform: scale(0.4);
   }
 `

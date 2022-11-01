@@ -7,6 +7,8 @@ export enum ActionType {
   SetRoomId = 'SetRoomId',
   SetMessageList = 'SetMessageList',
   AddNewMessage = 'AddNewMessage',
+  AddOneUnreadMessNum = 'AddOneUnreadMessNum',
+  ClearUnreadMessNum = 'ClearUnreadMessNum',
 }
 
 interface Props {
@@ -17,6 +19,7 @@ interface State {
   userInfo: UserInfoType
   messageList: RecordResponse[]
   roomId: number
+  unreadMessNum: number
 }
 
 interface Context {
@@ -41,6 +44,12 @@ type Action =
       type: ActionType.AddNewMessage
       payload: RecordResponse
     }
+  | {
+      type: ActionType.AddOneUnreadMessNum
+    }
+  | {
+      type: ActionType.ClearUnreadMessNum
+    }
 
 const initValue: State = {
   userInfo: {
@@ -56,6 +65,7 @@ const initValue: State = {
   },
   roomId: 1,
   messageList: [],
+  unreadMessNum: 0,
 }
 
 const reducer = (state: State, action: Action): State => {
@@ -68,6 +78,10 @@ const reducer = (state: State, action: Action): State => {
       return { ...state, messageList: [...action.payload, ...state.messageList] }
     case ActionType.AddNewMessage:
       return { ...state, messageList: [...state.messageList, action.payload] }
+    case ActionType.AddOneUnreadMessNum:
+      return { ...state, unreadMessNum: ++state.unreadMessNum }
+    case ActionType.ClearUnreadMessNum:
+      return { ...state, unreadMessNum: 0 }
     default:
       return state
   }

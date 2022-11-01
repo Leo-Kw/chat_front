@@ -1,4 +1,5 @@
 import { color } from '@/theme'
+import { fadeInUp } from '@/theme/keyframes'
 import styled, { css } from 'styled-components'
 
 const flexRowBase = css`
@@ -42,6 +43,7 @@ export const MessageContent = styled.div`
   flex-direction: column;
   position: relative;
   scrollbar-width: none;
+  position: relative;
   &::-webkit-scrollbar {
     display: block;
     width: 5px;
@@ -55,6 +57,21 @@ export const MessageContent = styled.div`
     border-radius: 1em;
     background-color: rgba(50, 50, 50, 0.1);
   }
+`
+
+export const UnreadTip = styled.div`
+  transition: all 0.3s;
+  position: absolute;
+  right: 15px;
+  bottom: 10px;
+  padding: 7px 13px;
+  font-size: 12px;
+  background: ${({ theme }) => theme.color.warning};
+  color: ${({ theme }) => theme.color.white};
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  animation: 0.3s ${fadeInUp} ease;
 `
 
 export const MessageItem = styled.div<{ isMyself: boolean }>`

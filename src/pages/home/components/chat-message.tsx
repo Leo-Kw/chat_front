@@ -9,6 +9,7 @@ import {
   MessageItemContent,
   MessageItemUserName,
   MessageItemTextWrapper,
+  UnreadTip,
 } from './atoms'
 import { SocketOnMessage } from './type'
 import { scorllToBottom, throttle } from '@/utils'
@@ -27,7 +28,7 @@ export const ChatMessage = () => {
     page: 1,
     pageSize: 20,
   })
-  const { userInfo, messageList, roomId } = state
+  const { userInfo, messageList, roomId, unreadMessNum } = state
 
   useEffect(() => {
     socket.on('message', handleMessage) // 监听消息
@@ -51,7 +52,9 @@ export const ChatMessage = () => {
   const scrollToTop = throttle(() => {
     if (messContentRef && messContentRef.current) {
       const el = messContentRef.current
-      const { scrollTop } = el
+      const { scrollTop, offsetHeight, scrollHeight } = el
+      offsetHeight + scrollTop - scrollHeight > -450 &&
+        dispatch({ type: ActionType.ClearUnreadMessNum })
       scrollTop < 30 && setMessageParams({ ...messageParams, page: ++messageParams.page })
     }
   }, 200)
@@ -74,9 +77,15 @@ export const ChatMessage = () => {
   const handleMessage = useCallback(
     (data: SocketOnMessage) => {
       dispatch({ type: ActionType.AddNewMessage, payload: data.data })
+      data.data.userId !== userInfo.id && dispatch({ type: ActionType.AddOneUnreadMessNum })
     },
     [messageList, messContentRef]
   )
+
+  const readNewMess = () => {
+    scorllToBottom()
+    dispatch({ type: ActionType.ClearUnreadMessNum })
+  }
 
   return (
     <MessageWrapper>
@@ -97,6 +106,9 @@ export const ChatMessage = () => {
         })}
         <div id='messageBottom' />
       </MessageContent>
+      {unreadMessNum !== 0 && (
+        <UnreadTip onClick={readNewMess}>有{unreadMessNum}条新消息</UnreadTip>
+      )}
     </MessageWrapper>
   )
 }

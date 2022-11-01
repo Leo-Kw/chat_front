@@ -4,6 +4,7 @@ import { SendWrapper, SendHeader, ChatButton, SendTextarea, SendFooter } from '.
 import { Icon, IconType } from '@/common/components/icon'
 import { useGlobalState, useIntlLocale, useSocket } from '@/hook'
 import { scorllToBottom } from '@/utils'
+import { AuthService } from '@/shared/services'
 
 export const ChatSend = () => {
   const socket = useSocket()
@@ -15,21 +16,26 @@ export const ChatSend = () => {
   const { userInfo } = state
 
   const sendMessage = () => {
-    socket.emit(
-      'sendMessage',
-      {
-        userId: userInfo.id,
-        messageContent: messageContent,
-        messageType: 'text',
-        userName: userInfo.name,
-        userRole: userInfo.role,
-        userAvatar: userInfo.avatar,
-      },
-      (res: boolean) => {
-        res && scorllToBottom()
-      }
-    )
-    setMessageContent('')
+    if (userInfo.name === '') {
+      window.location.href = '/login'
+      AuthService.removeToken()
+    } else {
+      socket.emit(
+        'sendMessage',
+        {
+          userId: userInfo.id,
+          messageContent: messageContent,
+          messageType: 'text',
+          userName: userInfo.name,
+          userRole: userInfo.role,
+          userAvatar: userInfo.avatar,
+        },
+        (res: boolean) => {
+          res && scorllToBottom()
+        }
+      )
+      setMessageContent('')
+    }
   }
 
   const handleKeyDown = useCallback(
