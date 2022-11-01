@@ -77,7 +77,17 @@ export const ChatMessage = () => {
   const handleMessage = useCallback(
     (data: SocketOnMessage) => {
       dispatch({ type: ActionType.AddNewMessage, payload: data.data })
-      data.data.userId !== userInfo.id && dispatch({ type: ActionType.AddOneUnreadMessNum })
+      if (data.data.userId !== userInfo.id) {
+        dispatch({ type: ActionType.AddOneUnreadMessNum })
+        const options = {
+          body: t('has_new_news'),
+          tag: 'chat',
+          icon: '/src/favicon.png',
+          requireInteraction: false,
+        } // 传空配置
+        const title = t('hange_chat_room')
+        new Notification(title, options) // 显示通知
+      }
     },
     [messageList, messContentRef]
   )

@@ -22,7 +22,13 @@ module.exports = {
   rules: {
     'linebreak-style': ['error', 'unix'],
     'prettier/prettier': 'error',
-    quotes: ['error', 'single'],
+    quotes: [
+      'error',
+      'single',
+      {
+        allowTemplateLiterals: true,
+      },
+    ],
     semi: ['error', 'never'],
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/no-empty-function': 'off',

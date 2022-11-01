@@ -27,6 +27,10 @@ export const HomeView = () => {
       }
     })
     setIsShowPopup(true)
+    Notification.requestPermission(function (status) {
+      console.log(status) // 仅当值为 "granted" 时显示通知
+    })
+    return () => {}
   }, [])
 
   const cancelPopup = () => {
