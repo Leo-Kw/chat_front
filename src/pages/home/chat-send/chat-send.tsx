@@ -1,10 +1,12 @@
 import { useEffect, useCallback, useState, useRef } from 'react'
-import { sendBarConfig } from '@/constants'
 import { SendWrapper, SendHeader, ChatButton, SendTextarea, SendFooter } from './atoms'
-import { Icon, IconType } from '@/common/components/icon'
+import { Icon } from '@/common/components/icon'
 import { useGlobalState, useIntlLocale, useSocket } from '@/hook'
-import { scorllToBottom } from '@/utils'
+import { scorllToBottom, strToUnicode } from '@/utils'
 import { AuthService } from '@/shared/services'
+import { Popup } from '@/common/components'
+import { Emoji } from '../chat-tool-bar'
+import { regex } from '@/utils/regex'
 
 export const ChatSend = () => {
   const socket = useSocket()
@@ -24,8 +26,10 @@ export const ChatSend = () => {
         'sendMessage',
         {
           userId: userInfo.id,
-          messageContent: messageContent,
-          messageType: 'text',
+          messageContent: messageContent.match(regex)
+            ? strToUnicode(messageContent)
+            : messageContent,
+          messageType: messageContent.match(regex) ? 'hasEmoji' : 'text',
           userName: userInfo.name,
           userRole: userInfo.role,
           userAvatar: userInfo.avatar,
@@ -75,19 +79,33 @@ export const ChatSend = () => {
   return (
     <SendWrapper>
       <SendHeader>
-        {sendBarConfig.map((item) => (
-          <ChatButton typeKey='send' key={item.key}>
-            <Icon type={item.value as IconType} />
-            {t(item.value)}
+        <Popup
+          left={15}
+          bottom={200}
+          height={300}
+          title={t('emoji')}
+          content={<Emoji messageContent={messageContent} setMessageContent={setMessageContent} />}
+        >
+          <ChatButton typeKey='send'>
+            <Icon type='emoji' />
+            {t('emoji')}
           </ChatButton>
-        ))}
+        </Popup>
+        {/* <ChatButton typeKey='send'>
+          <Icon type='song' />
+          {t('song')}
+        </ChatButton> */}
+        <ChatButton typeKey='send'>
+          <Icon type='chat_record' />
+          {t('chat_record')}
+        </ChatButton>
       </SendHeader>
       <SendTextarea
         ref={textAreaRef}
         placeholder={t('chat_placeholder')}
         value={messageContent}
         onChange={(e) => setMessageContent(e.target.value)}
-        onPaste={(e) => console.log(e.target)}
+        onPaste={(e) => console.log(e.clipboardData.getData('text'))}
       />
       <SendFooter></SendFooter>
     </SendWrapper>

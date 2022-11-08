@@ -1,5 +1,4 @@
-import React from 'react'
-import { HeaderWrapper, HeaderTitle, HeaderControl, ChatButton } from './atoms'
+import { HeaderWrapper, HeaderPieceWrapper, HeaderTitle, ChatButton } from './atoms'
 import { chatControlBarConfig } from '@/constants'
 import { Icon, IconType } from '@/common/components/icon'
 import { useNavigate } from 'react-router-dom'
@@ -13,7 +12,7 @@ export const ChatHeader = () => {
 
   const share = () => {
     navigator.clipboard
-      .writeText('航哥')
+      .writeText('航哥真帅！')
       .then(() => {
         Toast.success(t('share_success'))
       })
@@ -31,16 +30,16 @@ export const ChatHeader = () => {
 
   return (
     <HeaderWrapper>
-      <HeaderTitle>
-        asd
+      <HeaderPieceWrapper>
+        <HeaderTitle>🐷🐷房间</HeaderTitle>
         <div onClick={() => share()}>
           <ChatButton typeKey='title'>
             <Icon type='share' />
             {t('share')}
           </ChatButton>
         </div>
-      </HeaderTitle>
-      <HeaderControl>
+      </HeaderPieceWrapper>
+      <HeaderPieceWrapper>
         {chatControlBarConfig.map((item) => (
           <div onClick={() => barButton(item.value)} key={item.key}>
             <ChatButton typeKey='title'>
@@ -49,7 +48,7 @@ export const ChatHeader = () => {
             </ChatButton>
           </div>
         ))}
-      </HeaderControl>
+      </HeaderPieceWrapper>
     </HeaderWrapper>
   )
 }

@@ -3,17 +3,22 @@ import { HomeWrapper, ChatWrapper } from './atoms'
 import { useNavigate } from 'react-router-dom'
 import { Modal } from '@/common/components/modal'
 import { AuthService } from '@/shared/services'
-import { ChatMessage, ChatHeader, ChatSend } from './components'
-import { useAPI, useGlobalState } from '@/hook'
+import { useAPI, useGlobalState, useIntlLocale } from '@/hook'
 import { ActionType } from '@/context'
+import { ChatMessage } from './chat-message'
+import { ChatHeader } from './chat-header'
+import { ChatSend } from './chat-send'
 // import Worker from '@/utils/worker-example.ts?worker'
 
 export const HomeView = () => {
   const API = useAPI()
   const navigate = useNavigate()
+  const t = useIntlLocale()
   const { dispatch } = useGlobalState()
   const [isShowChat, setIsShowChat] = useState(false)
   const [isShowPopup, setIsShowPopup] = useState(true)
+  const { state } = useGlobalState()
+  const { userInfo } = state
   // const worker = new Worker()
 
   // worker.addEventListener('message', (e) => {
@@ -54,12 +59,12 @@ export const HomeView = () => {
       ) : (
         <Modal
           visible={isShowPopup}
-          title='欢迎加入聊天室'
+          title={t('welcome_title')}
           onCancel={cancelPopup}
           onOk={okPopup}
           maskClosable={false}
         >
-          请注意，加入聊天室将自动播放音乐!
+          {userInfo.id === 6 ? t('welcome_baby') : t('welcome_message')}
         </Modal>
       )}
     </HomeWrapper>

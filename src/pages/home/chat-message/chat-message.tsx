@@ -11,15 +11,17 @@ import {
   MessageItemTextWrapper,
   UnreadTip,
 } from './atoms'
-import { SocketOnMessage } from './type'
-import { scorllToBottom, throttle } from '@/utils'
+import { MessageTypes, SocketOnMessage } from '../type'
+import { scorllToBottom, substringByByte, throttle } from '@/utils'
 import { ActionType } from '@/context'
 import { Toast } from '@/common/components'
+import { CSSTransition } from 'react-transition-group'
 
 export const ChatMessage = () => {
   const API = useAPI()
   const socket = useSocket()
   const messContentRef = useRef<HTMLDivElement | null>(null)
+  const unReadTipRef = useRef<HTMLDivElement | null>(null)
   const t = useIntlLocale()
   const { state, dispatch } = useGlobalState()
   const [isLoadAllMessage, setIsLoadAllMessage] = useState(false)
@@ -108,7 +110,11 @@ export const ChatMessage = () => {
                 <MessageItemAvatar />
                 <MessageItemTextWrapper isMyself={isMyself}>
                   <MessageItemUserName>{item.userName}</MessageItemUserName>
-                  <MessageItemContent isMyself={isMyself}>{item.messageContent}</MessageItemContent>
+                  <MessageItemContent isMyself={isMyself}>
+                    {item.messageType === MessageTypes.HasEmoji
+                      ? substringByByte(item.messageContent, 100000)
+                      : item.messageContent}
+                  </MessageItemContent>
                 </MessageItemTextWrapper>
               </MessageItemWrapper>
             </MessageItem>
@@ -116,9 +122,17 @@ export const ChatMessage = () => {
         })}
         <div id='messageBottom' />
       </MessageContent>
-      {unreadMessNum !== 0 && (
-        <UnreadTip onClick={readNewMess}>有{unreadMessNum}条新消息</UnreadTip>
-      )}
+      <CSSTransition
+        nodeRef={unReadTipRef}
+        in={unreadMessNum !== 0}
+        timeout={300}
+        classNames='show'
+        unmountOnExit
+      >
+        <UnreadTip ref={unReadTipRef} onClick={readNewMess}>
+          有{unreadMessNum}条新消息
+        </UnreadTip>
+      </CSSTransition>
     </MessageWrapper>
   )
 }

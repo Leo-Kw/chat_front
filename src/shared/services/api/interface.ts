@@ -1,4 +1,5 @@
 import { UserInfoType } from '@/context/types'
+import { MessageTypes } from '@/pages/home/type'
 
 export interface BaseResponse<T = any> {
   code: number
@@ -34,7 +35,7 @@ export interface MessageParams {
 export interface RecordResponse {
   id: number
   userId: number
-  messageType: string
+  messageType: MessageTypes
   messageContent: string
   messageStatus: number
   quoteUserId: number | null
