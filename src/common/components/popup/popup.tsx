@@ -23,7 +23,6 @@ export const Popup = ({
   height = 400,
   left,
   bottom,
-  title,
   children,
   content,
 }: PopupProps) => {
