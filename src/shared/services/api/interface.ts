@@ -1,7 +1,7 @@
 import { UserInfoType } from '@/context/types'
 import { MessageTypes } from '@/pages/home/type'
 
-export interface BaseResponse<T> {
+export interface BaseResponse<T = any> {
   code: number
   data: T
   message: string
