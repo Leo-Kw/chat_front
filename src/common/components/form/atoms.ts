@@ -15,8 +15,9 @@ export const ChickMusicImg = styled.img.attrs(() => ({
 
 export const LoginTitle = styled.div`
   text-align: center;
-  font-size: ${typography.h5};
+  font-size: ${typography.h4};
   color: ${color.text.lighter};
+  font-weight: bold;
   margin-bottom: 30px;
 `
 

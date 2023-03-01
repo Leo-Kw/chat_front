@@ -21,6 +21,7 @@ import { ReactComponent as Myself } from './icons/myself.svg'
 import { ReactComponent as SignOout } from './icons/sign_out.svg'
 import { ReactComponent as Setting } from './icons/setting.svg'
 import { ReactComponent as Share } from './icons/share.svg'
+import { ReactComponent as File } from './icons/file.svg'
 
 export type IconType =
   | 'info'
@@ -44,6 +45,7 @@ export type IconType =
   | 'myself'
   | 'setting'
   | 'share'
+  | 'file'
 
 const IconMap = new Map([
   ['info', <InfoIcon key='info' />],
@@ -68,6 +70,7 @@ const IconMap = new Map([
   ['sign_out', <SignOout key='sign_out' />],
   ['setting', <Setting key='setting' />],
   ['share', <Share key='share' />],
+  ['file', <File key='file' />],
 ])
 
 export const Icon: React.FC<{ type: IconType }> = ({ type }) => {

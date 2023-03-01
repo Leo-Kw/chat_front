@@ -1,10 +1,8 @@
 import React, { useState } from 'react'
 import { useForm, Resolver } from 'react-hook-form'
 
-import { Toast } from '@/common/components'
 import { ControlButtonWrapper, ControlButton, LoginWrapper } from './atoms'
 import {
-  ChickMusicImg,
   PasswordWrapper,
   FormOkButton,
   FormContent,
@@ -12,6 +10,8 @@ import {
   FormErrorTip,
   LoginTitle,
   FormItem,
+  Lottie,
+  Toast,
 } from '@/common/components'
 import { RouteConfig } from '@/route'
 import { NavLink } from '@/common/base-atoms'
@@ -22,6 +22,7 @@ import { useNavigate } from 'react-router-dom'
 import { Icon } from '@/common/components/icon'
 import { useIntlLocale, intlCache } from '@/hook'
 import { ActionType } from '@/context'
+import musicAnimationData from '@/common/json/lottie/happy-spaceman.json'
 
 const resolver: Resolver<LoginParams> = async (values) => {
   const errors = {
@@ -72,8 +73,8 @@ export const LoginView: React.FC = () => {
 
   return (
     <LoginWrapper>
-      <ChickMusicImg />
-      <LoginTitle>test</LoginTitle>
+      <Lottie animationData={musicAnimationData} />
+      <LoginTitle>{t('login')}</LoginTitle>
       <FormContent onSubmit={onSubmit}>
         <FormItem>
           <FormInput {...register('account')} placeholder={t('account')} />

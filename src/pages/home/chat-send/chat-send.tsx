@@ -8,6 +8,19 @@ import { Popup } from '@/common/components'
 import { Emoji } from '../chat-tool-bar'
 import { regex } from '@/utils/regex'
 
+const pickerOpts = {
+  types: [
+    {
+      description: 'code',
+      accept: {
+        '*/*': [],
+      },
+    },
+  ],
+  excludeAcceptAllOption: true,
+  multiple: false,
+}
+
 export const ChatSend = () => {
   const socket = useSocket()
   const t = useIntlLocale()
@@ -76,6 +89,17 @@ export const ChatSend = () => {
     }
   }, [handleKeyDown])
 
+  const getFile = async () => {
+    try {
+      const [fileHandle] = await showOpenFilePicker(pickerOpts)
+      const file = await fileHandle.getFile()
+      const contents = await file.text()
+      console.log(contents)
+    } catch (e) {
+      // Handling of user rejection
+    }
+  }
+
   return (
     <SendWrapper>
       <SendHeader>
@@ -98,6 +122,10 @@ export const ChatSend = () => {
         <ChatButton typeKey='send'>
           <Icon type='chat_record' />
           {t('chat_record')}
+        </ChatButton>
+        <ChatButton typeKey='send' onClick={() => getFile()}>
+          <Icon type='file' />
+          {t('file')}
         </ChatButton>
       </SendHeader>
       <SendTextarea
