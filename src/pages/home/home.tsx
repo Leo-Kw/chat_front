@@ -52,8 +52,8 @@ export const HomeView = () => {
     <HomeWrapper>
       {isShowChat ? (
         <ChatWrapper>
-          {/* <ChatHeader />
-          <ChatMessage /> */}
+          <ChatHeader />
+          <ChatMessage />
           <ChatSend />
         </ChatWrapper>
       ) : (
