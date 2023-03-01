@@ -12,6 +12,7 @@ import {
   LoginTitle,
   FormItem,
   Toast,
+  Lottie,
 } from '@/common/components'
 import { NavLink } from '@/common/base-atoms'
 import { RouteConfig } from '@/route'
@@ -19,6 +20,7 @@ import { RegisterParams } from '@/shared/services/api/interface'
 import { useAPI } from '@/hook'
 import { Icon } from '@/common/components/icon'
 import { useIntlLocale, intlCache } from '@/hook'
+import musicAnimationData from '@/common/json/lottie/happy-spaceman.json'
 
 const regex = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
 
@@ -89,8 +91,8 @@ export const RegisterView: React.FC = () => {
 
   return (
     <RegisterWrapper>
-      <ChickMusicImg />
-      <LoginTitle>test</LoginTitle>
+      <Lottie animationData={musicAnimationData} />
+      <LoginTitle>{t('sign_up')}</LoginTitle>
       <FormContent onSubmit={onSubmit}>
         <FormItem>
           <FormInput

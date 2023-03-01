@@ -1,4 +1,5 @@
 export default {
+  login: 'Login',
   emoji: 'Emoji',
   song: 'Song',
   chat_record: 'Chat record',
@@ -9,4 +10,5 @@ export default {
   share_success: 'Copy successfully, share it with your friends to listen to music together',
   share_fail: 'The browser does not support the copy function',
   load_all_message: 'All messages loaded',
+  file: 'file',
 }

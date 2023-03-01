@@ -8,6 +8,7 @@ import autoprefixer from 'autoprefixer'
 import windi from 'vite-plugin-windicss'
 import viteEslint from 'vite-plugin-eslint'
 import svgr from 'vite-plugin-svgr'
+import viteImagemin from 'vite-plugin-imagemin'
 
 // 全局 scss 文件的路径
 // 用 normalizePath 解决 window 下的路径问题
@@ -48,6 +49,28 @@ export default defineConfig({
       // 注意: 对于 emotion，需要单独加上这个配置
       // 通过 `@emotion/react` 包编译 emotion 中的特殊 jsx 语法
       // jsxImportSource: '@emotion/react',
+    }),
+    viteImagemin({
+      // 无损压缩配置，无损压缩下图片质量不会变差
+      optipng: {
+        optimizationLevel: 7,
+      },
+      // 有损压缩配置，有损压缩下图片质量可能会变差
+      pngquant: {
+        quality: [0.8, 0.9],
+      },
+      // svg 优化
+      svgo: {
+        plugins: [
+          {
+            name: 'removeViewBox',
+          },
+          {
+            name: 'removeEmptyAttrs',
+            active: false,
+          },
+        ],
+      },
     }),
     windi(),
     viteEslint(),
