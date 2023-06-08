@@ -17,7 +17,14 @@ interface IProps {
   path?: string
 }
 
-const Lottie = forwardRef((props: IProps, ref: Ref<any>) => {
+interface RefProps {
+  getInstance: () => void
+  play: () => void
+  pause: () => void
+  stop: () => void
+}
+
+const Lottie = forwardRef((props: IProps, ref: Ref<RefProps>) => {
   const { loop = true, renderer = 'svg', path = '', animationData, autoplay = true } = props
 
   // rendering container

@@ -8,6 +8,8 @@ import { ActionType } from '@/context'
 import { ChatMessage } from './chat-message'
 import { ChatHeader } from './chat-header'
 import { ChatSend } from './chat-send'
+import { Lottie } from '@/common/components'
+import catAnimationData from '@/common/json/lottie/creepy-black-cat.json'
 // import Worker from '@/utils/worker-example.ts?worker'
 
 export const HomeView = () => {
@@ -52,6 +54,9 @@ export const HomeView = () => {
     <HomeWrapper>
       {isShowChat ? (
         <ChatWrapper>
+          <div className='absolute -top-21.5'>
+            <Lottie animationData={catAnimationData} />
+          </div>
           <ChatHeader />
           <ChatMessage />
           <ChatSend />

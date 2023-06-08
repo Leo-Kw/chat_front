@@ -3,7 +3,6 @@ import { useForm, Resolver } from 'react-hook-form'
 
 import { RegisterWrapper, ControlButtonWrapper, ControlButton } from './atoms'
 import {
-  ChickMusicImg,
   PasswordWrapper,
   FormOkButton,
   FormContent,
