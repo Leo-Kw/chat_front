@@ -8,10 +8,19 @@ export const SendWrapper = styled.div`
   flex-direction: column;
 `
 export const SendHeader = styled.div`
+  position: relative;
   height: 40px;
   width: 100%;
   display: flex;
   align-items: center;
+  ::after {
+    content: '';
+    width: 100%;
+    height: 0.5px;
+    background: ${({ theme }) => theme.color.gray.border};
+    position: absolute;
+    top: 0px;
+  }
 `
 
 export const ChatButton = styled.button<{ typeKey: string }>`
