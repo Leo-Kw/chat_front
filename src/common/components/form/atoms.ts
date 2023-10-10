@@ -34,14 +34,27 @@ export const FormItem = styled.div`
 `
 
 export const FormInput = styled.input`
-  display: block;
-  box-sizing: border-box;
-  width: 100%;
-  height: 40px;
-  border-radius: 4px;
-  border: 1px solid white;
-  padding: 10px 15px;
-  font-size: ${typography.text};
+  ${({ theme }) => css`
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    height: 40px;
+    border-radius: 4px;
+    border: none;
+    padding: 10px 15px;
+    font-size: ${theme.typography.text};
+    background: ${theme.color.input.background};
+    transition: all 0.3s;
+    color: ${theme.color.text.main};
+    :hover {
+      background: ${theme.color.input.backgroundHover};
+    }
+    :focus {
+      outline: none !important;
+      border: 1px solid rgb(77, 124, 247);
+      background: ${theme.color.input.backgroundFocus};
+    }
+  `}
 `
 
 export const FormOkButton = styled.button`

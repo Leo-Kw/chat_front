@@ -1,12 +1,12 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
-// import { Zh, En } from './locale'
 import { notice } from './common/components/toast'
 
-// 用来注入 Windi CSS 所需的样式，一定要加上!
-import 'virtual:windi.css'
+// import fib from 'virtual:fib'
+// import env from 'virtual:env'
+// console.log(env)
+// alert(`结果: ${fib(10)}`)
 
 // 初始化Toast
 notice({ content: '', type: 'info', duration: 3000 })

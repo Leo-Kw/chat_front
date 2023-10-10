@@ -16,7 +16,11 @@ export default {
   validate_email_required: '请输入您的邮箱！',
   validate_name_required: '请输入您的昵称！',
   validate_email_format_required: '邮箱格式不正确！',
+  validate_sex_required: '请选择您的性别',
   have_account_to_login: '已有帐号去登录',
   login_success: '登录成功',
   register_success: '注册成功',
+  modity_success: '修改成功',
+  confirm: '确定',
+  sex: '性别',
 }

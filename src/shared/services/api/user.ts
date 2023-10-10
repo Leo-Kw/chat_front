@@ -1,6 +1,12 @@
 import { UserInfoType } from '@/context/types'
 import { AxiosInstance } from 'axios'
-import { BaseResponse, LoginResponse, LoginParams, RegisterParams } from './interface'
+import {
+  BaseResponse,
+  LoginResponse,
+  LoginParams,
+  RegisterParams,
+  PersonalParams,
+} from './interface'
 
 export class UserModule {
   constructor(private ins: AxiosInstance) {}
@@ -14,7 +20,15 @@ export class UserModule {
     return res.data
   }
   getUserInfo = async () => {
-    const res = await this.ins.get<BaseResponse<UserInfoType>>('/user/getUserInfo')
+    const res = await this.ins.get<BaseResponse<UserInfoType>>('/user/info')
+    return res.data
+  }
+  uploadAvatar = async (parmas: FormData) => {
+    const res = await this.ins.post('/user/avatar/upload', parmas)
+    return res.data
+  }
+  updateUserInfo = async (params: PersonalParams) => {
+    const res = await this.ins.post<BaseResponse>('/user/modify', params)
     return res.data
   }
 }

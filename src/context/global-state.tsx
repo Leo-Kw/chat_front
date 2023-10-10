@@ -54,7 +54,7 @@ type Action =
 const initValue: State = {
   userInfo: {
     id: 0,
-    sex: 0,
+    sex: 1,
     name: '',
     email: '',
     sign: '',

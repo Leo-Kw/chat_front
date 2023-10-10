@@ -1,16 +1,5 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useAPI, useGlobalState, useIntlLocale, useSocket } from '@/hook'
-import {
-  MessageWrapper,
-  MessageContent,
-  MessageItem,
-  MessageItemWrapper,
-  MessageItemAvatar,
-  MessageItemContent,
-  MessageItemUserName,
-  MessageItemTextWrapper,
-  UnreadTip,
-} from './atoms'
 import { MessageTypes, SocketOnMessage } from '../type'
 import { scorllToBottom, substringByByte, throttle } from '@/utils'
 import { ActionType } from '@/context'
@@ -33,22 +22,25 @@ export const ChatMessage = () => {
   const { userInfo, messageList, roomId, unreadMessNum } = state
 
   useEffect(() => {
+    const currentRef = messContentRef
     socket.on('message', handleMessage) // 监听消息
-    if (messContentRef && messContentRef.current) {
-      messContentRef.current.addEventListener('scroll', scrollToTop)
+    if (currentRef && currentRef.current) {
+      currentRef.current.addEventListener('scroll', scrollToTop)
+      isFirstLoad && (currentRef.current.scrollTop = currentRef.current.scrollHeight)
     }
-    isFirstLoad && scorllToBottom()
     return () => {
       socket.off('message', handleMessage)
-      if (messContentRef && messContentRef.current) {
-        messContentRef.current.removeEventListener('scroll', scrollToTop)
+      if (currentRef && currentRef.current) {
+        currentRef.current.removeEventListener('scroll', scrollToTop)
       }
       setIsFirstLoad(false)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [socket, state])
 
   useEffect(() => {
     getMessageList()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messageParams])
 
   const scrollToTop = throttle(() => {
@@ -79,7 +71,7 @@ export const ChatMessage = () => {
   const handleMessage = useCallback(
     (data: SocketOnMessage) => {
       dispatch({ type: ActionType.AddNewMessage, payload: data.data })
-      if (data.data.userId !== userInfo.id) {
+      if (data.data.userInfo.id !== userInfo.id) {
         dispatch({ type: ActionType.AddOneUnreadMessNum })
         const options = {
           body: t('has_new_news'),
@@ -91,6 +83,7 @@ export const ChatMessage = () => {
         new Notification(title, options) // 显示通知
       }
     },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     [messageList, messContentRef]
   )
 
@@ -100,39 +93,69 @@ export const ChatMessage = () => {
   }
 
   return (
-    <MessageWrapper>
-      <MessageContent ref={messContentRef}>
+    <div className='flex-1 h-0 relative'>
+      <div
+        ref={messContentRef}
+        className='h-full px-[25px] py-[10px] box-border overflow-y-scroll flex flex-col relative scrollbar'
+      >
         {messageList.map((item) => {
-          const isMyself = item.userId === userInfo.id
+          const isMyself = item.userInfo.id === userInfo.id
           return (
-            <MessageItem key={item.id} id={`${item.id}`} isMyself={isMyself}>
-              <MessageItemWrapper isMyself={isMyself}>
-                <MessageItemAvatar />
-                <MessageItemTextWrapper isMyself={isMyself}>
-                  <MessageItemUserName>{item.userName}</MessageItemUserName>
-                  <MessageItemContent isMyself={isMyself}>
+            <div
+              key={item.id}
+              id={`${item.id}`}
+              className={`flex ${
+                isMyself ? 'justify-end' : 'justify-start'
+              } my-[10px] text-text-lighter`}
+            >
+              <div className={`flex ${isMyself ? 'flex-row-reverse' : 'flex-row'}`}>
+                <div className='w-[50px] h-[50px] rounded-[5px] bg-gray-200 overflow-hidden [&>img]:w-full [&>img]:h-full [&>img]:object-contain'>
+                  {item.userInfo.avatar && <img src={item.userInfo.avatar} alt='avatar' />}
+                </div>
+                <div
+                  className={`flex flex-col ${isMyself ? 'items-end' : 'items-start'} mx-[15px]`}
+                >
+                  <div className='mb-[5px] text-[14px] text-textSa text-ellipsis overflow-hidden max-w-[200px]'>
+                    {item.userInfo.name}
+                  </div>
+                  <div
+                    className={`text-dark-main rounded-[5px] max-w-[350px] py-[5px] px-[15px] h-auto relative break-all before:content-[''] before:border-solid before:border-transparent before:h-0 before:absolute before:w-0 before:border-[5px] before:top-[12px] ${
+                      isMyself
+                        ? 'bg-messageBackground-myself before:left-full before:border-l-messageBackground-myself'
+                        : 'bg-messageBackground-other before:right-full before:border-r-messageBackground-other'
+                    }`}
+                  >
                     {item.messageType === MessageTypes.HasEmoji
                       ? substringByByte(item.messageContent, 100000)
                       : item.messageContent}
-                  </MessageItemContent>
-                </MessageItemTextWrapper>
-              </MessageItemWrapper>
-            </MessageItem>
+                  </div>
+                </div>
+              </div>
+            </div>
           )
         })}
         <div id='messageBottom' />
-      </MessageContent>
+      </div>
       <CSSTransition
         nodeRef={unReadTipRef}
         in={unreadMessNum !== 0}
         timeout={300}
-        classNames='show'
+        classNames={{
+          enter: 'opacity-0',
+          enterActive: 'transition-all opacity-100 duration-300 ease-in-out',
+          exit: 'translate-y-0',
+          exitActive: 'transition-all translate-y-1/2 duration-300 ease-in-out',
+        }}
         unmountOnExit
       >
-        <UnreadTip ref={unReadTipRef} onClick={readNewMess}>
+        <div
+          ref={unReadTipRef}
+          onClick={readNewMess}
+          className='absolute right-[15px] bottom-[10px] py-[7px] px-[13px] text-[12px] text-white bg-warning rounded-[6px] font-bold cursor-pointer'
+        >
           有{unreadMessNum}条新消息
-        </UnreadTip>
+        </div>
       </CSSTransition>
-    </MessageWrapper>
+    </div>
   )
 }

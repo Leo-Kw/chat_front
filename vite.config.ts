@@ -4,11 +4,12 @@ import { defineConfig, normalizePath } from 'vite'
 // 2. tsconfig.node.json 中设置 `allowSyntheticDefaultImports: true`，以允许下面的 default 导入方式
 import path from 'path'
 import react from '@vitejs/plugin-react'
-import autoprefixer from 'autoprefixer'
-import windi from 'vite-plugin-windicss'
+import legacy from '@vitejs/plugin-legacy'
+import tailwindcss from 'tailwindcss'
 import viteEslint from 'vite-plugin-eslint'
 import svgr from 'vite-plugin-svgr'
 import viteImagemin from 'vite-plugin-imagemin'
+import virtual from './src/plugins/virtual-module'
 
 // 全局 scss 文件的路径
 // 用 normalizePath 解决 window 下的路径问题
@@ -37,6 +38,11 @@ export default defineConfig({
     },
   },
   plugins: [
+    virtual(),
+    legacy({
+      // 设置目标浏览器，browserslist 配置语法
+      targets: ['ie >= 11'],
+    }),
     react({
       babel: {
         plugins: [
@@ -72,7 +78,6 @@ export default defineConfig({
         ],
       },
     }),
-    windi(),
     viteEslint(),
     svgr(),
   ],
@@ -92,10 +97,11 @@ export default defineConfig({
     // 进行 PostCSS 配置
     postcss: {
       plugins: [
-        autoprefixer({
-          // 指定目标浏览器
-          overrideBrowserslist: ['Chrome > 40', 'ff > 31', 'ie 11'],
-        }),
+        tailwindcss(),
+        // autoprefixer({
+        //   // 指定目标浏览器
+        //   overrideBrowserslist: ['Chrome > 40', 'ff > 31', 'ie 11'],
+        // }),
       ],
     },
   },
