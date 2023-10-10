@@ -1,4 +1,3 @@
-import './App.css'
 // import { RouteConfig } from './constants'
 import { RouterProvider } from 'react-router-dom'
 import { Layout } from './layout'

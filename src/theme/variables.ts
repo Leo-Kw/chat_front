@@ -19,9 +19,24 @@ export const color = Object.freeze({
     main: '#409eff',
     hoverMain: '#007dff',
   },
+  form: {
+    label: '#afafb0',
+  },
+  input: {
+    background: '#ffffff14',
+    backgroundHover: '#ffffff2b',
+    backgroundFocus: '#272727',
+  },
+  select: {
+    background: '#363638',
+    backgroundHover: '#3e3e3f',
+    backgroundFocus: '#272727',
+    optionHover: '#474749',
+    border: '#4f4f51',
+  },
   text: {
     lighter: '#f4f4f4',
-    main: '#f3f6f7',
+    main: '#ffffffe6',
     dark: '#b0b3b5',
     darker: '#999999',
     darkest: '#000',

@@ -15,6 +15,8 @@ interface IProps {
   animationData?: object
   // JSON path
   path?: string
+  width?: number
+  height?: number
 }
 
 interface RefProps {
@@ -24,8 +26,16 @@ interface RefProps {
   stop: () => void
 }
 
-const Lottie = forwardRef((props: IProps, ref: Ref<RefProps>) => {
-  const { loop = true, renderer = 'svg', path = '', animationData, autoplay = true } = props
+const LottieComponent = (props: IProps, ref: Ref<RefProps>) => {
+  const {
+    loop = true,
+    renderer = 'svg',
+    path = '',
+    animationData,
+    autoplay = true,
+    width = 100,
+    height = 100,
+  } = props
 
   // rendering container
   const containerRef = useRef(null)
@@ -75,9 +85,7 @@ const Lottie = forwardRef((props: IProps, ref: Ref<RefProps>) => {
     }
   }, [animationOptions])
 
-  return <div ref={containerRef} className='w-150px h-150px'></div>
-})
+  return <div ref={containerRef} style={{ width, height }}></div>
+}
 
-Lottie.displayName = 'Lottie'
-
-export { Lottie }
+export const Lottie = forwardRef(LottieComponent)

@@ -1,14 +1,15 @@
-import { HeaderWrapper, HeaderPieceWrapper, HeaderTitle, ChatButton } from './atoms'
-import { chatControlBarConfig } from '@/constants'
-import { Icon, IconType } from '@/common/components/icon'
+import { useState } from 'react'
+import { Icon } from '@/common/components/icon'
 import { useNavigate } from 'react-router-dom'
 import { AuthService } from '@/shared/services'
-import { Toast } from '@/common/components'
+import { Button, Popup, Toast } from '@/common/components'
 import { useIntlLocale } from '@/hook'
+import { MyselfPopup } from './components/myself-popup'
 
 export const ChatHeader = () => {
   const t = useIntlLocale()
   const navigate = useNavigate()
+  const [myselfOpen, setMyselfOpen] = useState(false)
 
   const share = () => {
     navigator.clipboard
@@ -21,34 +22,48 @@ export const ChatHeader = () => {
       })
   }
 
-  const barButton = (value: string) => {
-    if (value === 'sign_out') {
-      navigate('/login')
-      AuthService.removeToken()
-    }
+  const onClose = () => {
+    setMyselfOpen(false)
+  }
+
+  const logout = () => {
+    navigate('/login')
+    AuthService.removeToken()
   }
 
   return (
-    <HeaderWrapper>
-      <HeaderPieceWrapper>
-        <HeaderTitle>🐷🐷房间</HeaderTitle>
+    <div className='flex justify-between items-center h-[50px] px-[20px] border-solid border-b-[1px] border-gray-border'>
+      <div className='flex items-center'>
+        <div className='bg-white text-dark rounded-[5px] px-[10px] py-[3px] shadow-[0_0_5px_#f2f2f2]'>
+          🐷🐷房间
+        </div>
         <div onClick={() => share()}>
-          <ChatButton typeKey='title'>
+          <Button type='text' color='#e5e5e5'>
             <Icon type='share' />
             {t('share')}
-          </ChatButton>
+          </Button>
         </div>
-      </HeaderPieceWrapper>
-      <HeaderPieceWrapper>
-        {chatControlBarConfig.map((item) => (
-          <div onClick={() => barButton(item.value)} key={item.key}>
-            <ChatButton typeKey='title'>
-              <Icon type={item.value as IconType} />
-              {t(item.value)}
-            </ChatButton>
-          </div>
-        ))}
-      </HeaderPieceWrapper>
-    </HeaderWrapper>
+      </div>
+      <div className='flex items-center'>
+        <Popup
+          left={-185}
+          bottom={-320}
+          height={300}
+          title={t('myself')}
+          content={<MyselfPopup onClose={onClose} />}
+          open={myselfOpen}
+          onOpenChange={(open) => setMyselfOpen(open)}
+        >
+          <Button type='text' color='#e5e5e5'>
+            <Icon type='myself' />
+            {t('myself')}
+          </Button>
+        </Popup>
+        <Button type='text' color='#e5e5e5' onClick={() => logout()}>
+          <Icon type='sign_out' />
+          {t('sign_out')}
+        </Button>
+      </div>
+    </div>
   )
 }

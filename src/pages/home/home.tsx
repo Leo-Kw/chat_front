@@ -1,9 +1,5 @@
-import { useEffect, useState } from 'react'
-import { HomeWrapper, ChatWrapper } from './atoms'
-import { useNavigate } from 'react-router-dom'
-import { Modal } from '@/common/components/modal'
-import { AuthService } from '@/shared/services'
-import { useAPI, useGlobalState, useIntlLocale } from '@/hook'
+import { useEffect } from 'react'
+import { useAPI, useGlobalState } from '@/hook'
 import { ActionType } from '@/context'
 import { ChatMessage } from './chat-message'
 import { ChatHeader } from './chat-header'
@@ -14,13 +10,7 @@ import catAnimationData from '@/common/json/lottie/creepy-black-cat.json'
 
 export const HomeView = () => {
   const API = useAPI()
-  const navigate = useNavigate()
-  const t = useIntlLocale()
   const { dispatch } = useGlobalState()
-  const [isShowChat, setIsShowChat] = useState(false)
-  const [isShowPopup, setIsShowPopup] = useState(true)
-  const { state } = useGlobalState()
-  const { userInfo } = state
   // const worker = new Worker()
 
   // worker.addEventListener('message', (e) => {
@@ -33,45 +23,22 @@ export const HomeView = () => {
         dispatch({ type: ActionType.SetUserInfo, payload: res.data })
       }
     })
-    setIsShowPopup(true)
     Notification.requestPermission(function (status) {
       console.log(status) // 仅当值为 "granted" 时显示通知
     })
     return () => {}
-  }, [])
-
-  const cancelPopup = () => {
-    navigate('/login')
-    AuthService.removeToken()
-  }
-
-  const okPopup = () => {
-    setIsShowPopup(false)
-    setIsShowChat(true)
-  }
+  }, [dispatch, API])
 
   return (
-    <HomeWrapper>
-      {isShowChat ? (
-        <ChatWrapper>
-          <div className='absolute -top-21.5'>
-            <Lottie animationData={catAnimationData} />
-          </div>
-          <ChatHeader />
-          <ChatMessage />
-          <ChatSend />
-        </ChatWrapper>
-      ) : (
-        <Modal
-          visible={isShowPopup}
-          title={t('welcome_title')}
-          onCancel={cancelPopup}
-          onOk={okPopup}
-          maskClosable={false}
-        >
-          {userInfo.id === 6 ? t('welcome_baby') : t('welcome_message')}
-        </Modal>
-      )}
-    </HomeWrapper>
+    <div className='flex justify-center items-center'>
+      <div className='flex flex-col fixed left-[12%] right-[12%] top-[8%] bottom-[8%] shadow-[0_0_15px_#f2f2f2] rounded-[10px]'>
+        <div className='absolute w-24 -top-14'>
+          <Lottie animationData={catAnimationData} />
+        </div>
+        <ChatHeader />
+        <ChatMessage />
+        <ChatSend />
+      </div>
+    </div>
   )
 }

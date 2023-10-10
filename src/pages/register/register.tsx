@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useForm, Resolver } from 'react-hook-form'
+import { useForm } from 'react-hook-form'
 
 import { RegisterWrapper, ControlButtonWrapper, ControlButton } from './atoms'
 import {
@@ -18,58 +18,9 @@ import { RouteConfig } from '@/route'
 import { RegisterParams } from '@/shared/services/api/interface'
 import { useAPI } from '@/hook'
 import { Icon } from '@/common/components/icon'
-import { useIntlLocale, intlCache } from '@/hook'
+import { useIntlLocale } from '@/hook'
 import musicAnimationData from '@/common/json/lottie/happy-spaceman.json'
-
-const regex = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
-
-const resolver: Resolver<RegisterParams> = async (values) => {
-  const errors = {
-    ...(!values.account
-      ? {
-          account: {
-            type: 'required',
-            message: intlCache.formatMessage({ id: 'validate_account_required' }),
-          },
-        }
-      : {}),
-    ...(!values.name
-      ? {
-          name: {
-            type: 'required',
-            message: intlCache.formatMessage({ id: 'validate_name_required' }),
-          },
-        }
-      : {}),
-    ...(!values.email
-      ? {
-          email: {
-            type: 'required',
-            message: intlCache.formatMessage({ id: 'validate_email_required' }),
-          },
-        }
-      : !regex.test(values.email)
-      ? {
-          email: {
-            type: 'required',
-            message: intlCache.formatMessage({ id: 'validate_email_format_required' }),
-          },
-        }
-      : {}),
-    ...(!values.password
-      ? {
-          password: {
-            type: 'required',
-            message: intlCache.formatMessage({ id: 'validate_password_required' }),
-          },
-        }
-      : {}),
-  }
-  return {
-    values,
-    errors,
-  }
-}
+import { resolver } from './resolver'
 
 export const RegisterView: React.FC = () => {
   const API = useAPI()
@@ -94,12 +45,7 @@ export const RegisterView: React.FC = () => {
       <LoginTitle>{t('sign_up')}</LoginTitle>
       <FormContent onSubmit={onSubmit}>
         <FormItem>
-          <FormInput
-            {...register('account', {
-              required: 'error message', // JS only: <p>error message</p> TS only support string
-            })}
-            placeholder={t('account')}
-          />
+          <FormInput {...register('account')} placeholder={t('account')} />
           {errors?.account && <FormErrorTip>{errors.account.message}</FormErrorTip>}
         </FormItem>
         <FormItem>

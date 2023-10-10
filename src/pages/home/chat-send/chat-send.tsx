@@ -1,10 +1,8 @@
 import { useEffect, useCallback, useState, useRef } from 'react'
-import { SendWrapper, SendHeader, ChatButton, SendTextarea, SendFooter } from './atoms'
-import { Icon } from '@/common/components/icon'
 import { useGlobalState, useIntlLocale, useSocket } from '@/hook'
 import { scorllToBottom, strToUnicode } from '@/utils'
 import { AuthService } from '@/shared/services'
-import { Popup } from '@/common/components'
+import { Popup, Icon, Button } from '@/common/components'
 import { Emoji } from '../chat-tool-bar'
 import { regex } from '@/utils/regex'
 
@@ -30,7 +28,7 @@ export const ChatSend = () => {
   const [isInput, setIsInput] = useState(false)
   const { userInfo } = state
 
-  const sendMessage = () => {
+  const sendMessage = useCallback(() => {
     if (userInfo.name === '') {
       window.location.href = '/login'
       AuthService.removeToken()
@@ -43,9 +41,6 @@ export const ChatSend = () => {
             ? strToUnicode(messageContent)
             : messageContent,
           messageType: messageContent.match(regex) ? 'hasEmoji' : 'text',
-          userName: userInfo.name,
-          userRole: userInfo.role,
-          userAvatar: userInfo.avatar,
         },
         (res: boolean) => {
           res && scorllToBottom()
@@ -53,7 +48,7 @@ export const ChatSend = () => {
       )
       setMessageContent('')
     }
-  }
+  }, [socket, userInfo, messageContent])
 
   const handleKeyDown = useCallback(
     (event: KeyboardEvent) => {
@@ -63,7 +58,7 @@ export const ChatSend = () => {
         return
       }
     },
-    [sendMessage]
+    [sendMessage, isInput, messageContent]
   )
 
   const inputStart = () => {
@@ -75,16 +70,17 @@ export const ChatSend = () => {
   }
 
   useEffect(() => {
-    if (textAreaRef && textAreaRef.current) {
-      textAreaRef.current.addEventListener('keydown', handleKeyDown)
-      textAreaRef.current.addEventListener('compositionstart', inputStart, false)
-      textAreaRef.current.addEventListener('compositionend', inputEnd, false)
+    const containerRef = textAreaRef
+    if (containerRef && containerRef.current) {
+      containerRef.current.addEventListener('keydown', handleKeyDown)
+      containerRef.current.addEventListener('compositionstart', inputStart, false)
+      containerRef.current.addEventListener('compositionend', inputEnd, false)
     }
     return () => {
-      if (textAreaRef && textAreaRef.current) {
-        textAreaRef.current.removeEventListener('keydown', handleKeyDown)
-        textAreaRef.current.removeEventListener('compositionstart', inputStart)
-        textAreaRef.current.removeEventListener('compositionend', inputEnd)
+      if (containerRef && containerRef.current) {
+        containerRef.current.removeEventListener('keydown', handleKeyDown)
+        containerRef.current.removeEventListener('compositionstart', inputStart)
+        containerRef.current.removeEventListener('compositionend', inputEnd)
       }
     }
   }, [handleKeyDown])
@@ -93,49 +89,45 @@ export const ChatSend = () => {
     try {
       const [fileHandle] = await showOpenFilePicker(pickerOpts)
       const file = await fileHandle.getFile()
-      const contents = await file.text()
-      console.log(contents)
+      console.log(file)
     } catch (e) {
       // Handling of user rejection
     }
   }
 
   return (
-    <SendWrapper>
-      <SendHeader>
+    <div className='flex w-full h-[200px] px-[12px] flex-col'>
+      <div className="relative h-[40px] w-full flex items-center after:content-[''] after:w-full after:h-[0.5px] after:bg-gray-border after:absolute after:top-0">
         <Popup
-          left={15}
-          bottom={200}
+          left={0}
+          bottom={50}
           height={300}
           title={t('emoji')}
           content={<Emoji messageContent={messageContent} setMessageContent={setMessageContent} />}
         >
-          <ChatButton typeKey='send'>
+          <Button type='text'>
             <Icon type='emoji' />
             {t('emoji')}
-          </ChatButton>
+          </Button>
         </Popup>
-        {/* <ChatButton typeKey='send'>
-          <Icon type='song' />
-          {t('song')}
-        </ChatButton> */}
-        <ChatButton typeKey='send'>
+        <Button type='text'>
           <Icon type='chat_record' />
           {t('chat_record')}
-        </ChatButton>
-        <ChatButton typeKey='send' onClick={() => getFile()}>
+        </Button>
+        <Button type='text' onClick={() => getFile()}>
           <Icon type='file' />
           {t('file')}
-        </ChatButton>
-      </SendHeader>
-      <SendTextarea
+        </Button>
+      </div>
+      <textarea
+        className='w-full h-[calc(100% - 80px)] overflow-hidden box-border resize-none outline-none border-none text-[15px] text-text-lighter bg-transparent'
         ref={textAreaRef}
         placeholder={t('chat_placeholder')}
         value={messageContent}
         onChange={(e) => setMessageContent(e.target.value)}
         onPaste={(e) => console.log(e.clipboardData.getData('text'))}
       />
-      <SendFooter></SendFooter>
-    </SendWrapper>
+      <div className='h-[30px] w-full'></div>
+    </div>
   )
 }

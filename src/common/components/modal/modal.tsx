@@ -14,6 +14,7 @@ import {
 import { ModalProps } from './modal.type'
 import { Icon } from '../icon'
 import ModalManager from './modal-manager'
+import { useIntlLocale } from '@/hook'
 
 const ANIMATION_DELAY = 200
 const modalManager = new ModalManager()
@@ -59,32 +60,35 @@ const WrapState = {
   },
 }
 
-export const Modal = ({
-  children,
-  visible,
-  title,
-  top,
-  right,
-  left,
-  bottom,
-  onCancel,
-  onOk,
-  destory,
-  zIndex = 800,
-  closable = true,
-  maskClosable = true,
-  canEnterClose = true,
-  confirmLoading,
-  hiddenCancelButton = false,
-  okText = '确 定',
-  cancelText = '取 消',
-  footer,
-  width,
-  bodyStyle,
-  okButtonProps,
-  backgroundColor,
-}: ModalProps) => {
+export const Modal = (props: ModalProps) => {
+  const t = useIntlLocale()
+  const {
+    children,
+    visible,
+    title,
+    top,
+    right,
+    left,
+    bottom,
+    onCancel,
+    onOk,
+    destory,
+    zIndex = 800,
+    closable = true,
+    maskClosable = true,
+    canEnterClose = true,
+    confirmLoading,
+    hiddenCancelButton = false,
+    okText = t('component_confirm'),
+    cancelText = t('component_cancel'),
+    footer,
+    width,
+    bodyStyle,
+    okButtonProps,
+    backgroundColor,
+  } = props
   const [isShowModal, setIsShowModal] = useState(true)
+  const nodeRef = React.useRef(null)
   const container = React.useRef<HTMLElement | null>(null)
 
   if (container.current === null) {
@@ -142,7 +146,7 @@ export const Modal = ({
   }
 
   const modalElement = (
-    <Transition appear in={visible} timeout={ANIMATION_DELAY}>
+    <Transition appear in={visible} timeout={ANIMATION_DELAY} nodeRef={nodeRef}>
       {(state) => (
         <ModalStyle zIndex={zIndex!} visible={visible}>
           <Mask onClick={handleMaskClick} style={{ ...MaskState[state] }}></Mask>

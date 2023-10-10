@@ -1,7 +1,8 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Transition } from 'react-transition-group'
 import { PopupWrapper } from './atoms'
 import { PopupProps } from './popup.type'
+import { useClickAway } from '@/hook'
 
 const duration = 300
 
@@ -25,39 +26,34 @@ export const Popup = ({
   bottom,
   children,
   content,
+  open,
+  onOpenChange,
 }: PopupProps) => {
   const [isShowPopup, setIsShowPopup] = useState(false)
   const popupRef = useRef<HTMLDivElement | null>(null)
 
+  useClickAway(popupRef, () => {
+    if (isShowPopup) {
+      setIsShowPopup(false)
+      onOpenChange?.(false)
+    }
+  })
+
   useEffect(() => {
-    document.addEventListener('click', hide)
-    return () => {
-      document.removeEventListener('click', hide)
+    if (typeof open === 'boolean') {
+      if (open) {
+        setIsShowPopup(true)
+      } else {
+        setIsShowPopup(false)
+      }
     }
-  }, [isShowPopup])
-
-  const getInjectChildren = useCallback(() => {
-    if (React.isValidElement(children)) {
-      return React.cloneElement(children as React.ReactElement, {
-        onClick: (e: Event) => {
-          setIsShowPopup(true)
-          e.stopPropagation()
-        },
-      })
-    }
-    return children
-  }, [children])
-
-  const hide = useCallback(() => {
-    isShowPopup && setIsShowPopup(false)
-  }, [isShowPopup])
+  }, [open])
 
   return (
-    <>
-      <Transition nodeRef={popupRef} in={isShowPopup} timeout={duration} mountOnEnter unmountOnExit>
+    <div ref={popupRef} style={{ position: 'relative' }}>
+      <Transition in={isShowPopup} timeout={duration} mountOnEnter unmountOnExit>
         {(state) => (
           <PopupWrapper
-            ref={popupRef}
             width={width}
             height={height}
             left={left}
@@ -66,13 +62,19 @@ export const Popup = ({
               ...defaultStyle,
               ...transitionStyles[state],
             }}
-            onClick={(e) => e.stopPropagation()}
           >
             {content}
           </PopupWrapper>
         )}
       </Transition>
-      {getInjectChildren()}
-    </>
+      <div
+        onClick={() => {
+          setIsShowPopup(true)
+          onOpenChange?.(true)
+        }}
+      >
+        {children}
+      </div>
+    </div>
   )
 }

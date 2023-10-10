@@ -1,7 +1,9 @@
+import { SexType } from '@/shared/services'
+
 // global-state
 export interface UserInfoType {
   id: number
-  sex: number
+  sex: SexType
   name: string
   email: string
   sign: string

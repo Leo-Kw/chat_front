@@ -43,11 +43,12 @@ export type IconType =
   | 'hide_eye'
   | 'chat_record'
   | 'myself'
+  | 'sign_out'
   | 'setting'
   | 'share'
   | 'file'
 
-const IconMap = new Map([
+const IconMap = new Map<IconType, React.ReactElement>([
   ['info', <InfoIcon key='info' />],
   ['warn', <WarnIcon key='warn' />],
   ['error', <ErrorIcon key='warn' />],
