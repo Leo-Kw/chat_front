@@ -48,32 +48,62 @@ export type IconType =
   | 'share'
   | 'file'
 
-const IconMap = new Map<IconType, React.ReactElement>([
-  ['info', <InfoIcon key='info' />],
-  ['warn', <WarnIcon key='warn' />],
-  ['error', <ErrorIcon key='warn' />],
-  ['success', <SuccessIcon key='success' />],
-  ['loading', <LoadingIcon key='loading' />],
-  ['release', <ReleaseIcon key='release' />],
-  ['resume', <ResumeIcon key='resume' />],
-  ['remote', <RemoteIcon key='remote' />],
-  ['restart', <RestartIcon key='restart' />],
-  ['shutdown', <ShutdownIcon key='shutdown' />],
-  ['start', <StartIcon key='start' />],
-  ['suspend', <SuspendIcon key='suspend' />],
-  ['close', <CloseIcon key='close' />],
-  ['emoji', <EmojiIcon key='emoji' />],
-  ['song', <SongIcon key='song' />],
-  ['show_eye', <ShowEye key='show_eye' />],
-  ['hide_eye', <HideEye key='hide_eye' />],
-  ['chat_record', <ChatRecord key='chat_record' />],
-  ['myself', <Myself key='myself' />],
-  ['sign_out', <SignOout key='sign_out' />],
-  ['setting', <Setting key='setting' />],
-  ['share', <Share key='share' />],
-  ['file', <File key='file' />],
-])
+const iconMap = (type: IconType, style?: React.CSSProperties) => {
+  switch (type) {
+    case 'info':
+      return <InfoIcon style={style} />
+    case 'warn':
+      return <WarnIcon style={style} />
+    case 'error':
+      return <ErrorIcon style={style} />
+    case 'success':
+      return <SuccessIcon style={style} />
+    case 'loading':
+      return <LoadingIcon style={style} />
+    case 'release':
+      return <ReleaseIcon style={style} />
+    case 'resume':
+      return <ResumeIcon style={style} />
+    case 'remote':
+      return <RemoteIcon style={style} />
+    case 'restart':
+      return <RestartIcon style={style} />
+    case 'shutdown':
+      return <ShutdownIcon style={style} />
+    case 'start':
+      return <StartIcon style={style} />
+    case 'suspend':
+      return <SuspendIcon style={style} />
+    case 'close':
+      return <CloseIcon style={style} />
+    case 'emoji':
+      return <EmojiIcon style={style} />
+    case 'song':
+      return <SongIcon style={style} />
+    case 'show_eye':
+      return <ShowEye style={style} />
+    case 'hide_eye':
+      return <HideEye style={style} />
+    case 'chat_record':
+      return <ChatRecord style={style} />
+    case 'myself':
+      return <Myself style={style} />
+    case 'sign_out':
+      return <SignOout style={style} />
+    case 'setting':
+      return <Setting style={style} />
+    case 'share':
+      return <Share style={style} />
+    case 'file':
+      return <File style={style} />
+    default:
+      return <></>
+  }
+}
 
-export const Icon: React.FC<{ type: IconType }> = ({ type }) => {
-  return <>{IconMap.get(type)}</>
+export const Icon: React.FC<{ type: IconType; style?: React.CSSProperties }> = ({
+  type,
+  style,
+}) => {
+  return <>{iconMap(type, style)}</>
 }

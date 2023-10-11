@@ -39,7 +39,7 @@ export const ChatHeader = () => {
         </div>
         <div onClick={() => share()}>
           <Button type='text' color='#e5e5e5'>
-            <Icon type='share' />
+            <Icon type='share' style={{ fill: '#e5e5e5' }} />
             {t('share')}
           </Button>
         </div>
@@ -55,12 +55,12 @@ export const ChatHeader = () => {
           onOpenChange={(open) => setMyselfOpen(open)}
         >
           <Button type='text' color='#e5e5e5'>
-            <Icon type='myself' />
+            <Icon type='myself' style={{ fill: '#e5e5e5' }} />
             {t('myself')}
           </Button>
         </Popup>
         <Button type='text' color='#e5e5e5' onClick={() => logout()}>
-          <Icon type='sign_out' />
+          <Icon type='sign_out' style={{ fill: '#e5e5e5' }} />
           {t('sign_out')}
         </Button>
       </div>
