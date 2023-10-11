@@ -21,6 +21,7 @@ export default {
   login_success: '登录成功',
   register_success: '注册成功',
   modity_success: '修改成功',
+  upload_success: '上传成功',
   confirm: '确定',
   sex: '性别',
 }

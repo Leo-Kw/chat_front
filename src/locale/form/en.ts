@@ -21,6 +21,7 @@ export default {
   login_success: 'login successful',
   register_success: 'register successful',
   modity_success: 'modity successful',
+  upload_success: 'upload successful',
   confirm: 'confirm',
   sex: 'sex',
 }

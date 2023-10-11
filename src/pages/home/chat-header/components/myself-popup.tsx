@@ -3,20 +3,21 @@ import { Controller, useForm } from 'react-hook-form'
 import { personalResolver } from '../resolver'
 import { PersonalParams, SexType } from '@/shared/services'
 import { useAPI, useGlobalState, useIntlLocale } from '@/hook'
-import { useState } from 'react'
+import { ChangeEvent, useRef, useState } from 'react'
+import { ActionType } from '@/context'
 
-const pickerOpts = {
-  types: [
-    {
-      description: 'code',
-      accept: {
-        '*/*': [],
-      },
-    },
-  ],
-  excludeAcceptAllOption: true,
-  multiple: false,
-}
+// const pickerOpts: OpenFilePickerOptions = {
+//   types: [
+//     {
+//       description: 'code',
+//       accept: {
+//         'image/*': ['.png', '.jpeg', '.jpg'],
+//       },
+//     },
+//   ],
+//   excludeAcceptAllOption: true,
+//   multiple: false,
+// }
 
 const sexOptions = [
   { label: '未知', value: SexType.Unknown },
@@ -27,7 +28,7 @@ const sexOptions = [
 export const MyselfPopup = ({ onClose }: { onClose: () => void }) => {
   const API = useAPI()
   const t = useIntlLocale()
-  const { state } = useGlobalState()
+  const { state, dispatch } = useGlobalState()
   const { userInfo } = state
   const {
     register,
@@ -43,36 +44,57 @@ export const MyselfPopup = ({ onClose }: { onClose: () => void }) => {
     },
   })
   const [sexValue, setSexValue] = useState(userInfo.sex)
+  const uploadRef = useRef<HTMLInputElement>(null)
 
   const onSubmit = handleSubmit((data) => {
     API.user.updateUserInfo({ ...data, id: userInfo.id }).then((res) => {
-      if (res.success) {
+      if (res.result) {
         Toast.success(t('modity_success'))
+        updateUserInfo()
         onClose()
       }
     })
   })
 
-  const uploadAvatar = async () => {
-    try {
-      const [fileHandle] = await showOpenFilePicker(pickerOpts)
-      const file = await fileHandle.getFile()
-      const formdata = new FormData()
-      formdata.append('file', file)
-      formdata.append('userId', String(userInfo.id))
-      API.user.uploadAvatar(formdata)
-    } catch (e) {
-      // Handling of user rejection
-    }
+  // const uploadAvatar = async () => {
+  //   try {
+  //     const [fileHandle] = await showOpenFilePicker(pickerOpts)
+  //     const file = await fileHandle.getFile()
+
+  //   } catch (e) {
+  //     // Handling of user rejection
+  //   }
+  // }
+
+  const uploadAvatar = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] as File
+    const formdata = new FormData()
+    formdata.append('file', file)
+    formdata.append('userId', String(userInfo.id))
+    API.user.uploadAvatar(formdata).then((res) => {
+      if (res.result) {
+        Toast.success(t('upload_success'))
+        updateUserInfo()
+      }
+    })
+  }
+
+  const updateUserInfo = () => {
+    API.user.getUserInfo().then((res) => {
+      if (res.result) {
+        dispatch({ type: ActionType.SetUserInfo, payload: res.data })
+      }
+    })
   }
 
   return (
     <>
       <div
-        onClick={uploadAvatar}
         className='w-[100px] h-[100px] m-auto bg-dark-50 rounded-[5px] cursor-pointer overflow-hidden  [&>img]:w-[100px] [&>img]:h-[100px] [&>img]:object-contain'
+        onClick={() => uploadRef.current && uploadRef.current.click()}
       >
         {userInfo.avatar && <img src={userInfo.avatar} alt='avatar' />}
+        <input ref={uploadRef} type='file' className='hidden' onChange={uploadAvatar} />
       </div>
       <form className='flex justify-center flex-col mt-3' onSubmit={onSubmit}>
         <div className='flex items-center mb-6'>

@@ -6,7 +6,7 @@ export interface BaseResponse<T = unknown> {
   data: T
   message: string
   statusCode: number
-  success: boolean
+  result: boolean
 }
 export interface LoginParams {
   account: string

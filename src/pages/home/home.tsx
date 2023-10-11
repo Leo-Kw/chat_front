@@ -19,7 +19,7 @@ export const HomeView = () => {
 
   useEffect(() => {
     API.user.getUserInfo().then((res) => {
-      if (res.success) {
+      if (res.result) {
         dispatch({ type: ActionType.SetUserInfo, payload: res.data })
       }
     })

@@ -33,7 +33,7 @@ export const RegisterView: React.FC = () => {
   } = useForm<RegisterParams>({ resolver, mode: 'onChange' })
   const onSubmit = handleSubmit((data) =>
     API.user.register(data).then((res) => {
-      if (res.success) {
+      if (res.result) {
         Toast.success(t('register_success'))
       }
     })

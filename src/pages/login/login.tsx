@@ -62,7 +62,7 @@ export const LoginView: React.FC = () => {
   } = useForm<LoginParams>({ resolver })
   const onSubmit = handleSubmit((data) => {
     API.user.login(data).then((res) => {
-      if (res.success) {
+      if (res.result) {
         Toast.success(t('login_success'))
         AuthService.setToken(res.data.token)
         dispatch({ type: ActionType.SetUserInfo, payload: res.data.userInfo })

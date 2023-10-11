@@ -24,7 +24,7 @@ export class UserModule {
     return res.data
   }
   uploadAvatar = async (parmas: FormData) => {
-    const res = await this.ins.post('/user/avatar/upload', parmas)
+    const res = await this.ins.post<BaseResponse>('/user/avatar/upload', parmas)
     return res.data
   }
   updateUserInfo = async (params: PersonalParams) => {
