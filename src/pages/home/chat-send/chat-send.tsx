@@ -106,16 +106,16 @@ export const ChatSend = () => {
           content={<Emoji messageContent={messageContent} setMessageContent={setMessageContent} />}
         >
           <Button type='text'>
-            <Icon type='emoji' />
+            <Icon type='emoji' style={{ fill: '#b0b3b5' }} />
             {t('emoji')}
           </Button>
         </Popup>
         <Button type='text'>
-          <Icon type='chat_record' />
+          <Icon type='chat_record' style={{ fill: '#b0b3b5' }} />
           {t('chat_record')}
         </Button>
         <Button type='text' onClick={() => getFile()}>
-          <Icon type='file' />
+          <Icon type='file' style={{ fill: '#b0b3b5' }} />
           {t('file')}
         </Button>
       </div>

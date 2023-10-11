@@ -7,20 +7,20 @@ const getButtonStyle = (type: ButtonProps['type'], theme: ButtonCssProps['theme'
   switch (type) {
     case 'default':
       return css`
-        color: ${theme.color.text.lighter};
-        background: ${theme.color.button.main};
-        :hover {
-          filter: brightness(0.1);
-        }
-      `
-    case 'primary':
-      return css`
         color: ${theme.color.text.dark};
         background: ${theme.color.white};
         border: 1px solid ${theme.color.gray.border};
         :hover {
           color: ${theme.color.button.main};
           border: 1px solid ${theme.color.button.main};
+        }
+      `
+    case 'primary':
+      return css`
+        color: ${theme.color.text.lighter};
+        background: ${theme.color.button.main};
+        :hover {
+          filter: brightness(0.1);
         }
       `
     case 'text':
@@ -50,7 +50,7 @@ export const ButtonComponent = styled.button<{ buttonType: ButtonType; color?: s
       color: ${color};
     `}
     svg {
-      fill: ${theme.color.text.gray};
+      /* fill: ${theme.color.text.gray}; */
       width: 16px;
       height: 16px;
       margin-right: 4px;

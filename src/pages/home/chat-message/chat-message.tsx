@@ -56,7 +56,7 @@ export const ChatMessage = () => {
   const getMessageList = () => {
     !isLoadAllMessage &&
       API.chat.getMessage({ ...messageParams, roomId }).then((res) => {
-        if (res.success) {
+        if (res.result) {
           if (res.data.length < messageParams.pageSize) {
             Toast.warn(t('load_all_message'))
             setIsLoadAllMessage(true)
