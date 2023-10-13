@@ -22,6 +22,7 @@ import { ReactComponent as SignOout } from './icons/sign_out.svg'
 import { ReactComponent as Setting } from './icons/setting.svg'
 import { ReactComponent as Share } from './icons/share.svg'
 import { ReactComponent as File } from './icons/file.svg'
+import { ReactComponent as DefaultAvatar } from './icons/default-avatar.svg'
 
 export type IconType =
   | 'info'
@@ -47,6 +48,7 @@ export type IconType =
   | 'setting'
   | 'share'
   | 'file'
+  | 'default-avatar'
 
 const iconMap = (type: IconType, style?: React.CSSProperties) => {
   switch (type) {
@@ -96,6 +98,8 @@ const iconMap = (type: IconType, style?: React.CSSProperties) => {
       return <Share style={style} />
     case 'file':
       return <File style={style} />
+    case 'default-avatar':
+      return <DefaultAvatar style={style} />
     default:
       return <></>
   }
