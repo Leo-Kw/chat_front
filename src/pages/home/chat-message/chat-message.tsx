@@ -3,7 +3,7 @@ import { useAPI, useGlobalState, useIntlLocale, useSocket } from '@/hook'
 import { MessageTypes, SocketOnMessage } from '../type'
 import { scorllToBottom, substringByByte, throttle } from '@/utils'
 import { ActionType } from '@/context'
-import { Toast } from '@/common/components'
+import { Icon, Toast } from '@/common/components'
 import { CSSTransition } from 'react-transition-group'
 
 export const ChatMessage = () => {
@@ -15,6 +15,7 @@ export const ChatMessage = () => {
   const { state, dispatch } = useGlobalState()
   const [isLoadAllMessage, setIsLoadAllMessage] = useState(false)
   const [isFirstLoad, setIsFirstLoad] = useState(true)
+  const [imgLoadSuccess, setImgLoadSuccess] = useState(true)
   const [messageParams, setMessageParams] = useState({
     page: 1,
     pageSize: 20,
@@ -109,8 +110,17 @@ export const ChatMessage = () => {
               } my-[10px] text-text-lighter`}
             >
               <div className={`flex ${isMyself ? 'flex-row-reverse' : 'flex-row'}`}>
-                <div className='w-[50px] h-[50px] rounded-[5px] bg-gray-200 overflow-hidden [&>img]:w-full [&>img]:h-full [&>img]:object-contain'>
-                  {item.userInfo.avatar && <img src={item.userInfo.avatar} alt='avatar' />}
+                <div className='w-[50px] h-[50px] rounded-[5px] flex justify-center items-center bg-gray-200 overflow-hidden [&>img]:w-full [&>img]:h-full [&>img]:object-contain'>
+                  {item.userInfo.avatar && imgLoadSuccess ? (
+                    <img
+                      src={item.userInfo.avatar}
+                      alt='avatar'
+                      onLoad={() => setImgLoadSuccess(true)}
+                      onError={() => setImgLoadSuccess(false)}
+                    />
+                  ) : (
+                    <Icon type='default-avatar' style={{ width: '35px', height: '35px' }} />
+                  )}
                 </div>
                 <div
                   className={`flex flex-col ${isMyself ? 'items-end' : 'items-start'} mx-[15px]`}
