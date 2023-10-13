@@ -44,6 +44,7 @@ export const MyselfPopup = ({ onClose }: { onClose: () => void }) => {
     },
   })
   const [sexValue, setSexValue] = useState(userInfo.sex)
+  const [imgLoadSuccess, setImgLoadSuccess] = useState(true)
   const uploadRef = useRef<HTMLInputElement>(null)
 
   const onSubmit = handleSubmit((data) => {
@@ -92,10 +93,17 @@ export const MyselfPopup = ({ onClose }: { onClose: () => void }) => {
   return (
     <>
       <div
-        className='w-[100px] h-[100px] m-auto bg-dark-50 rounded-[5px] cursor-pointer overflow-hidden  [&>img]:w-[100px] [&>img]:h-[100px] [&>img]:object-contain'
+        className='w-[100px] h-[100px] m-auto bg-white rounded-[5px] cursor-pointer overflow-hidden  [&>img]:w-[100px] [&>img]:h-[100px] [&>img]:object-contain'
         onClick={() => uploadRef.current && uploadRef.current.click()}
       >
-        {userInfo.avatar && <img src={userInfo.avatar} alt='avatar' />}
+        {userInfo.avatar && imgLoadSuccess && (
+          <img
+            src={userInfo.avatar}
+            alt='avatar'
+            onLoad={() => setImgLoadSuccess(true)}
+            onError={() => setImgLoadSuccess(false)}
+          />
+        )}
         <input ref={uploadRef} type='file' className='hidden' onChange={uploadAvatar} />
       </div>
       <form className='flex justify-center flex-col mt-3' onSubmit={onSubmit}>
