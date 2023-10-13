@@ -67,16 +67,18 @@ export const MyselfPopup = ({ onClose }: { onClose: () => void }) => {
   // }
 
   const uploadAvatar = (e: ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0] as File
-    const formdata = new FormData()
-    formdata.append('file', file)
-    formdata.append('userId', String(userInfo.id))
-    API.user.uploadAvatar(formdata).then((res) => {
-      if (res.result) {
-        Toast.success(t('upload_success'))
-        updateUserInfo()
-      }
-    })
+    const file = e.target.files?.[0]
+    if (file) {
+      const formdata = new FormData()
+      formdata.append('file', file)
+      formdata.append('userId', String(userInfo.id))
+      API.user.uploadAvatar(formdata).then((res) => {
+        if (res.result) {
+          Toast.success(t('upload_success'))
+          updateUserInfo()
+        }
+      })
+    }
   }
 
   const updateUserInfo = () => {
