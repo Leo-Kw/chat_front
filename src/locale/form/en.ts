@@ -22,6 +22,7 @@ export default {
   register_success: 'register successful',
   modity_success: 'modity successful',
   upload_success: 'upload successful',
+  avatar_size_limit: 'The size of the uploaded avatar cannot exceed 1mb',
   confirm: 'confirm',
   sex: 'sex',
 }
