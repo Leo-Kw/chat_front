@@ -7,6 +7,7 @@ export type PopupProps = {
   height?: number
   title?: string
   show?: boolean
+  padding?: number | string
   children: React.ReactElement
   content: React.ReactElement
 }

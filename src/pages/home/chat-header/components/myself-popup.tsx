@@ -93,7 +93,7 @@ export const MyselfPopup = ({ onClose }: { onClose: () => void }) => {
   return (
     <>
       <div
-        className='w-[100px] h-[100px] m-auto rounded-[5px] relative flex justify-center bg-gray-200 items-center cursor-pointer overflow-hidden [&>img]:w-[100px] [&>img]:h-[100px] [&>img]:object-contain group'
+        className='w-[100px] h-[100px] m-auto mb-[20px] rounded-[5px] relative flex justify-center bg-gray-200 items-center cursor-pointer overflow-hidden [&>img]:w-[100px] [&>img]:h-[100px] [&>img]:object-contain group'
         onClick={() => uploadRef.current && uploadRef.current.click()}
       >
         {userInfo.avatar && imgLoadSuccess ? (
@@ -112,14 +112,14 @@ export const MyselfPopup = ({ onClose }: { onClose: () => void }) => {
         <input ref={uploadRef} type='file' className='hidden' onChange={uploadAvatar} />
       </div>
       <form className='flex justify-center flex-col mt-3' onSubmit={onSubmit}>
-        <div className='flex items-center mb-6'>
+        <div className='flex items-center mb-4'>
           <div className='w-11 text-form-label'>{t('name')}</div>
           <div className='w-full'>
             <FormInput {...register('name')} placeholder={t('name')} />
             {errors?.name && <FormErrorTip>{errors.name.message}</FormErrorTip>}
           </div>
         </div>
-        <div className='flex items-center mb-6'>
+        <div className='flex items-center mb-4'>
           <div className='w-11 text-form-label'>{t('sex')}</div>
           <div className='w-full'>
             <Controller
