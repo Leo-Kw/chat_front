@@ -15,7 +15,6 @@ export const ChatMessage = () => {
   const { state, dispatch } = useGlobalState()
   const [isLoadAllMessage, setIsLoadAllMessage] = useState(false)
   const [isFirstLoad, setIsFirstLoad] = useState(true)
-  const [imgLoadSuccess, setImgLoadSuccess] = useState(true)
   const [messageParams, setMessageParams] = useState({
     page: 1,
     pageSize: 20,
@@ -101,6 +100,7 @@ export const ChatMessage = () => {
       >
         {messageList.map((item) => {
           const isMyself = item.userInfo.id === userInfo.id
+          let imgLoadSuccess = true
           return (
             <div
               key={item.id}
@@ -115,8 +115,8 @@ export const ChatMessage = () => {
                     <img
                       src={item.userInfo.avatar}
                       alt='avatar'
-                      onLoad={() => setImgLoadSuccess(true)}
-                      onError={() => setImgLoadSuccess(false)}
+                      onLoad={() => (imgLoadSuccess = true)}
+                      onError={() => (imgLoadSuccess = false)}
                     />
                   ) : (
                     <Icon type='default-avatar' style={{ width: '35px', height: '35px' }} />
