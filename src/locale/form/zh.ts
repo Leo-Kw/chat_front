@@ -22,6 +22,7 @@ export default {
   register_success: '注册成功',
   modity_success: '修改成功',
   upload_success: '上传成功',
+  avatar_size_limit: '上传头像大小不能超过1mb',
   confirm: '确定',
   sex: '性别',
 }

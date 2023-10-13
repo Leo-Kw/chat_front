@@ -70,6 +70,10 @@ export const MyselfPopup = ({ onClose }: { onClose: () => void }) => {
   const uploadAvatar = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0]
     if (file) {
+      if (file.size > 1048576) {
+        Toast.error(t('avatar_size_limit'))
+        return
+      }
       const formdata = new FormData()
       formdata.append('file', file)
       formdata.append('userId', String(userInfo.id))
