@@ -47,8 +47,9 @@ export const ChatHeader = () => {
       <div className='flex items-center'>
         <Popup
           left={-185}
-          bottom={-320}
+          bottom={-318}
           height={300}
+          padding={15}
           title={t('myself')}
           content={<MyselfPopup onClose={onClose} />}
           open={myselfOpen}

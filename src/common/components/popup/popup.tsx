@@ -24,6 +24,7 @@ export const Popup = ({
   height = 400,
   left,
   bottom,
+  padding = 10,
   children,
   content,
   open,
@@ -58,6 +59,7 @@ export const Popup = ({
             height={height}
             left={left}
             bottom={bottom}
+            padding={padding}
             style={{
               ...defaultStyle,
               ...transitionStyles[state],

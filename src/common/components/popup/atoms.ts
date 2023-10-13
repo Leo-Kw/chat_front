@@ -5,6 +5,7 @@ export const PopupWrapper = styled.div<{
   height: number
   left: number
   bottom: number
+  padding: number | string
 }>`
   position: absolute;
   width: ${({ width }) => width + 'px'};
@@ -15,5 +16,5 @@ export const PopupWrapper = styled.div<{
   background: #252527;
   box-shadow: 0 0 8px #f2f2f2;
   border-radius: 5px;
-  padding: 10px;
+  padding: ${({ padding }) => (typeof padding === 'number' ? padding + 'px' : padding)};
 `
