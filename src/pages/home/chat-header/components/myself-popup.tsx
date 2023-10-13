@@ -100,7 +100,7 @@ export const MyselfPopup = ({ onClose }: { onClose: () => void }) => {
           <img
             src={userInfo.avatar}
             alt='avatar'
-            onLoad={() => setImgLoadSuccess(false)}
+            onLoad={() => setImgLoadSuccess(true)}
             onError={() => setImgLoadSuccess(false)}
           />
         ) : (
