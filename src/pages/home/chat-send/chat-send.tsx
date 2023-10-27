@@ -27,6 +27,7 @@ export const ChatSend = () => {
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null)
   const [isInput, setIsInput] = useState(false)
   const { userInfo } = state
+  const a = 1
 
   const sendMessage = useCallback(() => {
     if (userInfo.name === '') {
