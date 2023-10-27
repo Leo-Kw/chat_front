@@ -31,7 +31,7 @@ export const MessageItem = ({ item, isMyself }: Props) => {
           )}
         </div>
         <div className={`flex flex-col ${isMyself ? 'items-end' : 'items-start'} mx-[15px]`}>
-          <div className='mb-[5px] text-[14px] text-textSa text-ellipsis overflow-hidden max-w-[200px]'>
+          <div className='mb-[5px] text-[14px] text-ellipsis overflow-hidden max-w-[200px]'>
             {item.userInfo.name}
           </div>
           <div

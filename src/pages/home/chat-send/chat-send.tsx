@@ -27,7 +27,6 @@ export const ChatSend = () => {
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null)
   const [isInput, setIsInput] = useState(false)
   const { userInfo } = state
-  const a = 1
 
   const sendMessage = useCallback(() => {
     if (userInfo.name === '') {
@@ -97,7 +96,7 @@ export const ChatSend = () => {
   // }
 
   return (
-    <div className='flex w-full h-[200px] px-[12px] flex-col justify-centersasdasd'>
+    <div className='flex flex-col w-full h-[200px] px-[12px] fasd'>
       <div className="relative h-[40px] w-full flex items-center after:content-[''] after:w-full after:h-[0.5px] after:bg-gray-border after:absolute after:top-0">
         <Popup
           left={0}
@@ -121,7 +120,7 @@ export const ChatSend = () => {
         </Button> */}
       </div>
       <textarea
-        className='w-full h-[calc(100% - 80px)] overflow-hidden box-border resize-none outline-none border-none text-[15px] text-text-lighter bg-transparent'
+        className='w-full h-[calc(100%-80px)] overflow-hidden box-border resize-none outline-none border-none text-[15px] text-text-lighter bg-transparent'
         ref={textAreaRef}
         placeholder={t('chat_placeholder')}
         value={messageContent}

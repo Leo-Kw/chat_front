@@ -34,7 +34,7 @@ export const ChatHeader = () => {
   return (
     <div className='flex justify-between items-center h-[50px] px-[20px] border-solid border-b-[1px] border-gray-border'>
       <div className='flex items-center'>
-        <div className='bg-white text-dark rounded-[5px] px-[10px] py-[3px] shadow-[0_0_5px_#f2f2f2]'>
+        <div className='bg-white rounded-[5px] px-[10px] py-[3px] shadow-[0_0_5px_#f2f2f2]'>
           🐷🐷房间
         </div>
         <div onClick={() => share()}>

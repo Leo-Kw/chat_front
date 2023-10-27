@@ -22,6 +22,7 @@ module.exports = {
   },
   plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier', 'tailwindcss'],
   rules: {
+    'no-cond-assign': ['error', 'always'],
     'linebreak-style': ['error', 'unix'],
     'prettier/prettier': 'error',
     quotes: [
@@ -34,7 +35,6 @@ module.exports = {
     semi: ['error', 'never'],
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/no-empty-function': 'off',
-    'no-undef': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     '@typescript-eslint/no-non-null-assertion': 'off',
@@ -47,7 +47,7 @@ module.exports = {
         },
       },
     ],
-    'tailwindcss/classnames-order': 'warn',
+    'tailwindcss/classnames-order': 'off',
     'tailwindcss/no-custom-classname': 'warn',
     'tailwindcss/no-contradicting-classname': 'error',
     '@typescript-eslint/no-empty-interface': [
