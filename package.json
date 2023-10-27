@@ -8,7 +8,7 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "predev": "pnpm intl",
-    "lint:script": "eslint --ext .js,.jsx,.ts,.tsx --fix ./src",
+    "lint:script": "eslint --ext .js,.jsx,.ts,.tsx --fix --quiet ./src",
     "lint:style": "stylelint --fix \"src/**/*.{css,scss}\"",
     "postinstall": "husky install",
     "test": "jest"
