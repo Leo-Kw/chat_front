@@ -96,7 +96,7 @@ export const ChatSend = () => {
   // }
 
   return (
-    <div className='flex flex-col w-full h-[200px] px-[12px] fasd'>
+    <div className='flex flex-col w-full h-[200px] px-[12px]'>
       <div className="relative h-[40px] w-full flex items-center after:content-[''] after:w-full after:h-[0.5px] after:bg-gray-border after:absolute after:top-0">
         <Popup
           left={0}

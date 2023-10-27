@@ -181,7 +181,6 @@ export const Modal = (props: ModalProps) => {
                 )}
                 <ModalButton
                   variant='contained'
-                  loading={confirmLoading}
                   onClick={() => {
                     onOk?.()
                   }}
