@@ -73,6 +73,6 @@
     "vite-plugin-imagemin": "^0.6.1"
   },
   "lint-staged": {
-    "**/*.{js,jsx,tsx,ts}": "eslint --max-warnings 0 ./src"
+    "**/*.{js,jsx,tsx,ts}": "eslint --max-warnings=0 ./src"
   }
 }
