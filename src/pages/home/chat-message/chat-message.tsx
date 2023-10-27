@@ -44,6 +44,12 @@ export const ChatMessage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [messageParams])
 
+  useEffect(() => {
+    if (messageParams.page === 1) {
+      scorllToBottom('messageBottom', 'auto')
+    }
+  }, [messageList, messageParams])
+
   const scrollToTop = throttle(() => {
     if (messContentRef && messContentRef.current) {
       const el = messContentRef.current
