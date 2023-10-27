@@ -6,18 +6,18 @@ import { Popup, Icon, Button } from '@/common/components'
 import { Emoji } from '../chat-tool-bar'
 import { regex } from '@/utils/regex'
 
-const pickerOpts = {
-  types: [
-    {
-      description: 'code',
-      accept: {
-        '*/*': [],
-      },
-    },
-  ],
-  excludeAcceptAllOption: true,
-  multiple: false,
-}
+// const pickerOpts = {
+//   types: [
+//     {
+//       description: 'code',
+//       accept: {
+//         '*/*': [],
+//       },
+//     },
+//   ],
+//   excludeAcceptAllOption: true,
+//   multiple: false,
+// }
 
 export const ChatSend = () => {
   const socket = useSocket()
@@ -85,18 +85,18 @@ export const ChatSend = () => {
     }
   }, [handleKeyDown])
 
-  const getFile = async () => {
-    try {
-      const [fileHandle] = await showOpenFilePicker(pickerOpts)
-      const file = await fileHandle.getFile()
-      console.log(file)
-    } catch (e) {
-      // Handling of user rejection
-    }
-  }
+  // const getFile = async () => {
+  //   try {
+  //     const [fileHandle] = await showOpenFilePicker(pickerOpts)
+  //     const file = await fileHandle.getFile()
+  //     console.log(file)
+  //   } catch (e) {
+  //     // Handling of user rejection
+  //   }
+  // }
 
   return (
-    <div className='flex w-full h-[200px] px-[12px] flex-col'>
+    <div className='flex w-full h-[200px] px-[12px] flex-col justify-centersasdasd'>
       <div className="relative h-[40px] w-full flex items-center after:content-[''] after:w-full after:h-[0.5px] after:bg-gray-border after:absolute after:top-0">
         <Popup
           left={0}
@@ -114,10 +114,10 @@ export const ChatSend = () => {
           <Icon type='chat_record' style={{ fill: '#b0b3b5' }} />
           {t('chat_record')}
         </Button>
-        <Button type='text' onClick={() => getFile()}>
+        {/* <Button type='text' onClick={() => getFile()}>
           <Icon type='file' style={{ fill: '#b0b3b5' }} />
           {t('file')}
-        </Button>
+        </Button> */}
       </div>
       <textarea
         className='w-full h-[calc(100% - 80px)] overflow-hidden box-border resize-none outline-none border-none text-[15px] text-text-lighter bg-transparent'

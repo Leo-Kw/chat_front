@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    node: true,
   },
   extends: [
     'eslint:recommended',
@@ -19,7 +20,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier'],
+  plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier', 'tailwindcss'],
   rules: {
     'linebreak-style': ['error', 'unix'],
     'prettier/prettier': 'error',
@@ -46,6 +47,9 @@ module.exports = {
         },
       },
     ],
+    'tailwindcss/classnames-order': 'warn',
+    'tailwindcss/no-custom-classname': 'warn',
+    'tailwindcss/no-contradicting-classname': 'error',
     '@typescript-eslint/no-empty-interface': [
       'error',
       {
