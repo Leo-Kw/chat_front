@@ -18,7 +18,7 @@ import { ReactComponent as ShowEye } from './icons/show_eye.svg'
 import { ReactComponent as HideEye } from './icons/hide_eye.svg'
 import { ReactComponent as ChatRecord } from './icons/chat_record.svg'
 import { ReactComponent as Myself } from './icons/myself.svg'
-import { ReactComponent as SignOout } from './icons/sign_out.svg'
+import { ReactComponent as SignOut } from './icons/sign_out.svg'
 import { ReactComponent as Setting } from './icons/setting.svg'
 import { ReactComponent as Share } from './icons/share.svg'
 import { ReactComponent as File } from './icons/file.svg'
@@ -91,7 +91,7 @@ const iconMap = (type: IconType, style?: React.CSSProperties) => {
     case 'myself':
       return <Myself style={style} />
     case 'sign_out':
-      return <SignOout style={style} />
+      return <SignOut style={style} />
     case 'setting':
       return <Setting style={style} />
     case 'share':

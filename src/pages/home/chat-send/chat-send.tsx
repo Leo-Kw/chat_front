@@ -1,9 +1,9 @@
 import { useEffect, useCallback, useState, useRef } from 'react'
 import { useGlobalState, useIntlLocale, useSocket } from '@/hook'
-import { scorllToBottom, strToUnicode } from '@/utils'
+import { scrollToBottom, strToUnicode } from '@/utils'
 import { AuthService } from '@/shared/services'
 import { Popup, Icon, Button } from '@/common/components'
-import { Emoji } from '../chat-tool-bar'
+import { Emoji } from './components'
 import { regex } from '@/utils/regex'
 
 // const pickerOpts = {
@@ -43,7 +43,7 @@ export const ChatSend = () => {
           messageType: messageContent.match(regex) ? 'hasEmoji' : 'text',
         },
         (res: boolean) => {
-          res && scorllToBottom()
+          res && scrollToBottom()
         }
       )
       setMessageContent('')
@@ -96,8 +96,8 @@ export const ChatSend = () => {
   // }
 
   return (
-    <div className='flex flex-col w-full h-[200px] px-[12px]'>
-      <div className="relative h-[40px] w-full flex items-center after:content-[''] after:w-full after:h-[0.5px] after:bg-gray-border after:absolute after:top-0">
+    <div className='flex h-[200px] w-full flex-col px-[12px]'>
+      <div className="relative flex h-[40px] w-full items-center after:absolute after:top-0 after:h-[0.5px] after:w-full after:bg-gray-border after:content-['']">
         <Popup
           left={0}
           bottom={50}
@@ -120,7 +120,7 @@ export const ChatSend = () => {
         </Button> */}
       </div>
       <textarea
-        className='w-full h-[calc(100%-80px)] overflow-hidden box-border resize-none outline-none border-none text-[15px] text-text-lighter bg-transparent'
+        className='box-border h-[calc(100%-80px)] w-full resize-none overflow-hidden border-none bg-transparent text-[15px] text-text-lighter outline-none'
         ref={textAreaRef}
         placeholder={t('chat_placeholder')}
         value={messageContent}

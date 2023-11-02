@@ -10,7 +10,12 @@ export interface DefaultOptionType extends BaseOptionType {
 
 export interface BaseOptionType {
   disabled?: boolean
-  [name: string]: React.ReactNode | RawValueType | Omit<DefaultOptionType, 'children'>[]
+  [name: string]:
+    | React.ReactNode
+    | RawValueType
+    | Omit<DefaultOptionType, 'children'>[]
+    | string
+    | number
 }
 
 export type Props<ValueType, OptionType extends BaseOptionType = DefaultOptionType> = Partial<

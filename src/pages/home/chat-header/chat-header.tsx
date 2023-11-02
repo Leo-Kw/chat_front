@@ -32,9 +32,9 @@ export const ChatHeader = () => {
   }
 
   return (
-    <div className='flex justify-between items-center h-[50px] px-[20px] border-solid border-b-[1px] border-gray-border'>
+    <div className='flex h-[50px] items-center justify-between border-b-[1px] border-solid border-gray-border px-[20px]'>
       <div className='flex items-center'>
-        <div className='bg-white rounded-[5px] px-[10px] py-[3px] shadow-[0_0_5px_#f2f2f2]'>
+        <div className='rounded-[5px] bg-white px-[10px] py-[3px] shadow-[0_0_5px_#f2f2f2]'>
           🐷🐷房间
         </div>
         <div onClick={() => share()}>

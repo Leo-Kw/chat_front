@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useAPI, useGlobalState, useIntlLocale, useSocket } from '@/hook'
 import { SocketOnMessage } from '../type'
-import { scorllToBottom, throttle } from '@/utils'
+import { scrollToBottom, throttle } from '@/utils'
 import { ActionType } from '@/context'
 import { Toast } from '@/common/components'
 import { CSSTransition } from 'react-transition-group'
@@ -46,7 +46,7 @@ export const ChatMessage = () => {
 
   useEffect(() => {
     if (messageParams.page === 1) {
-      scorllToBottom('messageBottom', 'auto')
+      scrollToBottom('messageBottom', 'auto')
     }
   }, [messageList, messageParams])
 
@@ -86,7 +86,7 @@ export const ChatMessage = () => {
           icon: '/src/favicon.png',
           requireInteraction: false,
         } // 传空配置
-        const title = t('hange_chat_room')
+        const title = t('hang_ge_chat_room')
         new Notification(title, options) // 显示通知
       }
     },
@@ -95,15 +95,15 @@ export const ChatMessage = () => {
   )
 
   const readNewMess = () => {
-    scorllToBottom()
+    scrollToBottom()
     dispatch({ type: ActionType.ClearUnreadMessNum })
   }
 
   return (
-    <div className='flex-1 h-0 relative'>
+    <div className='relative h-0 flex-1'>
       <div
         ref={messContentRef}
-        className='h-full px-[25px] py-[10px] box-border overflow-y-scroll flex flex-col relative scrollbar'
+        className='scrollbar relative box-border flex h-full flex-col overflow-y-scroll px-[25px] py-[10px]'
       >
         {messageList.map((item) => {
           const isMyself = item.userInfo.id === userInfo.id
@@ -126,7 +126,7 @@ export const ChatMessage = () => {
         <div
           ref={unReadTipRef}
           onClick={readNewMess}
-          className='absolute right-[15px] bottom-[10px] py-[7px] px-[13px] text-[12px] text-white bg-warning rounded-[6px] font-bold cursor-pointer'
+          className='absolute bottom-[10px] right-[15px] cursor-pointer rounded-[6px] bg-warning px-[13px] py-[7px] text-[12px] font-bold text-white'
         >
           有{unreadMessNum}条新消息
         </div>

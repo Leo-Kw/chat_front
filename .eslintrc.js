@@ -47,7 +47,7 @@ module.exports = {
         },
       },
     ],
-    'tailwindcss/classnames-order': 'off',
+    'tailwindcss/classnames-order': 'warn',
     'tailwindcss/no-custom-classname': 'warn',
     'tailwindcss/no-contradicting-classname': 'error',
     '@typescript-eslint/no-empty-interface': [
