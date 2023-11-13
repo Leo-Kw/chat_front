@@ -31,7 +31,7 @@ export const HomeView = () => {
 
   return (
     <div className='flex items-center justify-center'>
-      <div className='fixed bottom-[8%] left-[12%] right-[12%] top-[8%] flex flex-col rounded-[10px] shadow-[0_0_15px_#f2f2f2]'>
+      <div className='fixed inset-x-[12%] inset-y-[8%] flex flex-col rounded-[10px] shadow-[0_0_15px_#f2f2f2]'>
         <div className='absolute -top-14 w-24'>
           <Lottie animationData={catAnimationData} />
         </div>

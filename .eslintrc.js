@@ -11,6 +11,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'prettier',
     'plugin:prettier/recommended',
+    'plugin:tailwindcss/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -20,7 +21,7 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier', 'tailwindcss'],
+  plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier'],
   rules: {
     'no-cond-assign': ['error', 'always'],
     'linebreak-style': ['error', 'unix'],
@@ -47,9 +48,6 @@ module.exports = {
         },
       },
     ],
-    'tailwindcss/classnames-order': 'warn',
-    'tailwindcss/no-custom-classname': 'warn',
-    'tailwindcss/no-contradicting-classname': 'error',
     '@typescript-eslint/no-empty-interface': [
       'error',
       {
