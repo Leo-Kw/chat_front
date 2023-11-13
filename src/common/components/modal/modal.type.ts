@@ -55,6 +55,9 @@ export interface ModalProps {
   hiddenCancelButton?: boolean
 
   children?: React.ReactNode
-  okButtonProps?: any
+  okButtonProps?: Omit<
+    React.DetailedHTMLProps<React.ButtonHTMLAttributes<HTMLButtonElement>, HTMLButtonElement>,
+    'ref'
+  >
   backgroundColor?: string
 }

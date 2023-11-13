@@ -1,4 +1,4 @@
-import { FC, PropsWithChildren, ReactNode, createContext } from 'react'
+import { PropsWithChildren } from 'react'
 
 export type Props = PropsWithChildren<{
   status?: boolean

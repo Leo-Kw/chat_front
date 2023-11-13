@@ -23,7 +23,7 @@ const transitionStyles = {
 
 export const SelectComponent = <
   ValueType = RawValueType,
-  OptionType extends BaseOptionType | DefaultOptionType = DefaultOptionType
+  OptionType extends BaseOptionType | DefaultOptionType = DefaultOptionType,
 >(
   { options, placeholder, value, handleChange, onChange, onBlur }: Props<ValueType, OptionType>,
   inputRef: ForwardedRef<HTMLInputElement>

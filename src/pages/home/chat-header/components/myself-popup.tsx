@@ -97,7 +97,7 @@ export const MyselfPopup = ({ onClose }: { onClose: () => void }) => {
   return (
     <>
       <div
-        className='w-[100px] h-[100px] m-auto mb-[20px] rounded-[5px] relative flex justify-center bg-gray-200 items-center cursor-pointer overflow-hidden [&>img]:w-[100px] [&>img]:h-[100px] [&>img]:object-contain group'
+        className='group relative m-auto mb-[20px] flex h-[100px] w-[100px] cursor-pointer items-center justify-center overflow-hidden rounded-[5px] bg-gray-200 [&>img]:h-[100px] [&>img]:w-[100px] [&>img]:object-contain'
         onClick={() => uploadRef.current && uploadRef.current.click()}
       >
         {userInfo.avatar && imgLoadSuccess ? (
@@ -110,20 +110,20 @@ export const MyselfPopup = ({ onClose }: { onClose: () => void }) => {
         ) : (
           <Icon type='default-avatar' style={{ width: '70px', height: '70px' }} />
         )}
-        <div className='w-full h-full hidden group-hover:block text-[12px] text-white font-bold select-none absolute bottom-0 left-0 bg-gradient-to-b from-transparent from-55% to-[#0000007f] to-100%'>
+        <div className='absolute bottom-0 left-0 hidden h-full w-full select-none bg-gradient-to-b from-transparent from-55% to-[#0000007f] to-100% text-[12px] font-bold text-white group-hover:block'>
           <span className='absolute bottom-[6px] left-[26px]'>修改头像</span>
         </div>
         <input ref={uploadRef} type='file' className='hidden' onChange={uploadAvatar} />
       </div>
-      <form className='flex justify-center flex-col mt-3' onSubmit={onSubmit}>
-        <div className='flex items-center mb-4'>
+      <form className='mt-3 flex flex-col justify-center' onSubmit={onSubmit}>
+        <div className='mb-4 flex items-center'>
           <div className='w-11 text-form-label'>{t('name')}</div>
           <div className='w-full'>
             <FormInput {...register('name')} placeholder={t('name')} />
             {errors?.name && <FormErrorTip>{errors.name.message}</FormErrorTip>}
           </div>
         </div>
-        <div className='flex items-center mb-4'>
+        <div className='mb-4 flex items-center'>
           <div className='w-11 text-form-label'>{t('sex')}</div>
           <div className='w-full'>
             <Controller

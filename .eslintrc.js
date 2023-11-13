@@ -2,6 +2,7 @@ module.exports = {
   env: {
     browser: true,
     es2021: true,
+    node: true,
   },
   extends: [
     'eslint:recommended',
@@ -10,6 +11,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'prettier',
     'plugin:prettier/recommended',
+    'plugin:tailwindcss/recommended',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -21,6 +23,7 @@ module.exports = {
   },
   plugins: ['react', 'react-hooks', '@typescript-eslint', 'prettier'],
   rules: {
+    'no-cond-assign': ['error', 'always'],
     'linebreak-style': ['error', 'unix'],
     'prettier/prettier': 'error',
     quotes: [
@@ -33,7 +36,6 @@ module.exports = {
     semi: ['error', 'never'],
     'react/react-in-jsx-scope': 'off',
     '@typescript-eslint/no-empty-function': 'off',
-    'no-undef': 'off',
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'warn',
     '@typescript-eslint/no-non-null-assertion': 'off',
