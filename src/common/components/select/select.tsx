@@ -3,7 +3,7 @@ import { ForwardedRef, forwardRef, useEffect, useRef, useState } from 'react'
 import { useClickAway } from '@/hook'
 import { SelectInput, OptionWrap, SelectWrap, Option } from './atoms'
 import { Transition } from 'react-transition-group'
-import { BaseOptionType, DefaultOptionType, Props, RawValueType } from './types'
+import { DefaultOptionType, Props, RawValueType } from './types'
 
 const duration = 300
 const gap = 5
@@ -22,8 +22,8 @@ const transitionStyles = {
 }
 
 export const SelectComponent = <
-  ValueType = RawValueType,
-  OptionType extends BaseOptionType | DefaultOptionType = DefaultOptionType,
+  ValueType extends RawValueType = RawValueType,
+  OptionType extends DefaultOptionType = DefaultOptionType,
 >(
   { options, placeholder, value, handleChange, onChange, onBlur }: Props<ValueType, OptionType>,
   inputRef: ForwardedRef<HTMLInputElement>
@@ -67,7 +67,7 @@ export const SelectComponent = <
                 key={item.value}
                 active={item.value === value}
                 onClick={() => {
-                  handleChange?.(item.value, item)
+                  handleChange?.(item.value as ValueType, item)
                   setShowOption(false)
                   onChange?.(item.value)
                 }}
