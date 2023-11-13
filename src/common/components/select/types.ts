@@ -6,6 +6,12 @@ export interface DefaultOptionType extends BaseOptionType {
   label: React.ReactNode
   value: RawValueType
   children?: Omit<DefaultOptionType, 'children'>[]
+  [name: string]:
+    | React.ReactNode
+    | RawValueType
+    | Omit<DefaultOptionType, 'children'>[]
+    | string
+    | number
 }
 
 export interface BaseOptionType {
@@ -18,7 +24,7 @@ export interface BaseOptionType {
     | number
 }
 
-export type Props<ValueType, OptionType extends BaseOptionType = DefaultOptionType> = Partial<
+export type Props<ValueType, OptionType extends DefaultOptionType = DefaultOptionType> = Partial<
   Omit<ControllerRenderProps<{ [key in string]: string }>, 'value'>
 > & {
   placeholder?: string
