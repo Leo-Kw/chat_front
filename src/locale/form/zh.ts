@@ -20,7 +20,7 @@ export default {
   have_account_to_login: '已有帐号去登录',
   login_success: '登录成功',
   register_success: '注册成功',
-  modity_success: '修改成功',
+  modify_success: '修改成功',
   upload_success: '上传成功',
   avatar_size_limit: '上传头像大小不能超过1mb',
   confirm: '确定',

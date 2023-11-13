@@ -20,7 +20,7 @@ export default {
   have_account_to_login: 'Already have an account',
   login_success: 'login successful',
   register_success: 'register successful',
-  modity_success: 'modity successful',
+  modify_success: 'modify successful',
   upload_success: 'upload successful',
   avatar_size_limit: 'The size of the uploaded avatar cannot exceed 1mb',
   confirm: 'confirm',

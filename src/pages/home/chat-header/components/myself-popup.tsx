@@ -50,7 +50,7 @@ export const MyselfPopup = ({ onClose }: { onClose: () => void }) => {
   const onSubmit = handleSubmit((data) => {
     API.user.updateUserInfo({ ...data, id: userInfo.id }).then((res) => {
       if (res.result) {
-        Toast.success(t('modity_success'))
+        Toast.success(t('modify_success'))
         updateUserInfo()
         onClose()
       }
