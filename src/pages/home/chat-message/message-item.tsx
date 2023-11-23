@@ -1,8 +1,7 @@
 import { useState } from 'react'
 import { RecordResponse } from '@/shared/services'
 import { Icon } from '@/common/components'
-import { MessageTypes } from '../type'
-import { formatDate, substringByByte } from '@/utils'
+import { formatDate } from '@/utils'
 
 interface Props {
   item: RecordResponse
@@ -43,9 +42,7 @@ export const MessageItem = ({ item, isMyself }: Props) => {
                   : 'bg-messageBackground-other before:right-full before:border-r-messageBackground-other'
               }`}
             >
-              {item.messageType === MessageTypes.HasEmoji
-                ? substringByByte(item.messageContent, 100000)
-                : item.messageContent}
+              {item.messageContent}
             </div>
           </div>
         </div>

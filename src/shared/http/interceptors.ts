@@ -3,7 +3,9 @@ import { Toast } from '@/common/components'
 import { AuthService } from '@/shared/services'
 
 export interface ResponseError {
+  error: string
   message: string
+  statusCode: number
 }
 
 export const handleRequest = (config: AxiosRequestConfig) => {
@@ -16,7 +18,6 @@ export const handleRequest = (config: AxiosRequestConfig) => {
 
 export const handleError = (error: AxiosError<ResponseError>) => {
   const code = error.response?.status
-  // console.log(code)
   if (code && code !== 200) {
     Toast.error(error.response?.data.message)
     if (code === 401) {
@@ -26,7 +27,7 @@ export const handleError = (error: AxiosError<ResponseError>) => {
   } else {
     Toast.error('服务器错误！请联系管理员')
   }
-  return Promise.resolve(error.response)
+  throw new Error(error.response?.data.message)
 }
 
 export const handleResponse = (response: AxiosResponse) => {

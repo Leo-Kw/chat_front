@@ -26,6 +26,7 @@ export const color = Object.freeze({
     background: '#ffffff14',
     backgroundHover: '#ffffff2b',
     backgroundFocus: '#272727',
+    border: '#4D7CF7',
   },
   select: {
     background: '#363638',

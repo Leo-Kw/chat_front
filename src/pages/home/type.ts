@@ -7,7 +7,6 @@ export interface SocketOnMessage {
 
 export enum MessageTypes {
   Text = 'text',
-  HasEmoji = 'hasEmoji',
 }
 
 export interface EmojiProps {

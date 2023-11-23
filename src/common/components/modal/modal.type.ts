@@ -5,7 +5,7 @@ export interface ModalProps {
   onCancel?: () => void
   /** Modal触发确定的callback */
   onOk?: () => void
-  destory?: () => void
+  destroy?: () => void
   confirmLoading?: boolean
   /** 是否显示右上角的关闭按钮 */
   closable?: boolean
@@ -60,4 +60,5 @@ export interface ModalProps {
     'ref'
   >
   backgroundColor?: string
+  color?: string
 }

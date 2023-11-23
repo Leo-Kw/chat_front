@@ -57,37 +57,32 @@ export const Content = styled.div<{
   bottom?: string
   minWidth?: string | number
   backgroundColor?: string
+  color?: string
 }>`
-  ${({ theme, top, right, left, bottom, minWidth, backgroundColor }) => css`
+  ${({ theme, top, right, left, bottom, minWidth, backgroundColor, color }) => css`
     position: absolute;
     top: ${top ?? 'unset'};
     right: ${right ?? 'unset'};
     left: ${left ?? 'unset'};
     bottom: ${bottom ?? 'unset'};
+    color: ${color ?? '#000'};
     background: ${backgroundColor ? backgroundColor : theme.color.white};
     min-width: ${minWidth ? (typeof minWidth === 'number' ? minWidth + 'px' : minWidth) : '420px'};
     transition: all 300ms;
     border-radius: ${theme.radius.sm};
+    overflow: hidden;
     box-shadow: 0px 10px 16px 4px rgba(102, 102, 102, 0.2);
   `}
 `
 
 export const CloseIconWrap = styled.div`
   ${({ theme }) => css`
-    position: absolute;
-    right: 0px;
-    top: 0px;
     cursor: pointer;
-    width: 42px;
-    height: 42px;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: 300ms;
     border-radius: 0 ${theme.radius.sm} 0 0;
-    :hover {
-      background: ${theme.color.background};
-    }
     svg {
       width: 16px;
       height: 16px;
@@ -98,18 +93,19 @@ export const CloseIconWrap = styled.div`
 export const Header = styled.div`
   ${({ theme }) => css`
     position: relative;
-    padding: 0 20px;
-    color: ${theme.color.text.darkest};
     font-size: ${theme.typography.text};
     font-weight: 600;
     line-height: 1;
-    padding: 14px;
-    border-radius: 2px 2px 0 0;
+    padding: 20px;
+    fill: #b0b3b5;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
   `}
 `
 
 export const Main = styled.div`
-  padding: 20px;
+  padding: 0 20px 20px;
 `
 
 export const Footer = styled.div`
