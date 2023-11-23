@@ -11,7 +11,7 @@ interface State {
 
 export interface CreateToastReturn {
   addNotice: (option: ToastProps) => void
-  destory: () => void
+  destroy: () => void
 }
 
 class ToastManager extends React.Component<{}, State> {
@@ -78,7 +78,7 @@ export const createToastManager = (): CreateToastReturn => {
     addNotice(option: ToastProps) {
       return ref.current?.add(option)
     },
-    destory() {
+    destroy() {
       root.unmount()
       document.body.removeChild(div)
     },

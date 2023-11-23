@@ -1,4 +1,4 @@
-export const formatDate = (str: string) => {
+export const formatDate = (str: string | number) => {
   const dateObj = new Date(str)
 
   if (isNaN(dateObj.getTime())) {

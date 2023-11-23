@@ -5,7 +5,6 @@ export interface BaseResponse<T = unknown> {
   code: number
   data: T
   message: string
-  statusCode: number
   result: boolean
 }
 export interface LoginParams {
@@ -41,9 +40,9 @@ export interface RecordResponse {
     name: string
     role: 'admin' | 'viewer'
   }
-  createdAt: string
-  updatedAt: string
-  deletedAt: string
+  createdAt: number
+  updatedAt: number
+  deletedAt: number
 }
 export enum SexType {
   Unknown = 1,
@@ -55,4 +54,7 @@ export interface PersonalParams {
   name: string
   sex: SexType
   sign?: string
+}
+export interface SearchMessageParams extends MessageParams {
+  search: string
 }

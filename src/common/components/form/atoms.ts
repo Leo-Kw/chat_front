@@ -51,7 +51,7 @@ export const FormInput = styled.input`
     }
     :focus {
       outline: none !important;
-      border: 1px solid rgb(77, 124, 247);
+      border: 1px solid ${theme.color.input.border};
       background: ${theme.color.input.backgroundFocus};
     }
   `}

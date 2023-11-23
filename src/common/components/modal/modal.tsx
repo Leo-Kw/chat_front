@@ -72,7 +72,7 @@ export const Modal = (props: ModalProps) => {
     bottom,
     onCancel,
     onOk,
-    destory,
+    destroy,
     zIndex = 800,
     closable = true,
     maskClosable = true,
@@ -86,6 +86,7 @@ export const Modal = (props: ModalProps) => {
     bodyStyle,
     okButtonProps,
     backgroundColor,
+    color,
   } = props
   const [isShowModal, setIsShowModal] = useState(true)
   const nodeRef = React.useRef(null)
@@ -124,10 +125,10 @@ export const Modal = (props: ModalProps) => {
     const timeout: ReturnType<typeof setTimeout> = setTimeout(() => {
       setIsShowModal(false)
       modalManager.remove(container.current!)
-      destory?.()
+      destroy?.()
       clearTimeout(timeout)
     }, ANIMATION_DELAY)
-  }, [destory])
+  }, [destroy])
 
   useEffect(() => {
     if (visible) {
@@ -160,6 +161,7 @@ export const Modal = (props: ModalProps) => {
             bottom={bottom}
             minWidth={width}
             backgroundColor={backgroundColor}
+            color={color}
           >
             <Header>
               {title}

@@ -1,10 +1,10 @@
 import { useEffect, useCallback, useState, useRef } from 'react'
 import { useGlobalState, useIntlLocale, useSocket } from '@/hook'
-import { scrollToBottom, strToUnicode } from '@/utils'
+import { scrollToBottom } from '@/utils'
 import { AuthService } from '@/shared/services'
-import { Popup, Icon, Button } from '@/common/components'
+import { Popup, Icon, Button, Modal } from '@/common/components'
 import { Emoji } from './components'
-import { regex } from '@/utils/regex'
+import { ChatRecord } from './components/chat-record'
 
 // const pickerOpts = {
 //   types: [
@@ -26,6 +26,7 @@ export const ChatSend = () => {
   const [messageContent, setMessageContent] = useState('')
   const textAreaRef = useRef<HTMLTextAreaElement | null>(null)
   const [isInput, setIsInput] = useState(false)
+  const [showRecord, setShowRecord] = useState(false)
   const { userInfo } = state
 
   const sendMessage = useCallback(() => {
@@ -37,10 +38,8 @@ export const ChatSend = () => {
         'sendMessage',
         {
           userId: userInfo.id,
-          messageContent: messageContent.match(regex)
-            ? strToUnicode(messageContent)
-            : messageContent,
-          messageType: messageContent.match(regex) ? 'hasEmoji' : 'text',
+          messageContent,
+          messageType: 'text',
         },
         (res: boolean) => {
           res && scrollToBottom()
@@ -95,8 +94,24 @@ export const ChatSend = () => {
   //   }
   // }
 
+  const onRecordClose = () => {
+    setShowRecord(false)
+  }
+
   return (
     <div className='flex h-[200px] w-full flex-col px-[12px]'>
+      <Modal
+        visible={showRecord}
+        title={t('chat_record')}
+        onCancel={onRecordClose}
+        maskClosable={false}
+        width={500}
+        footer={null}
+        backgroundColor='#1d1d1d'
+        color='#b0b3b5'
+      >
+        <ChatRecord open={showRecord} />
+      </Modal>
       <div className="relative flex h-[40px] w-full items-center after:absolute after:top-0 after:h-[0.5px] after:w-full after:bg-gray-border after:content-['']">
         <Popup
           left={0}
@@ -110,7 +125,7 @@ export const ChatSend = () => {
             {t('emoji')}
           </Button>
         </Popup>
-        <Button type='text'>
+        <Button type='text' onClick={() => setShowRecord(true)}>
           <Icon type='chat_record' style={{ fill: '#b0b3b5' }} />
           {t('chat_record')}
         </Button>
