@@ -1,3 +1,5 @@
+export const noop = () => {}
+
 export function on<T extends Window | Document | HTMLElement | EventTarget>(
   obj: T | null,
   ...args: Parameters<T['addEventListener']> | [string, () => void | null]
@@ -15,3 +17,7 @@ export function off<T extends Window | Document | HTMLElement | EventTarget>(
     obj.removeEventListener(...(args as Parameters<HTMLElement['removeEventListener']>))
   }
 }
+
+export const isBrowser = typeof window !== 'undefined'
+
+export const isNavigator = typeof navigator !== 'undefined'
