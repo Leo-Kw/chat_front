@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
 import { useAPI, useGlobalState, useIntlLocale, useSocket } from '@/hook'
 import { SocketOnMessage } from '../type'
 import { formatDate, scrollToBottom, throttle, withinFiveMinutes } from '@/utils'
@@ -108,7 +108,7 @@ export const ChatMessage = () => {
         {messageList.map((item, index) => {
           const isMyself = item.userInfo.id === userInfo.id
           return (
-            <>
+            <Fragment key={item.id}>
               {index > 0 &&
                 !withinFiveMinutes(item.createdAt, messageList[index - 1].createdAt) && (
                   <div className='flex justify-center text-xs text-text-dark'>
@@ -120,8 +120,8 @@ export const ChatMessage = () => {
                   {formatDate(item.createdAt)}
                 </div>
               )}
-              <MessageItem key={item.id} item={item} isMyself={isMyself} />
-            </>
+              <MessageItem item={item} isMyself={isMyself} />
+            </Fragment>
           )
         })}
         <div id='messageBottom' />
