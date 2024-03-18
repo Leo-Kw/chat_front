@@ -1,7 +1,7 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
 import { useAPI, useGlobalState, useIntlLocale, useSocket } from '@/hook'
 import { SocketOnMessage } from '../type'
-import { scrollToBottom, throttle } from '@/utils'
+import { formatDate, scrollToBottom, throttle, withinFiveMinutes } from '@/utils'
 import { ActionType } from '@/context'
 import { Toast } from '@/common/components'
 import { CSSTransition } from 'react-transition-group'
@@ -105,9 +105,24 @@ export const ChatMessage = () => {
         ref={messContentRef}
         className='scrollbar relative box-border flex h-full flex-col overflow-y-scroll px-[25px] py-[10px]'
       >
-        {messageList.map((item) => {
+        {messageList.map((item, index) => {
           const isMyself = item.userInfo.id === userInfo.id
-          return <MessageItem key={item.id} item={item} isMyself={isMyself} />
+          return (
+            <Fragment key={item.id}>
+              {index > 0 &&
+                !withinFiveMinutes(item.createdAt, messageList[index - 1].createdAt) && (
+                  <div className='flex justify-center text-xs text-text-dark'>
+                    {formatDate(item.createdAt)}
+                  </div>
+                )}
+              {index === 0 && (
+                <div className='flex justify-center text-xs text-text-dark'>
+                  {formatDate(item.createdAt)}
+                </div>
+              )}
+              <MessageItem item={item} isMyself={isMyself} />
+            </Fragment>
+          )
         })}
         <div id='messageBottom' />
       </div>

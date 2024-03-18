@@ -12,4 +12,5 @@ export enum MessageTypes {
 export interface EmojiProps {
   messageContent: string
   setMessageContent: (value: string) => void
+  textAreaRef: HTMLTextAreaElement | null
 }

@@ -118,7 +118,13 @@ export const ChatSend = () => {
           bottom={50}
           height={300}
           title={t('emoji')}
-          content={<Emoji messageContent={messageContent} setMessageContent={setMessageContent} />}
+          content={
+            <Emoji
+              messageContent={messageContent}
+              setMessageContent={setMessageContent}
+              textAreaRef={textAreaRef.current}
+            />
+          }
         >
           <Button type='text'>
             <Icon type='emoji' style={{ fill: '#b0b3b5' }} />

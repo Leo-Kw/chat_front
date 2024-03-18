@@ -5,7 +5,7 @@ type Props = {
   children: ReactNode
 }
 
-const SOCKET_URL = `ws://${import.meta.env.VITE_PROD_SOCKET}:3102`
+const SOCKET_URL = `ws://${import.meta.env.VITE_SOCKET_URL}:3102`
 
 const socket = io(SOCKET_URL, { path: '/chat-socket' })
 

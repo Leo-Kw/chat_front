@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { RecordResponse } from '@/shared/services'
 import { Icon } from '@/common/components'
-import { formatDate } from '@/utils'
 
 interface Props {
   item: RecordResponse
@@ -13,7 +12,6 @@ export const MessageItem = ({ item, isMyself }: Props) => {
 
   return (
     <>
-      <div className='flex justify-center text-xs text-text-dark'>{formatDate(item.createdAt)}</div>
       <div
         id={`${item.id}`}
         className={`flex ${isMyself ? 'justify-end' : 'justify-start'} my-[10px] text-text-lighter`}
