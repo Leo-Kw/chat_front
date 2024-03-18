@@ -9,7 +9,6 @@ const isToday = (date: number) => {
 }
 
 export const withinFiveMinutes = (time: number, referTime: number) => {
-  console.log(time, referTime)
   return referTime + 3600 * 5 > time
 }
 
