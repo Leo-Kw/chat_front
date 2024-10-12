@@ -19,7 +19,7 @@ interface IProps {
   height?: number
 }
 
-interface RefProps {
+export interface RefProps {
   getInstance: () => void
   play: () => void
   pause: () => void

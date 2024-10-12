@@ -11,4 +11,5 @@ export default {
   share_fail: 'The browser does not support the copy function',
   load_all_message: 'All messages loaded',
   file: 'file',
+  speed_recognition: 'Speed Recognition',
 }

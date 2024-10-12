@@ -24,6 +24,7 @@ import { ReactComponent as Share } from './icons/share.svg'
 import { ReactComponent as File } from './icons/file.svg'
 import { ReactComponent as DefaultAvatar } from './icons/default-avatar.svg'
 import { ReactComponent as Lightning } from './icons/lightning.svg'
+import { ReactComponent as Microphone } from './icons/microphone.svg'
 
 export type IconType =
   | 'info'
@@ -51,6 +52,7 @@ export type IconType =
   | 'file'
   | 'default-avatar'
   | 'lightning'
+  | 'microphone'
 
 const iconMap = (type: IconType, style?: React.CSSProperties) => {
   switch (type) {
@@ -104,6 +106,8 @@ const iconMap = (type: IconType, style?: React.CSSProperties) => {
       return <DefaultAvatar style={style} />
     case 'lightning':
       return <Lightning style={style} />
+    case 'microphone':
+      return <Microphone style={style} />
     default:
       return <></>
   }

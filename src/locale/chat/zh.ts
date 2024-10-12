@@ -10,4 +10,5 @@ export default {
   share_fail: '浏览器不支持复制功能',
   load_all_message: '已经加载完全部消息',
   file: '文件',
+  speed_recognition: '语音识别',
 }

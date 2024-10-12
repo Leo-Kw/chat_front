@@ -89,7 +89,7 @@ const reducer = (state: State, action: Action): State => {
 
 export const StateContext = createContext<Context>({ state: initValue, dispatch: () => {} })
 
-export const GloablStateProvider = ({ children }: Props) => {
+export const GlobalStateProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(reducer, initValue)
 
   return <StateContext.Provider value={{ state, dispatch }}>{children}</StateContext.Provider>
