@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { useForm, Resolver } from 'react-hook-form'
 
-import { ControlButtonWrapper, ControlButton, LoginWrapper } from './atoms'
 import {
   PasswordWrapper,
   FormOkButton,
@@ -72,7 +71,7 @@ export const LoginView: React.FC = () => {
   })
 
   return (
-    <LoginWrapper>
+    <div className='flex flex-col items-center'>
       <Lottie animationData={musicAnimationData} />
       <LoginTitle>{t('login')}</LoginTitle>
       <FormContent onSubmit={onSubmit}>
@@ -99,14 +98,14 @@ export const LoginView: React.FC = () => {
           </PasswordWrapper>
           {errors?.password && <FormErrorTip>{errors.password.message}</FormErrorTip>}
         </FormItem>
-        <ControlButtonWrapper>
-          <ControlButton type='button'>{t('forget_password')}</ControlButton>
-          <ControlButton type='button'>
+        <div className='mb-5 flex justify-between [&>button]:bg-transparent [&>button]:text-base [&>button]:text-text-lighter'>
+          <button type='button'>{t('forget_password')}</button>
+          <button type='button'>
             <NavLink to={RouteConfig.register}>{t('sign_up')}</NavLink>
-          </ControlButton>
-        </ControlButtonWrapper>
+          </button>
+        </div>
         <FormOkButton type='submit'>{t('login')}</FormOkButton>
       </FormContent>
-    </LoginWrapper>
+    </div>
   )
 }

@@ -1,7 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { RegisterWrapper, ControlButtonWrapper, ControlButton } from './atoms'
 import {
   PasswordWrapper,
   FormOkButton,
@@ -22,7 +21,7 @@ import { useIntlLocale } from '@/hook'
 import musicAnimationData from '@/common/json/lottie/happy-spaceman.json'
 import { resolver } from './resolver'
 
-export const RegisterView: React.FC = () => {
+export const RegisterView = () => {
   const API = useAPI()
   const t = useIntlLocale()
   const [isPassword, setIsPassword] = useState(true)
@@ -40,7 +39,7 @@ export const RegisterView: React.FC = () => {
   )
 
   return (
-    <RegisterWrapper>
+    <div className='-mt-10 flex flex-col items-center'>
       <Lottie animationData={musicAnimationData} />
       <LoginTitle>{t('sign_up')}</LoginTitle>
       <FormContent onSubmit={onSubmit}>
@@ -76,12 +75,12 @@ export const RegisterView: React.FC = () => {
           {errors?.password && <FormErrorTip>{errors.password.message}</FormErrorTip>}
         </FormItem>
         <FormOkButton type='submit'>{t('register_login')}</FormOkButton>
-        <ControlButtonWrapper>
-          <ControlButton>
+        <div className='flex justify-end'>
+          <button className='cursor-pointer bg-transparent text-base text-text-lighter'>
             <NavLink to={RouteConfig.login}>{t('have_account_to_login')}</NavLink>
-          </ControlButton>
-        </ControlButtonWrapper>
+          </button>
+        </div>
       </FormContent>
-    </RegisterWrapper>
+    </div>
   )
 }
