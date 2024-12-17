@@ -1,30 +1,31 @@
 import React from 'react'
-import { ReactComponent as InfoIcon } from './icons/info.svg'
-import { ReactComponent as ErrorIcon } from './icons/error.svg'
-import { ReactComponent as WarnIcon } from './icons/warn.svg'
-import { ReactComponent as SuccessIcon } from './icons/success.svg'
-import { ReactComponent as LoadingIcon } from './icons/loading.svg'
-import { ReactComponent as RemoteIcon } from './icons/remote.svg'
-import { ReactComponent as RestartIcon } from './icons/restart.svg'
-import { ReactComponent as ResumeIcon } from './icons/resume.svg'
-import { ReactComponent as ShutdownIcon } from './icons/shutdown.svg'
-import { ReactComponent as StartIcon } from './icons/start.svg'
-import { ReactComponent as SuspendIcon } from './icons/suspend.svg'
-import { ReactComponent as ReleaseIcon } from './icons/release.svg'
-import { ReactComponent as CloseIcon } from './icons/close.svg'
-import { ReactComponent as EmojiIcon } from './icons/emoji.svg'
-import { ReactComponent as SongIcon } from './icons/song.svg'
-import { ReactComponent as ShowEye } from './icons/show_eye.svg'
-import { ReactComponent as HideEye } from './icons/hide_eye.svg'
-import { ReactComponent as ChatRecord } from './icons/chat_record.svg'
-import { ReactComponent as Myself } from './icons/myself.svg'
-import { ReactComponent as SignOut } from './icons/sign_out.svg'
-import { ReactComponent as Setting } from './icons/setting.svg'
-import { ReactComponent as Share } from './icons/share.svg'
-import { ReactComponent as File } from './icons/file.svg'
-import { ReactComponent as DefaultAvatar } from './icons/default-avatar.svg'
-import { ReactComponent as Lightning } from './icons/lightning.svg'
-import { ReactComponent as Microphone } from './icons/microphone.svg'
+import InfoIcon from './icons/info.svg?react'
+import ErrorIcon from './icons/error.svg?react'
+import WarnIcon from './icons/warn.svg?react'
+import SuccessIcon from './icons/success.svg?react'
+import LoadingIcon from './icons/loading.svg?react'
+import RemoteIcon from './icons/remote.svg?react'
+import RestartIcon from './icons/restart.svg?react'
+import ResumeIcon from './icons/resume.svg?react'
+import ShutdownIcon from './icons/shutdown.svg?react'
+import StartIcon from './icons/start.svg?react'
+import SuspendIcon from './icons/suspend.svg?react'
+import ReleaseIcon from './icons/release.svg?react'
+import CloseIcon from './icons/close.svg?react'
+import EmojiIcon from './icons/emoji.svg?react'
+import SongIcon from './icons/song.svg?react'
+import ShowEye from './icons/show_eye.svg?react'
+import HideEye from './icons/hide_eye.svg?react'
+import ChatRecord from './icons/chat_record.svg?react'
+import Myself from './icons/myself.svg?react'
+import SignOut from './icons/sign_out.svg?react'
+import Setting from './icons/setting.svg?react'
+import Share from './icons/share.svg?react'
+import File from './icons/file.svg?react'
+import DefaultAvatar from './icons/default-avatar.svg?react'
+import Lightning from './icons/lightning.svg?react'
+import Microphone from './icons/microphone.svg?react'
+import Video from './icons/video.svg?react'
 
 export type IconType =
   | 'info'
@@ -53,6 +54,7 @@ export type IconType =
   | 'default-avatar'
   | 'lightning'
   | 'microphone'
+  | 'video'
 
 const iconMap = (type: IconType, style?: React.CSSProperties) => {
   switch (type) {
@@ -108,6 +110,8 @@ const iconMap = (type: IconType, style?: React.CSSProperties) => {
       return <Lightning style={style} />
     case 'microphone':
       return <Microphone style={style} />
+    case 'video':
+      return <Video style={style} />
     default:
       return <></>
   }

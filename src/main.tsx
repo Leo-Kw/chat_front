@@ -2,6 +2,7 @@ import ReactDOM from 'react-dom/client'
 import App from './App'
 import './index.css'
 import { notice } from './common/components/toast'
+// import { StrictMode } from 'react'
 
 // import fib from 'virtual:fib'
 // import env from 'virtual:env'
@@ -12,7 +13,7 @@ import { notice } from './common/components/toast'
 notice({ content: '', type: 'info', duration: 3000 })
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  // <React.StrictMode>
+  // <StrictMode>
   <App />
-  // </React.StrictMode>
+  // </StrictMode>
 )

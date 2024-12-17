@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { color, typography } from '@/theme'
+import { color, typography } from '../../../theme'
 import chickMusicImg from '../../images/songs-feel-good.gif'
 
 const MarginBase = css`

@@ -12,4 +12,5 @@ export default {
   load_all_message: 'All messages loaded',
   file: 'file',
   speed_recognition: 'Speed Recognition',
+  video: 'Video',
 }

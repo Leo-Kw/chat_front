@@ -24,3 +24,4 @@ ai-review-output
 *.njsproj
 *.sln
 *.sw?
+node_modules

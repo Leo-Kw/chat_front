@@ -1,5 +1,5 @@
-import { emojiArr } from '@/constants'
-import { emojiByCode } from '@/utils'
+import { emojiArr } from '../../../../constants'
+import { emojiByCode } from '../../../../utils'
 import { EmojiProps } from '../../type'
 
 export const Emoji = ({ messageContent, setMessageContent, textAreaRef }: EmojiProps) => {

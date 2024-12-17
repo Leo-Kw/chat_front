@@ -1,5 +1,5 @@
-import { intlCache } from '@/hook'
-import { RegisterParams } from '@/shared/services/api/interface'
+import { intlCache } from '../../hook'
+import { RegisterParams } from '../../shared/services/api/interface'
 import { Resolver } from 'react-hook-form'
 
 const regex = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/
@@ -30,13 +30,13 @@ export const resolver: Resolver<RegisterParams> = async (values) => {
           },
         }
       : !regex.test(values.email)
-      ? {
-          email: {
-            type: 'required',
-            message: intlCache.formatMessage({ id: 'validate_email_format_required' }),
-          },
-        }
-      : {}),
+        ? {
+            email: {
+              type: 'required',
+              message: intlCache.formatMessage({ id: 'validate_email_format_required' }),
+            },
+          }
+        : {}),
     ...(!values.password
       ? {
           password: {

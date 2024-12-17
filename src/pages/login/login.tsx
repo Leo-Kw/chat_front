@@ -11,17 +11,17 @@ import {
   FormItem,
   Lottie,
   Toast,
-} from '@/common/components'
-import { RouteConfig } from '@/route'
-import { NavLink } from '@/common/base-atoms'
-import { AuthService } from '@/shared/services'
-import { useAPI, useGlobalState } from '@/hook'
-import { LoginParams } from '@/shared/services/api/interface'
+} from '../../common/components'
+import { RouteConfig } from '../../route'
+import { NavLink } from '../../common/base-atoms'
+import { AuthService } from '../../shared/services'
+import { useAPI, useGlobalState } from '../../hook'
+import { LoginParams } from '../../shared/services/api/interface'
 import { useNavigate } from 'react-router-dom'
-import { Icon } from '@/common/components/icon'
-import { useIntlLocale, intlCache } from '@/hook'
-import { ActionType } from '@/context'
-import musicAnimationData from '@/common/json/lottie/happy-spaceman.json'
+import { Icon } from '../../common/components/icon'
+import { useIntlLocale, intlCache } from '../../hook'
+import { ActionType } from '../../context'
+import musicAnimationData from '../../common/json/lottie/happy-spaceman.json'
 
 const resolver: Resolver<LoginParams> = async (values) => {
   const errors = {

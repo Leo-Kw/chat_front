@@ -13,22 +13,6 @@ const basePositionZero = css`
   right: 0;
 `
 
-export const StyledModal = styled.div<{ zIndex: number; visible: boolean }>`
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: -1;
-  visibility: ${(p) => (p.visible ? 'visible' : 'hidden')};
-  z-index: ${(p) => p.zIndex};
-`
-
 export const Mask = styled.div`
   ${basePositionZero}
   position: fixed;
@@ -39,15 +23,15 @@ export const Mask = styled.div`
   transition: opacity 300ms;
 `
 
-export const ModalStyle = styled.div<{ zIndex: number; visible: boolean }>`
+export const ModalStyle = styled.div<{ $zIndex: number; $visible: boolean }>`
   ${baseFlex}
   ${basePositionZero}
   position: fixed;
   width: 100vw;
   height: 100vh;
   z-index: -1;
-  visibility: ${(p) => (p.visible ? 'visible' : 'hidden')};
-  z-index: ${(p) => p.zIndex};
+  visibility: ${({ $visible }) => ($visible ? 'visible' : 'hidden')};
+  z-index: ${({ $zIndex }) => $zIndex};
 `
 
 export const Content = styled.div<{
@@ -55,19 +39,23 @@ export const Content = styled.div<{
   right?: string
   left?: string
   bottom?: string
-  minWidth?: string | number
-  backgroundColor?: string
+  $minWidth?: string | number
+  $backgroundColor?: string
   color?: string
 }>`
-  ${({ theme, top, right, left, bottom, minWidth, backgroundColor, color }) => css`
+  ${({ theme, top, right, left, bottom, $minWidth, $backgroundColor, color }) => css`
     position: absolute;
     top: ${top ?? 'unset'};
     right: ${right ?? 'unset'};
     left: ${left ?? 'unset'};
     bottom: ${bottom ?? 'unset'};
     color: ${color ?? '#000'};
-    background: ${backgroundColor ? backgroundColor : theme.color.white};
-    min-width: ${minWidth ? (typeof minWidth === 'number' ? minWidth + 'px' : minWidth) : '420px'};
+    background: ${$backgroundColor ? $backgroundColor : theme.color.white};
+    min-width: ${$minWidth
+      ? typeof $minWidth === 'number'
+        ? $minWidth + 'px'
+        : $minWidth
+      : '420px'};
     transition: all 300ms;
     border-radius: ${theme.radius.sm};
     overflow: hidden;

@@ -1,5 +1,5 @@
 import { RefObject, useEffect, useRef } from 'react'
-import { off, on } from '@/utils'
+import { off, on } from '../utils'
 
 const defaultEvents = ['mousedown', 'touchstart']
 
@@ -17,7 +17,7 @@ export const useClickAway = <E extends Event = Event>(
   useEffect(() => {
     const handler = (event: Event) => {
       const { current: el } = ref
-      el && !el.contains(event.target as Node) && savedCallback.current(event)
+      if (el && !el.contains(event.target as Node)) savedCallback.current(event)
     }
     for (const eventName of events) {
       on(document, eventName, handler)

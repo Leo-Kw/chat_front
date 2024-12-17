@@ -14,11 +14,11 @@ export default function virtualFibModulePlugin(): Plugin {
     configResolved(c: ResolvedConfig) {
       config = c
     },
-    resolveId(id) {
+    resolveId(id: string) {
       if (id === virtualFibModuleId) return resolvedFibVirtualModuleId
       if (id === virtualEnvModuleId) return resolvedEnvVirtualModuleId
     },
-    load(id) {
+    load(id: string) {
       if (id === resolvedFibVirtualModuleId)
         return 'export default function fib(n) { return n <= 1 ? n : fib(n - 1) + fib(n - 2); }'
       if (id === resolvedEnvVirtualModuleId) return `export default ${JSON.stringify(config!.env)}`

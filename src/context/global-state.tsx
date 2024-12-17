@@ -1,33 +1,25 @@
-import { RecordResponse } from '@/shared/services/api/interface'
-import { createContext, Dispatch, ReactNode, useReducer } from 'react'
-import { UserInfoType } from './types'
-
-export enum ActionType {
-  SetUserInfo = 'SetUserInfo',
-  SetRoomId = 'SetRoomId',
-  SetMessageList = 'SetMessageList',
-  AddNewMessage = 'AddNewMessage',
-  AddOneUnreadMessNum = 'AddOneUnreadMessNum',
-  ClearUnreadMessNum = 'ClearUnreadMessNum',
-}
+import { RecordResponse } from '../shared/services/api/interface'
+import { Dispatch, ReactNode, useReducer } from 'react'
+import { ActionType, UserInfoType } from './types'
+import { initValue, StateContext } from './context'
 
 interface Props {
   children: ReactNode
 }
 
-interface State {
+export interface State {
   userInfo: UserInfoType
   messageList: RecordResponse[]
   roomId: number
   unreadMessNum: number
 }
 
-interface Context {
+export interface Context {
   state: State
   dispatch: Dispatch<Action>
 }
 
-type Action =
+export type Action =
   | {
       type: ActionType.SetUserInfo
       payload: UserInfoType
@@ -51,23 +43,6 @@ type Action =
       type: ActionType.ClearUnreadMessNum
     }
 
-const initValue: State = {
-  userInfo: {
-    id: 0,
-    sex: 1,
-    name: '',
-    email: '',
-    sign: '',
-    role: '',
-    room_id: '',
-    avatar: '',
-    account: '',
-  },
-  roomId: 1,
-  messageList: [],
-  unreadMessNum: 0,
-}
-
 const reducer = (state: State, action: Action): State => {
   switch (action.type) {
     case ActionType.SetUserInfo:
@@ -86,8 +61,6 @@ const reducer = (state: State, action: Action): State => {
       return state
   }
 }
-
-export const StateContext = createContext<Context>({ state: initValue, dispatch: () => {} })
 
 export const GlobalStateProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(reducer, initValue)

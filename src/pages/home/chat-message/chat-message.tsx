@@ -1,9 +1,9 @@
 import { Fragment, useCallback, useEffect, useRef, useState } from 'react'
-import { useAPI, useGlobalState, useIntlLocale, useSocket } from '@/hook'
+import { useAPI, useGlobalState, useIntlLocale, useSocket } from '../../../hook'
 import { SocketOnMessage } from '../type'
-import { formatDate, scrollToBottom, throttle, withinFiveMinutes } from '@/utils'
-import { ActionType } from '@/context'
-import { Toast } from '@/common/components'
+import { formatDate, scrollToBottom, throttle, withinFiveMinutes } from '../../../utils'
+import { ActionType } from '../../../context'
+import { Toast } from '../../../common/components'
 import { CSSTransition } from 'react-transition-group'
 import { MessageItem } from './message-item'
 
@@ -27,7 +27,7 @@ export const ChatMessage = () => {
     socket.on('message', handleMessage) // 监听消息
     if (currentRef && currentRef.current) {
       currentRef.current.addEventListener('scroll', scrollToTop)
-      isFirstLoad && (currentRef.current.scrollTop = currentRef.current.scrollHeight)
+      if (isFirstLoad) currentRef.current.scrollTop = currentRef.current.scrollHeight
     }
     return () => {
       socket.off('message', handleMessage)
@@ -54,14 +54,14 @@ export const ChatMessage = () => {
     if (messContentRef && messContentRef.current) {
       const el = messContentRef.current
       const { scrollTop, offsetHeight, scrollHeight } = el
-      offsetHeight + scrollTop - scrollHeight > -450 &&
+      if (offsetHeight + scrollTop - scrollHeight > -450)
         dispatch({ type: ActionType.ClearUnreadMessNum })
-      scrollTop < 30 && setMessageParams({ ...messageParams, page: ++messageParams.page })
+      if (scrollTop < 30) setMessageParams({ ...messageParams, page: ++messageParams.page })
     }
   }, 200)
 
   const getMessageList = () => {
-    !isLoadAllMessage &&
+    if (!isLoadAllMessage)
       API.chat.getMessage({ ...messageParams, roomId }).then((res) => {
         if (res.result) {
           if (res.data.length < messageParams.pageSize && messageParams.page !== 1) {

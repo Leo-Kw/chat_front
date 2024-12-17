@@ -1,9 +1,9 @@
 import { createBrowserRouter, Navigate, redirect } from 'react-router-dom'
 import { RouteConfig } from './route'
-import { HomeView } from '@/pages/home'
-import { LoginView } from '@/pages/login'
-import { RegisterView } from '@/pages/register'
-import { AuthService } from '@/shared/services'
+import { HomeView } from '../pages/home'
+import { LoginView } from '../pages/login'
+import { RegisterView } from '../pages/register'
+import { AuthService } from '../shared/services'
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +14,7 @@ export const router = createBrowserRouter([
       if (!token) {
         return redirect('/login')
       }
+      return true
     },
   },
   {

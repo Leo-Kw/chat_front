@@ -1,5 +1,5 @@
 import { AxiosInstance } from 'axios'
-import { httpService } from '@/shared/http'
+import { httpService } from '../../../shared/http'
 
 import { UserModule } from './user'
 import { ChatModule } from './chat'

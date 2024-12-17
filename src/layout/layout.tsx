@@ -1,7 +1,7 @@
 import React from 'react'
-import { Locale, setLocaleService, getLocaleService } from '@/shared/services'
+import { Locale, setLocaleService, getLocaleService } from '../shared/services'
 import { useBattery, useIntlLocale } from '../hook'
-import { Icon } from '@/common/components'
+import { Icon } from '../common/components'
 import backgroundImage from '../common/images/banner_111.gif'
 
 interface props {

@@ -11,14 +11,14 @@ import {
   FormItem,
   Toast,
   Lottie,
-} from '@/common/components'
-import { NavLink } from '@/common/base-atoms'
-import { RouteConfig } from '@/route'
-import { RegisterParams } from '@/shared/services/api/interface'
-import { useAPI } from '@/hook'
-import { Icon } from '@/common/components/icon'
-import { useIntlLocale } from '@/hook'
-import musicAnimationData from '@/common/json/lottie/happy-spaceman.json'
+} from '../../common/components'
+import { NavLink } from '../../common/base-atoms'
+import { RouteConfig } from '../../route'
+import { RegisterParams } from '../../shared/services/api/interface'
+import { useAPI } from '../../hook'
+import { Icon } from '../../common/components/icon'
+import { useIntlLocale } from '../../hook'
+import musicAnimationData from '../../common/json/lottie/happy-spaceman.json'
 import { resolver } from './resolver'
 
 export const RegisterView = () => {
