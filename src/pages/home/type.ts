@@ -1,4 +1,4 @@
-import { RecordResponse } from '@/shared/services/api/interface'
+import { RecordResponse } from '../../shared/services/api/interface'
 
 export interface SocketOnMessage {
   data: RecordResponse
