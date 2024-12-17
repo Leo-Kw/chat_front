@@ -1,5 +1,5 @@
-import { UserInfoType } from '@/context/types'
-import { MessageTypes } from '@/pages/home/type'
+import { UserInfoType } from '../../../context'
+import { MessageTypes } from '../../../pages/home/type'
 
 export interface BaseResponse<T = unknown> {
   code: number

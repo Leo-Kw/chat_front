@@ -1,4 +1,4 @@
-import { UserInfoType } from '@/context/types'
+import { UserInfoType } from '../../../context'
 import { AxiosInstance } from 'axios'
 import {
   BaseResponse,
