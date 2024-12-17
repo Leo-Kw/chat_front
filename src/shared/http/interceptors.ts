@@ -1,4 +1,4 @@
-import { AxiosError, AxiosResponse, AxiosRequestConfig } from 'axios'
+import { AxiosError, AxiosResponse, InternalAxiosRequestConfig } from 'axios'
 import { Toast } from '../../common/components'
 import { AuthService } from '../../shared/services'
 
@@ -8,7 +8,7 @@ export interface ResponseError {
   statusCode: number
 }
 
-export const handleRequest = (config: AxiosRequestConfig) => {
+export const handleRequest = (config: InternalAxiosRequestConfig) => {
   const token = AuthService.getToken()
   if (token) {
     config.headers!['authorization'] = token
