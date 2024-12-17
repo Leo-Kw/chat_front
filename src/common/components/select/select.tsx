@@ -1,6 +1,6 @@
 import { ForwardedRef, forwardRef, useEffect, useRef, useState } from 'react'
 
-import { useClickAway } from '@/hook'
+import { useClickAway } from '../../../hook'
 import { SelectInput, OptionWrap, SelectWrap, Option } from './atoms'
 import { Transition } from 'react-transition-group'
 import { DefaultOptionType, Props, RawValueType } from './types'
@@ -34,7 +34,7 @@ export const SelectComponent = <
   const [optionTop, setOptionTop] = useState(0)
 
   useClickAway(selectRef, () => {
-    showOption && setShowOption(false)
+    if (showOption) setShowOption(false)
   })
 
   useEffect(() => {

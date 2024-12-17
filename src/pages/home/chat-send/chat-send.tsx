@@ -1,10 +1,9 @@
 import { useEffect, useCallback, useState, useRef } from 'react'
-import { useGlobalState, useIntlLocale, useSocket } from '@/hook'
-import { scrollToBottom } from '@/utils'
-import { AuthService } from '@/shared/services'
-import { Popup, Icon, Button, Modal } from '@/common/components'
-import { Emoji } from './components'
-import { ChatRecord } from './components/chat-record'
+import { useGlobalState, useIntlLocale, useSocket } from '../../../hook'
+import { scrollToBottom } from '../../../utils'
+import { AuthService } from '../../../shared/services'
+import { Popup, Icon, Button, Modal } from '../../../common/components'
+import { ChatRecord, Emoji, Video } from './components'
 
 // const pickerOpts = {
 //   types: [
@@ -56,7 +55,7 @@ export const ChatSend = () => {
           messageType: 'text',
         },
         (res: boolean) => {
-          res && scrollToBottom()
+          if (res) scrollToBottom()
         }
       )
       setMessageContent('')
@@ -67,7 +66,7 @@ export const ChatSend = () => {
     (event: KeyboardEvent) => {
       if (event.key === 'Enter') {
         event.preventDefault()
-        !isInput && messageContent && sendMessage()
+        if (!isInput && messageContent) sendMessage()
         return
       }
     },
@@ -224,17 +223,23 @@ export const ChatSend = () => {
         >
           <Button type='text'>
             <Icon type='emoji' style={{ fill: '#b0b3b5' }} />
-            {t('emoji')}
+            <span className='max-md:hidden'>{t('emoji')}</span>
           </Button>
         </Popup>
         <Button type='text' onClick={() => setShowRecord(true)}>
           <Icon type='chat_record' style={{ fill: '#b0b3b5' }} />
-          {t('chat_record')}
+          <span className='max-md:hidden'>{t('chat_record')}</span>
         </Button>
         <Button type='text' onClick={handleSpeedRecognition}>
           <Icon type='microphone' style={{ fill: '#b0b3b5' }} />
-          {t('speed_recognition')}
+          <span className='max-md:hidden'>{t('speed_recognition')}</span>
         </Button>
+        <Popup left={0} bottom={50} height={200} title={t('emoji')} content={<Video />}>
+          <Button type='text'>
+            <Icon type='video' style={{ fill: '#b0b3b5' }} />
+            <span className='max-md:hidden'>{t('video')}</span>
+          </Button>
+        </Popup>
         {/* <Button type='text' onClick={() => getFile()}>
           <Icon type='file' style={{ fill: '#b0b3b5' }} />
           {t('file')}

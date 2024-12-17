@@ -1,5 +1,5 @@
-import { intlCache } from '@/hook'
-import { PersonalParams } from '@/shared/services/api/interface'
+import { intlCache } from '../../../hook'
+import { PersonalParams } from '../../../shared/services/api/interface'
 import { Resolver } from 'react-hook-form'
 
 export const personalResolver: Resolver<Pick<PersonalParams, 'name' | 'sex'>> = async (values) => {

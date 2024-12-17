@@ -1,13 +1,13 @@
-import { Icon } from '@/common/components'
-import { useAPI } from '@/hook'
-import { RecordResponse } from '@/shared/services'
+import { Icon } from '../../../../common/components'
+import { useAPI } from '../../../../hook'
+import { RecordResponse } from '../../../../shared/services'
 import { useEffect, useRef, useState } from 'react'
 
 interface Props {
   open: boolean
 }
 
-// eslint-disable-next-line @typescript-eslint/ban-types
+// eslint-disable-next-line @typescript-eslint/no-unsafe-function-type
 const debounce = (fn: Function, ms = 300) => {
   let timeoutId: ReturnType<typeof setTimeout>
   return function (this: unknown, ...args: unknown[]) {

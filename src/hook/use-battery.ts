@@ -1,4 +1,4 @@
-import { isNavigator, off, on } from '@/utils'
+import { isNavigator, off, on } from '../utils'
 import { useEffect, useState } from 'react'
 
 export interface BatteryState {

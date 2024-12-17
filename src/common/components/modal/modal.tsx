@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import ReactDOM from 'react-dom'
 import { Transition } from 'react-transition-group'
 import {
@@ -14,7 +14,7 @@ import {
 import { ModalProps } from './modal.type'
 import { Icon } from '../icon'
 import ModalManager from './modal-manager'
-import { useIntlLocale } from '@/hook'
+import { useIntlLocale } from '../../../hook'
 
 const ANIMATION_DELAY = 200
 const modalManager = new ModalManager()
@@ -89,8 +89,8 @@ export const Modal = (props: ModalProps) => {
     color,
   } = props
   const [isShowModal, setIsShowModal] = useState(true)
-  const nodeRef = React.useRef(null)
-  const container = React.useRef<HTMLElement | null>(null)
+  const nodeRef = useRef(null)
+  const container = useRef<HTMLElement | null>(null)
 
   if (container.current === null) {
     container.current = document.createElement('div')
@@ -102,7 +102,7 @@ export const Modal = (props: ModalProps) => {
         return
       }
       if (event.key === 'Enter') {
-        canEnterClose && !confirmLoading && onOk?.()
+        if (canEnterClose && !confirmLoading) onOk?.()
         return
       }
       if (event.key === 'Escape') {
@@ -149,7 +149,7 @@ export const Modal = (props: ModalProps) => {
   const modalElement = (
     <Transition appear in={visible} timeout={ANIMATION_DELAY} nodeRef={nodeRef}>
       {(state) => (
-        <ModalStyle zIndex={zIndex!} visible={visible}>
+        <ModalStyle $zIndex={zIndex!} $visible={visible}>
           <Mask onClick={handleMaskClick} style={{ ...MaskState[state] }}></Mask>
           <Content
             style={{
@@ -159,8 +159,8 @@ export const Modal = (props: ModalProps) => {
             right={right}
             left={left}
             bottom={bottom}
-            minWidth={width}
-            backgroundColor={backgroundColor}
+            $minWidth={width}
+            $backgroundColor={backgroundColor}
             color={color}
           >
             <Header>

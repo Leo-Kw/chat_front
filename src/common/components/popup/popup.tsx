@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { Transition } from 'react-transition-group'
 import { PopupWrapper } from './atoms'
 import { PopupProps } from './popup.type'
-import { useClickAway } from '@/hook'
+import { useClickAway } from '../../../hook'
 
 const duration = 300
 
@@ -55,11 +55,11 @@ export const Popup = ({
       <Transition in={isShowPopup} timeout={duration} mountOnEnter unmountOnExit>
         {(state) => (
           <PopupWrapper
-            width={width}
-            height={height}
-            left={left}
-            bottom={bottom}
-            padding={padding}
+            $width={width}
+            $height={height}
+            $left={left}
+            $bottom={bottom}
+            $padding={padding}
             style={{
               ...defaultStyle,
               ...transitionStyles[state],

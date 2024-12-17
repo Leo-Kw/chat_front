@@ -10,7 +10,7 @@ const getButtonStyle = (type: ButtonProps['type'], theme: ButtonCssProps['theme'
         color: ${theme.color.text.dark};
         background: ${theme.color.white};
         border: 1px solid ${theme.color.gray.border};
-        :hover {
+        &:hover {
           color: ${theme.color.button.main};
           border: 1px solid ${theme.color.button.main};
         }
@@ -19,7 +19,7 @@ const getButtonStyle = (type: ButtonProps['type'], theme: ButtonCssProps['theme'
       return css`
         color: ${theme.color.text.lighter};
         background: ${theme.color.button.main};
-        :hover {
+        &:hover {
           filter: brightness(0.1);
         }
       `
@@ -27,15 +27,15 @@ const getButtonStyle = (type: ButtonProps['type'], theme: ButtonCssProps['theme'
       return css`
         color: ${theme.color.text.dark};
         background: transparent;
-        :hover {
+        &:hover {
           background: ${theme.color.gray.background};
         }
       `
   }
 }
 
-export const ButtonComponent = styled.button<{ buttonType: ButtonType; color?: string }>`
-  ${({ theme, buttonType, color }) => css`
+export const ButtonComponent = styled.button<{ $buttonType: ButtonType; $color?: string }>`
+  ${({ theme, $buttonType, $color }) => css`
     display: flex;
     align-items: center;
     font-size: ${theme.typography.textSmall};
@@ -44,10 +44,10 @@ export const ButtonComponent = styled.button<{ buttonType: ButtonType; color?: s
     border-radius: 4px;
     margin: 0 5px;
     transition: 0.2s;
-    ${getButtonStyle(buttonType, theme)}
-    ${color &&
+    ${getButtonStyle($buttonType, theme)}
+    ${$color &&
     css`
-      color: ${color};
+      color: ${$color};
     `}
     svg {
       /* fill: ${theme.color.text.gray}; */

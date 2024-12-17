@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-import { Keyframes } from '@/theme'
+import { Keyframes } from '../../../theme'
 
 export type ToastType = 'info' | 'warn' | 'success' | 'error' | 'loading'
 

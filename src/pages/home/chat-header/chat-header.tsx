@@ -1,9 +1,9 @@
 import { useState } from 'react'
-import { Icon } from '@/common/components/icon'
+import { Icon } from '../../../common/components/icon'
 import { useNavigate } from 'react-router-dom'
-import { AuthService } from '@/shared/services'
-import { Button, Popup, Toast } from '@/common/components'
-import { useIntlLocale } from '@/hook'
+import { AuthService } from '../../../shared/services'
+import { Button, Popup, Toast } from '../../../common/components'
+import { useIntlLocale } from '../../../hook'
 import { MyselfPopup } from './components/myself-popup'
 
 export const ChatHeader = () => {
@@ -40,7 +40,7 @@ export const ChatHeader = () => {
         <div onClick={() => share()}>
           <Button type='text' color='#e5e5e5'>
             <Icon type='share' style={{ fill: '#e5e5e5' }} />
-            {t('share')}
+            <span className='max-md:hidden'>{t('share')}</span>
           </Button>
         </div>
       </div>
@@ -57,12 +57,12 @@ export const ChatHeader = () => {
         >
           <Button type='text' color='#e5e5e5'>
             <Icon type='myself' style={{ fill: '#e5e5e5' }} />
-            {t('myself')}
+            <span className='max-md:hidden'>{t('myself')}</span>
           </Button>
         </Popup>
         <Button type='text' color='#e5e5e5' onClick={() => logout()}>
           <Icon type='sign_out' style={{ fill: '#e5e5e5' }} />
-          {t('sign_out')}
+          <span className='max-md:hidden'>{t('sign_out')}</span>
         </Button>
       </div>
     </div>

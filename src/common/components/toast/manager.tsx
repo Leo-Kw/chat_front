@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { CSSTransition, TransitionGroup } from 'react-transition-group'
 import { Toast, ToastProps } from './toast'
-import { AppThemeProvider } from '@/theme'
+import { AppThemeProvider } from '../../../theme'
 import { ManagerWrap } from './atoms'
 
 interface State {
@@ -14,7 +14,7 @@ export interface CreateToastReturn {
   destroy: () => void
 }
 
-class ToastManager extends React.Component<{}, State> {
+class ToastManager extends React.Component<object, State> {
   public state: State = {
     oven: [],
   }

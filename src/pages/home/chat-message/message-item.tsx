@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { RecordResponse } from '@/shared/services'
-import { Icon } from '@/common/components'
+import { RecordResponse } from '../../../shared/services'
+import { Icon } from '../../../common/components'
 
 interface Props {
   item: RecordResponse

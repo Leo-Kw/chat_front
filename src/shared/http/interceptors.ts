@@ -1,6 +1,6 @@
 import { AxiosError, AxiosResponse, AxiosRequestConfig } from 'axios'
-import { Toast } from '@/common/components'
-import { AuthService } from '@/shared/services'
+import { Toast } from '../../common/components'
+import { AuthService } from '../../shared/services'
 
 export interface ResponseError {
   error: string

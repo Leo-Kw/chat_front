@@ -1,10 +1,17 @@
-import { FormErrorTip, FormInput, FormOkButton, Icon, Select, Toast } from '@/common/components'
+import {
+  FormErrorTip,
+  FormInput,
+  FormOkButton,
+  Icon,
+  Select,
+  Toast,
+} from '../../../../common/components'
 import { Controller, useForm } from 'react-hook-form'
 import { personalResolver } from '../resolver'
-import { PersonalParams, SexType } from '@/shared/services'
-import { useAPI, useGlobalState, useIntlLocale } from '@/hook'
+import { PersonalParams, SexType } from '../../../../shared/services'
+import { useAPI, useGlobalState, useIntlLocale } from '../../../../hook'
 import { ChangeEvent, useRef, useState } from 'react'
-import { ActionType } from '@/context'
+import { ActionType } from '../../../../context'
 
 // const pickerOpts: OpenFilePickerOptions = {
 //   types: [
@@ -134,7 +141,7 @@ export const MyselfPopup = ({ onClose }: { onClose: () => void }) => {
                   {...field}
                   value={sexValue}
                   options={sexOptions}
-                  handleChange={(value) => setSexValue(value)}
+                  handleChange={(value) => setSexValue(value as SexType)}
                 />
               )}
             />

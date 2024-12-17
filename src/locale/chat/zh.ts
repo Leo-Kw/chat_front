@@ -11,4 +11,5 @@ export default {
   load_all_message: '已经加载完全部消息',
   file: '文件',
   speed_recognition: '语音识别',
+  video: '视频',
 }
