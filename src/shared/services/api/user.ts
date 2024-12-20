@@ -11,24 +11,28 @@ import {
 export class UserModule {
   constructor(private ins: AxiosInstance) {}
 
-  login = async (parmas: LoginParams) => {
-    const res = await this.ins.post<BaseResponse<LoginResponse>>('/user/login', parmas)
+  login = async (params: LoginParams) => {
+    const res = await this.ins.post<BaseResponse<LoginResponse>>('/user/login', params)
     return res.data
   }
-  register = async (parmas: RegisterParams) => {
-    const res = await this.ins.post<BaseResponse>('/user/register', parmas)
+  register = async (params: RegisterParams) => {
+    const res = await this.ins.post<BaseResponse>('/user/register', params)
     return res.data
   }
   getUserInfo = async () => {
     const res = await this.ins.get<BaseResponse<UserInfoType>>('/user/info')
     return res.data
   }
-  uploadAvatar = async (parmas: FormData) => {
-    const res = await this.ins.post<BaseResponse>('/user/avatar/upload', parmas)
+  uploadAvatar = async (params: FormData) => {
+    const res = await this.ins.post<BaseResponse>('/user/avatar/upload', params)
     return res.data
   }
   updateUserInfo = async (params: PersonalParams) => {
     const res = await this.ins.post<BaseResponse>('/user/modify', params)
+    return res.data
+  }
+  checkToken = async () => {
+    const res = await this.ins.post<BaseResponse>('/user/token/check')
     return res.data
   }
 }

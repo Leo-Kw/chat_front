@@ -9,7 +9,7 @@ import { IntlProvider } from 'react-intl'
 import { getLocaleService } from './shared/services'
 
 import { Zh, En } from './locale'
-import { router } from './route'
+import { Router } from './route'
 
 const localeMap = {
   zh: Zh,
@@ -26,7 +26,7 @@ function App() {
           <SocketProvider>
             <GlobalStateProvider>
               <Layout>
-                <RouterProvider router={router} />
+                <RouterProvider router={Router()} />
               </Layout>
             </GlobalStateProvider>
           </SocketProvider>
