@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useRef } from 'react'
 
-const videoUrl = 'http://localhost:3100/Mother_Aiman_Samat_7b82a18d6f_1.mp4'
+const videoUrl = 'http://localhost:3100/Mother_Aiman_Samat.mp4'
 const mimeCodec = 'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
 
 export const Video = () => {
@@ -22,15 +22,22 @@ export const Video = () => {
 
   useEffect(() => {
     const mediaSource = new MediaSource()
-    if ('MediaSource' in window && MediaSource.isTypeSupported(mimeCodec) && videoRef.current) {
-      videoRef.current.width = 200
-      videoRef.current.controls = true
-      videoRef.current.src = URL.createObjectURL(mediaSource)
+    const videoRefCurrent = videoRef.current
+    if ('MediaSource' in window && MediaSource.isTypeSupported(mimeCodec) && videoRefCurrent) {
+      videoRefCurrent.width = 200
+      videoRefCurrent.controls = true
+      videoRefCurrent.src = URL.createObjectURL(mediaSource)
       mediaSource.addEventListener('sourceopen', () => {
         if (mediaSource.readyState === 'open') {
           sourceOpen(mediaSource)
         }
       })
+      // videoRefCurrent.onloadeddata = () => {
+      //   const timeRangesObject = videoRefCurrent.seekable
+      //   for (let count = 0; timeRangesObject.length > count; count++) {
+      //     console.log(timeRangesObject.start(count), timeRangesObject.end(count))
+      //   }
+      // }
     } else {
       console.error('Unsupported MIME type or codec: ', mimeCodec)
     }
